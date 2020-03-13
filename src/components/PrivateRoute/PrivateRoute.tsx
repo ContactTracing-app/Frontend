@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { navigate } from 'gatsby';
+import firebase from 'gatsby-plugin-firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 interface PrivateRouteProps {
   path: string;
@@ -10,9 +12,10 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
   component: Component,
   ...rest
 }) => {
-  const isLoggedIn = true;
+  const auth = firebase.auth();
+  const [user] = useAuthState(auth);
 
-  if (!isLoggedIn) {
+  if (!user) {
     navigate('/app/login');
     return null;
   }
