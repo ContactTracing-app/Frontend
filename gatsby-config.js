@@ -1,10 +1,10 @@
 require('dotenv').config({
-  path: `.env`,
-})
+  path: `.env`
+});
 
-const config = require('./config')
+const config = require('./config');
 
-const pathPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix
+const pathPrefix = config.pathPrefix === '/' ? '' : config.pathPrefix;
 
 module.exports = {
   pathPrefix: config.pathPrefix,
@@ -20,7 +20,7 @@ module.exports = {
     ogLanguage: config.ogLanguage,
     author: config.author,
     twitter: config.userTwitter,
-    facebook: config.ogSiteName,
+    facebook: config.ogSiteName
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -31,35 +31,50 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'projects',
-        path: `${__dirname}/content/projects`,
-      },
+        path: `${__dirname}/content/projects`
+      }
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'config',
-        path: `${__dirname}/config`,
-      },
+        path: `${__dirname}/config`
+      }
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
-        path: `${__dirname}/src/images`,
-      },
+        path: `${__dirname}/src/images`
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-firebase',
+      options: {
+        credentials: {
+          apiKey: process.env.GATSBY_API_KEY,
+          authDomain: process.env.GATSBY_AUTH_DOMAIN,
+          databaseURL: process.env.GATSBY_DATABASE_URL,
+          projectId: process.env.GATSBY_PROJECT_ID,
+          storageBucket: process.env.GATSBY_STORAGE_BUCKET,
+          messagingSenderId: process.env.GATSBY_MESSAGING_SENDER_ID,
+          appId: process.env.GATSBY_APP_ID,
+          measurementId: process.env.GATSBY_MEASUREMENT_ID
+        }
+      }
     },
     {
       resolve: 'gatsby-source-instagram',
       options: {
         access_token: process.env.ACCESS_TOKEN,
-        instagram_id: process.env.BUSINESS_ID,
-      },
+        instagram_id: process.env.BUSINESS_ID
+      }
     },
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
-        trackingId: config.googleAnalyticsID,
-      },
+        trackingId: config.googleAnalyticsID
+      }
     },
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
@@ -74,10 +89,10 @@ module.exports = {
         background_color: config.backgroundColor,
         theme_color: config.themeColor,
         display: 'standalone',
-        icon: 'src/favicon.png',
-      },
+        icon: 'src/favicon.png'
+      }
     },
     'gatsby-plugin-offline',
-    'gatsby-plugin-netlify',
-  ],
-}
+    'gatsby-plugin-netlify'
+  ]
+};

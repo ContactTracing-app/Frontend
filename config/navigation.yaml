@@ -1,5 +1,7 @@
 - name: 'Home'
   link: '/projects'
+- name: 'Login'
+  link: '/app/login'
 - name: 'Log Contact'
   link: '/app/contact'
 - name: 'Profile'
