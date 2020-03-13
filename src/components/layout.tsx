@@ -8,6 +8,7 @@ import theme from '../../config/theme';
 import reset from '../styles/reset';
 import Logo from './logo';
 import PrimaryNav from './PrimaryNav';
+import Me from './Me';
 
 const GlobalStyles = createGlobalStyle`
   *::before,
@@ -230,12 +231,7 @@ const Layout = ({ children, color }: LayoutProps) => {
           <Main>{children}</Main>
           <Footer color={color}>
             <Box p={[6, 6, 8]} fontSize={0}>
-              Starter by <a href="https://www.lekoarts.de/en">LekoArts</a>.
-              <br />
-              <a href="https://github.com/LekoArts/gatsby-starter-portfolio-jodie">
-                Source
-              </a>
-              .
+              <Me />
             </Box>
           </Footer>
         </Wrapper>
