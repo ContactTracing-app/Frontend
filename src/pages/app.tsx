@@ -12,7 +12,7 @@ const App = () => {
       <Router basepath="/app">
         <LoginView path="/login" />
         <PrivateRoute path="/contact" component={ContactView} />
-        <PrivateRoute path="/profile" component={ProfileView} />
+        <PrivateRoute path="/profile/:uid" component={ProfileView} />
       </Router>
     </Layout>
   );
