@@ -1,7 +1,5 @@
 import * as React from 'react';
-import firebaseProvider from 'gatsby-plugin-firebase';
-import * as firebase from 'firebase/app';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { useAuth } from 'gatsby-theme-firebase';
 import { graphql, useStaticQuery, Link } from 'gatsby';
 
 const query = graphql`
@@ -47,12 +45,10 @@ const PartialNavLink = ({
 );
 
 const PrimaryNav: React.FC = () => {
-  const auth = firebaseProvider.auth();
-
   const {
     navigation: { nodes }
   } = useStaticQuery<QueryResult>(query);
-  const [user] = useAuthState(auth);
+  const { isLoggedIn, profile } = useAuth();
 
   return (
     <ul>
@@ -61,9 +57,9 @@ const PrimaryNav: React.FC = () => {
           <PartialNavLink to={item.link}>{item.name}</PartialNavLink>
         </li>
       ))}
-      {user ? (
+      {isLoggedIn ? (
         <li>
-          <PartialNavLink to={`/app/profile/${user.uid}`}>
+          <PartialNavLink to={`/app/profile/${profile.uid}`}>
             My Profile
           </PartialNavLink>
         </li>
