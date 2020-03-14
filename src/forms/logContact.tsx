@@ -1,39 +1,40 @@
 import * as React from 'react';
-import * as Yup from 'yup';
 import DatePicker from 'react-date-picker';
 import { withFormik, FormikProps, FormikErrors, Form, Field } from 'formik';
 import {
   Button,
   FormControl,
   FormLabel,
-  Input,
   FormErrorMessage
 } from '@chakra-ui/core';
+import Select, { Option } from 'react-select';
+import hasWindow from '../helpers/hasWindow';
+
+export type ContactWith = {
+  name: string;
+  id: string;
+};
 
 interface FormValues {
   entryDate: Date;
+  contactWith: ContactWith[];
 }
 
 interface OtherProps {
-  message: string;
+  contactOptions: ContactWith[];
 }
 
-// Aside: You may see InjectedFormikProps<OtherProps, FormValues> instead of what comes below in older code.. InjectedFormikProps was artifact of when Formik only exported a HoC. It is also less flexible as it MUST wrap all props (it passes them through).
 const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
   const {
+    contactOptions,
     touched,
     errors,
     isSubmitting,
-    message,
-    values,
     setFieldValue
   } = props;
+
   return (
     <Form>
-      <h1>{message}</h1>
-
-      <pre>{JSON.stringify(values, null, 2)}</pre>
-
       <Field name="entryDate">
         {({ field }) => {
           return (
@@ -42,6 +43,29 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
               <DatePicker
                 onChange={v => setFieldValue('entryDate', v)}
                 value={field.value}
+              />
+              <FormErrorMessage>{errors.entryDate}</FormErrorMessage>
+            </FormControl>
+          );
+        }}
+      </Field>
+
+      <Field name="contactWith">
+        {({ field }) => {
+          return (
+            <FormControl isInvalid={errors[field.name] && touched[field.name]}>
+              <FormLabel htmlFor={field.name}>Entry Date</FormLabel>
+              <Select
+                getOptionLabel={(o: ContactWith) => o.name}
+                getOptionValue={(o: ContactWith) => o.id}
+                defaultValue={field.value}
+                isMulti
+                name={field.name}
+                options={contactOptions}
+                onChange={(option: Option) => {
+                  console.log(option);
+                  setFieldValue(field.name, option);
+                }}
               />
               <FormErrorMessage>{errors.entryDate}</FormErrorMessage>
             </FormControl>
@@ -58,6 +82,8 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
 
 interface LogContactFormProps {
   initialEntryDate?: Date;
+  initialContactWith?: ContactWith[];
+  contactOptions: ContactWith[];
 }
 
 // Wrap our form with the withFormik HoC
@@ -65,24 +91,15 @@ const LogContactForm = withFormik<LogContactFormProps, FormValues>({
   // Transform outer props into form values
   mapPropsToValues: props => {
     return {
-      entryDate: props.initialEntryDate || new Date()
+      entryDate: props.initialEntryDate || new Date(),
+      contactWith: props.initialContactWith || []
     };
   },
 
-  // Add a custom validation function (this can be async too!)
-  validate: (values: FormValues) => {
-    const errors: FormikErrors = {};
-    if (!values.email) {
-      errors.email = 'Required';
-    } else if (!isValidEmail(values.email)) {
-      errors.email = 'Invalid email address';
-    }
-    return errors;
-  },
-
-  handleSubmit: values => {
-    // do submitting things
-  }
+  handleSubmit: values =>
+    hasWindow
+      ? window.alert(JSON.stringify(values, null, 2))
+      : console.log(values)
 })(InnerForm);
 
 export default LogContactForm;
