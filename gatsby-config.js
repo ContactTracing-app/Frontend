@@ -61,7 +61,6 @@ module.exports = {
           appId: process.env.GATSBY_APP_ID,
           measurementId: process.env.GATSBY_MEASUREMENT_ID
         },
-        loginPath: 'login',
         loginRedirectPath: '/app/contact',
         socialLogins: ['google', 'facebook']
       }
