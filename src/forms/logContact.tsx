@@ -1,11 +1,17 @@
 import * as React from 'react';
 import * as Yup from 'yup';
 import { withFormik, FormikProps, FormikErrors, Form, Field } from 'formik';
+import {
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  FormErrorMessage
+} from '@chakra-ui/core';
 
 // Shape of form values
 interface FormValues {
-  email: string;
-  password: string;
+  name: string;
 }
 
 interface OtherProps {
@@ -18,15 +24,20 @@ const InnerForm = (props: OtherProps & FormikProps<FormValues>) => {
   return (
     <Form>
       <h1>{message}</h1>
-      <Field type="email" name="email" />
-      {touched.email && errors.email && <div>{errors.email}</div>}
 
-      <Field type="password" name="password" />
-      {touched.password && errors.password && <div>{errors.password}</div>}
+      <Field name="name">
+        {({ field }) => (
+          <FormControl isInvalid={errors.name && touched.name}>
+            <FormLabel htmlFor="name">First name</FormLabel>
+            <Input {...field} id="name" placeholder="name" />
+            <FormErrorMessage>{errors.name}</FormErrorMessage>
+          </FormControl>
+        )}
+      </Field>
 
-      <button type="submit" disabled={isSubmitting}>
+      <Button mt={4} variantColor="teal" isLoading={isSubmitting} type="submit">
         Submit
-      </button>
+      </Button>
     </Form>
   );
 };

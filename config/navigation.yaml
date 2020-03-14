@@ -1,4 +1,4 @@
-- name: 'Home'
-  link: '/projects'
+- name: 'About'
+  link: '/'
 - name: 'Log Contact'
   link: '/app/contact'

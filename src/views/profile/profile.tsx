@@ -1,29 +1,100 @@
 import * as React from 'react';
-import { Heading, Text } from '@chakra-ui/core';
+import {
+  Heading,
+  Text,
+  Stack,
+  useClipboard,
+  Flex,
+  Input,
+  Button
+} from '@chakra-ui/core';
 import { useParams } from '@reach/router';
+import {
+  EmailIcon,
+  EmailShareButton,
+  FacebookIcon,
+  FacebookShareButton,
+  LineIcon,
+  LineShareButton,
+  LinkedinIcon,
+  LinkedinShareButton,
+  RedditIcon,
+  RedditShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  WeiboIcon,
+  WeiboShareButton,
+  WhatsappIcon,
+  WhatsappShareButton
+} from 'react-share';
+import useProfileUrl from '../../helpers/useProfileUrl';
 
 type params = {
   uid: string;
 };
 const ProfileView = () => {
   const params: params = useParams();
+  const [url] = useProfileUrl();
+  const { onCopy, hasCopied } = useClipboard(url);
+  const iconProps = {
+    size: 32,
+    round: true
+  };
+  const title = 'Share my profile';
   return (
-    <div>
-      <Heading>You are</Heading>
-      <pre>
-        <code>{params.uid}</code>
-      </pre>
-
-      <Text fontSize="4xl">
-        Share this page with your friends &amp; family to connect.
-      </Text>
-
-      <ul>
-        <li>Whatsapp</li>
-        <li>LINE</li>
-        <li>Facebook</li>
-      </ul>
-    </div>
+    url && (
+      <>
+        SEO!
+        <Heading>You are</Heading>
+        <pre>
+          <code>{params.uid}</code>
+        </pre>
+        <Text fontSize="4xl">
+          Share this page with your friends &amp; family to connect.
+        </Text>
+        <Flex mb={2}>
+          <Input value={url} isReadOnly />
+          <Button onClick={onCopy} ml={2}>
+            {hasCopied ? 'Copied' : 'Copy'}
+          </Button>
+        </Flex>
+        <Stack isInline spacing={8} align="center">
+          <LineShareButton url={url} title={title}>
+            <LineIcon {...iconProps} />
+          </LineShareButton>
+          <FacebookShareButton url={url} quote={title}>
+            <FacebookIcon {...iconProps} />
+          </FacebookShareButton>
+          <EmailShareButton url={url} subject={title} body="body">
+            <EmailIcon {...iconProps} />
+          </EmailShareButton>
+          <WhatsappShareButton url={url}>
+            <WhatsappIcon {...iconProps} />
+          </WhatsappShareButton>
+          <TwitterShareButton url={url} title={title}>
+            <TwitterIcon {...iconProps} />
+          </TwitterShareButton>
+          <WeiboShareButton
+            url={url}
+            title={title}
+            // image={`${String(window.location)}/${exampleImage}`}
+          >
+            <WeiboIcon {...iconProps} />
+          </WeiboShareButton>
+          <RedditShareButton
+            url={url}
+            title={title}
+            windowWidth={660}
+            windowHeight={460}
+          >
+            <RedditIcon {...iconProps} />
+          </RedditShareButton>
+          <LinkedinShareButton url={url}>
+            <LinkedinIcon {...iconProps} />
+          </LinkedinShareButton>
+        </Stack>
+      </>
+    )
   );
 };
 

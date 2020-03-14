@@ -3,28 +3,28 @@ import { ThemeProvider, CSSReset, Divider, Flex } from '@chakra-ui/core';
 import { Footer, GlobalStyles, Main } from './elements';
 import theme from '../../config/theme';
 import SideNav from './SideNav';
+import SidePanel from './SidePanel';
 
-const defaultProps = {};
+type LayoutProps = {
+  showSidePanel?: boolean;
+};
 
-type LayoutProps = typeof defaultProps;
-
-const Layout: React.FC<LayoutProps> = ({ children }) => (
+const Layout: React.FC<LayoutProps> = ({ children, showSidePanel = false }) => (
   <ThemeProvider theme={theme}>
     <CSSReset />
     <GlobalStyles />
     <Flex flexDirection="column">
       <Flex minH="100vh">
         <SideNav />
-        <Divider m={0} orientation="vertical" />
+        <Divider mx="0" orientation="vertical" />
         <Main>
           {children}
           <Footer />
         </Main>
+        {showSidePanel && <SidePanel />}
       </Flex>
     </Flex>
   </ThemeProvider>
 );
-
-Layout.defaultProps = defaultProps;
 
 export default Layout;
