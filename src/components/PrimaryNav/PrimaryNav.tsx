@@ -29,7 +29,7 @@ const PrimaryNav: React.FC = () => {
   const {
     navigation: { nodes }
   } = useStaticQuery<QueryResult>(query);
-  const { isLoggedIn, profile } = useAuth();
+  const { isLoggedIn } = useAuth();
   const { relativeUrl } = useProfileUrl();
 
   return (
@@ -42,17 +42,23 @@ const PrimaryNav: React.FC = () => {
           label={item.name}
         />
       ))}
-      {isLoggedIn ? (
-        <>
-          <NavButton Icon={TiThermometer} to="/app/log" label="Log Contact" />
-          <NavButton
-            Icon={TiFlowSwitch}
-            to="/app/connections"
-            label="Connections"
-          />
-          <NavButton Icon={TiUser} to={relativeUrl} label="Profile" />
-        </>
-      ) : null}
+      {isLoggedIn && [
+        <NavButton
+          key="nav-log"
+          Icon={TiThermometer}
+          to="/app/log"
+          label="Log Contact"
+        />,
+        <NavButton
+          key="nav-connections"
+          Icon={TiFlowSwitch}
+          to="/app/connections"
+          label="Connections"
+        />
+      ]}
+      {relativeUrl && (
+        <NavButton Icon={TiUser} to={relativeUrl} label="Profile" />
+      )}
     </>
   );
 };

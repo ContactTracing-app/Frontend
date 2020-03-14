@@ -8,7 +8,9 @@ import {
   FormErrorMessage
 } from '@chakra-ui/core';
 import Select, { Option } from 'react-select';
-import hasWindow from '../helpers/hasWindow';
+import useAnalytics from '../helpers/useAnalytics';
+
+const analytics = useAnalytics();
 
 export type ContactWith = {
   name: string;
@@ -96,10 +98,12 @@ const LogContactForm = withFormik<LogContactFormProps, FormValues>({
     };
   },
 
-  handleSubmit: values =>
-    hasWindow
-      ? window.alert(JSON.stringify(values, null, 2))
-      : console.log(values)
+  handleSubmit: (values, actions) => {
+    analytics.logEvent('contact_logged', {
+      contact_with_quanitity: values.contactWith.length
+    });
+    actions.setSubmitting(false);
+  }
 })(InnerForm);
 
 export default LogContactForm;

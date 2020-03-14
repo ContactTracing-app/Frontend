@@ -72,12 +72,6 @@ module.exports = {
         instagram_id: process.env.BUSINESS_ID
       }
     },
-    {
-      resolve: 'gatsby-plugin-google-analytics',
-      options: {
-        trackingId: config.googleAnalyticsID
-      }
-    },
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sitemap',

@@ -16,7 +16,7 @@ const PartialNavLink = ({
   children: React.ReactNode;
   to: string;
 }) => (
-  <GatsbyLink getProps={isPartiallyActive} to={to} {...rest}>
+  <GatsbyLink getProps={isPartiallyActive} {...rest} to={to}>
     {children}
   </GatsbyLink>
 );
