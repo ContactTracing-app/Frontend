@@ -49,7 +49,7 @@ module.exports = {
       }
     },
     {
-      resolve: 'gatsby-plugin-firebase',
+      resolve: 'gatsby-theme-firebase',
       options: {
         credentials: {
           apiKey: process.env.GATSBY_API_KEY,
@@ -60,7 +60,10 @@ module.exports = {
           messagingSenderId: process.env.GATSBY_MESSAGING_SENDER_ID,
           appId: process.env.GATSBY_APP_ID,
           measurementId: process.env.GATSBY_MEASUREMENT_ID
-        }
+        },
+        loginPath: false,
+        loginRedirectPath: '/app/contact',
+        socialLogins: ['google', 'facebook']
       }
     },
     {

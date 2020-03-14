@@ -1,37 +1,23 @@
 import * as React from 'react';
-import firebase from 'gatsby-plugin-firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth, useAuth } from 'gatsby-theme-firebase';
 import { navigate } from 'gatsby';
 
 const Me: React.FC = () => {
-  const auth = firebase.auth();
-  const [user, initialising, error] = useAuthState(auth);
+  const { isLoading, isLoggedIn, profile } = useAuth();
 
-  const logout = () => {
-    firebase.auth().signOut();
-  };
-
-  if (initialising) {
-    return <p>loading…</p>;
-  }
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
-  if (!user) {
-    return (
-      <div>
+  return (
+    <div>
+      {isLoading && <p>Loading..</p>}
+      {profile && <p>Current User: {profile.email}</p>}
+      {isLoggedIn ? (
+        <button type="button" onClick={() => auth.signOut()}>
+          Log out
+        </button>
+      ) : (
         <button type="button" onClick={() => navigate('/app/login')}>
           Log in
         </button>
-      </div>
-    );
-  }
-  return (
-    <div>
-      <p>Current User: {user.email}</p>
-      <button type="button" onClick={() => logout()}>
-        Log out
-      </button>
+      )}
     </div>
   );
 };
