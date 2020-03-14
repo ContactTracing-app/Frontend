@@ -2,16 +2,18 @@ import * as React from 'react';
 import { RouteComponentProps } from '@reach/router';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebaseProvider from 'gatsby-plugin-firebase';
-import * as firebase from 'firebase/app';
+import hasWindow from '../../helpers/hasWindow';
 
 const uiConfig = {
   signInFlow: 'popup',
   // We will display Google and Facebook as auth providers.
-  signInOptions: [
-    firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.FacebookAuthProvider.PROVIDER_ID
-  ],
+  signInOptions: hasWindow
+    ? [
+        firebaseProvider.auth.EmailAuthProvider.PROVIDER_ID,
+        firebaseProvider.auth.GoogleAuthProvider.PROVIDER_ID,
+        firebaseProvider.auth.FacebookAuthProvider.PROVIDER_ID
+      ]
+    : [],
   signInSuccessUrl: '/app/contact'
 };
 

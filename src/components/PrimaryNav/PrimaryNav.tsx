@@ -1,5 +1,6 @@
 import * as React from 'react';
-import firebase from 'gatsby-plugin-firebase';
+import firebaseProvider from 'gatsby-plugin-firebase';
+import * as firebase from 'firebase/app';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { graphql, useStaticQuery, Link } from 'gatsby';
 
@@ -46,7 +47,7 @@ const PartialNavLink = ({
 );
 
 const PrimaryNav: React.FC = () => {
-  const auth = firebase.auth();
+  const auth = firebaseProvider.auth();
 
   const {
     navigation: { nodes }
