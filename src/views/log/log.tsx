@@ -25,7 +25,7 @@ const contactWithOptions: ContactWith[] = [
 const LogView = () => (
   <>
     <Heading>Contact</Heading>
-    <Text fontSize="4xl">Who'd you meet today?</Text>
+    <Text fontSize="4xl">Who did you meet today?</Text>
     <LogContactForm contactOptions={contactWithOptions} />
   </>
 );

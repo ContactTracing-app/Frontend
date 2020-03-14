@@ -4,6 +4,7 @@ import { Footer, GlobalStyles, Main } from './elements';
 import theme from '../../config/theme';
 import SideNav from './SideNav';
 import SidePanel from './SidePanel';
+import CookieConsent from './CookieConsent';
 
 type LayoutProps = {};
 
@@ -22,6 +23,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => (
         <SidePanel />
       </Flex>
     </Flex>
+    <CookieConsent />
   </ThemeProvider>
 );
 
