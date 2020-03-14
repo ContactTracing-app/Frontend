@@ -16,7 +16,7 @@ export const Footer: React.FC = () => (
 );
 
 export const Main: React.FC = ({ children }) => (
-  <Box flexGrow={1} as="main" bg="brand.ice" p={3}>
+  <Box flexGrow={1} as="main" bg="brand.ice" p="20">
     {children}
   </Box>
 );
