@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Tooltip, Box, Flex, Link } from '@chakra-ui/core';
+import { Tooltip, Box, Flex } from '@chakra-ui/core';
 import { Link as GatsbyLink } from 'gatsby';
 
 const isPartiallyActive = ({
@@ -16,9 +16,9 @@ const PartialNavLink = ({
   children: React.ReactNode;
   to: string;
 }) => (
-  <Link as={GatsbyLink} getProps={isPartiallyActive} to={to} {...rest}>
+  <GatsbyLink getProps={isPartiallyActive} to={to} {...rest}>
     {children}
-  </Link>
+  </GatsbyLink>
 );
 
 type NavButtonProps = {
