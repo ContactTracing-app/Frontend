@@ -5,6 +5,7 @@ const customTheme = {
   colors: {
     ...theme.colors,
     brand: {
+      ice: 'white',
       coldGrey: '#d5dae7'
     }
   }

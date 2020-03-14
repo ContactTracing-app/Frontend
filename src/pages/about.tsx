@@ -1,7 +1,7 @@
 import React from 'react';
 import { config, useSpring } from 'react-spring';
 import Layout from '../components/layout';
-import { AnimatedBox } from '../elements';
+import { AnimatedBox } from '../components/elements';
 import SEO from '../components/SEO';
 
 const About = () => {
