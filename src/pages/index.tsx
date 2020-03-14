@@ -5,11 +5,11 @@ import SEO from '../components/SEO';
 
 type PageProps = {};
 
-const Index: React.FunctionComponent<PageProps> = () => (
-  <Layout>
+const IndexPage: React.FunctionComponent<PageProps> = () => (
+  <Layout showSidePanel={false}>
     <SEO />
-    <Heading>Hi</Heading>
+    <Heading>About Contact-Tracking</Heading>
   </Layout>
 );
 
-export default Index;
+export default IndexPage;
