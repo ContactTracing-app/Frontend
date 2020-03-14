@@ -27,8 +27,11 @@ const useProfileUrl = () => {
       siteMetadata: { siteUrl }
     }
   } = useStaticQuery<useProfileQuery>(query);
-  const url = profile ? `${siteUrl}/app/profile/${profile.uid}` : null;
-  return [url];
+  const relativeUrl = `/app/profile/${profile?.uid}`;
+  const absoluteUrl = `${siteUrl}${relativeUrl}`;
+  return profile
+    ? { absoluteUrl, relativeUrl }
+    : { absoluteUrl: null, relativeUrl: null };
 };
 
 export default useProfileUrl;

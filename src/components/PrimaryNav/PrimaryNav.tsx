@@ -1,6 +1,9 @@
 import * as React from 'react';
+import { graphql, useStaticQuery } from 'gatsby';
+import { TiFlowSwitch, TiUser, TiThermometer, TiHome } from 'react-icons/ti';
 import { useAuth } from 'gatsby-theme-firebase';
-import { graphql, useStaticQuery, Link } from 'gatsby';
+import useProfileUrl from '../../helpers/useProfileUrl';
+import NavButton from './NavButton';
 
 const query = graphql`
   query PrimaryNav {
@@ -22,49 +25,35 @@ interface QueryResult {
   };
 }
 
-const isPartiallyActive = ({
-  isPartiallyCurrent
-}: {
-  isPartiallyCurrent: boolean;
-}) =>
-  isPartiallyCurrent
-    ? { className: 'navlink-active navlink' }
-    : { className: 'navlink' };
-
-const PartialNavLink = ({
-  children,
-  to,
-  ...rest
-}: {
-  children: React.ReactNode;
-  to: string;
-}) => (
-  <Link getProps={isPartiallyActive} to={to} {...rest}>
-    {children}
-  </Link>
-);
-
 const PrimaryNav: React.FC = () => {
   const {
     navigation: { nodes }
   } = useStaticQuery<QueryResult>(query);
   const { isLoggedIn, profile } = useAuth();
+  const { relativeUrl } = useProfileUrl();
 
   return (
-    <ul>
+    <>
       {nodes.map(item => (
-        <li key={item.name}>
-          <PartialNavLink to={item.link}>{item.name}</PartialNavLink>
-        </li>
+        <NavButton
+          key={item.link}
+          Icon={TiHome}
+          to={item.link}
+          label={item.name}
+        />
       ))}
       {isLoggedIn ? (
-        <li>
-          <PartialNavLink to={`/app/profile/${profile.uid}`}>
-            My Profile
-          </PartialNavLink>
-        </li>
+        <>
+          <NavButton Icon={TiThermometer} to="/app/log" label="Log Contact" />
+          <NavButton
+            Icon={TiFlowSwitch}
+            to="/app/connections"
+            label="Connections"
+          />
+          <NavButton Icon={TiUser} to={relativeUrl} label="Profile" />
+        </>
       ) : null}
-    </ul>
+    </>
   );
 };
 

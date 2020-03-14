@@ -34,7 +34,7 @@ type params = {
 };
 const ProfileView = () => {
   const params: params = useParams();
-  const [url] = useProfileUrl();
+  const { absoluteUrl: url } = useProfileUrl();
   const { onCopy, hasCopied } = useClipboard(url);
   const iconProps = {
     size: 32,
