@@ -14,7 +14,7 @@ const Me: React.FC = () => {
           Log out
         </button>
       ) : (
-        <button type="button" onClick={() => navigate('/login')}>
+        <button type="button" onClick={() => navigate('/app/login')}>
           Log in
         </button>
       )}
