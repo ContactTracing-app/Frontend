@@ -3,7 +3,7 @@ import { SingleDatePicker } from 'react-dates';
 import { Heading, Text, Divider } from '@chakra-ui/core';
 import LogContactForm from '../../forms/logContact';
 
-const ContactView = () => {
+const LogView = () => {
   const [contactDate, setContactDate] = React.useState<any>(null);
   const [dateIsFocused, setDateIsFocused] = React.useState<boolean>(false);
   return (
@@ -25,4 +25,4 @@ const ContactView = () => {
   );
 };
 
-export default ContactView;
+export default LogView;

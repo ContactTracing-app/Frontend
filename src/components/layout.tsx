@@ -5,11 +5,9 @@ import theme from '../../config/theme';
 import SideNav from './SideNav';
 import SidePanel from './SidePanel';
 
-type LayoutProps = {
-  showSidePanel?: boolean;
-};
+type LayoutProps = {};
 
-const Layout: React.FC<LayoutProps> = ({ children, showSidePanel = false }) => (
+const Layout: React.FC<LayoutProps> = ({ children }) => (
   <ThemeProvider theme={theme}>
     <CSSReset />
     <GlobalStyles />
@@ -21,7 +19,7 @@ const Layout: React.FC<LayoutProps> = ({ children, showSidePanel = false }) => (
           {children}
           <Footer />
         </Main>
-        {showSidePanel && <SidePanel />}
+        <SidePanel />
       </Flex>
     </Flex>
   </ThemeProvider>
