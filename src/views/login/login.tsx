@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { Form, FormState } from 'gatsby-theme-firebase';
+import { Heading } from '@chakra-ui/core';
 import { RouteComponentProps } from '@reach/router';
 import { navigate } from 'gatsby';
 
 const LoginView: React.FC<RouteComponentProps> = () => (
-  <div>
-    <h1>Hi Login</h1>
+  <>
+    <Heading>Login</Heading>
     <FormState.Provider>
       <Form
         onLoginSuccess={() => {
@@ -18,7 +19,7 @@ const LoginView: React.FC<RouteComponentProps> = () => (
         }}
       />
     </FormState.Provider>
-  </div>
+  </>
 );
 
 export default LoginView;

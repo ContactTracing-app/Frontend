@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Heading, Text } from '@chakra-ui/core';
 import { useParams } from '@reach/router';
 
 type params = {
@@ -8,12 +9,15 @@ const ProfileView = () => {
   const params: params = useParams();
   return (
     <div>
-      <h1>You are</h1>
+      <Heading>You are</Heading>
       <pre>
         <code>{params.uid}</code>
       </pre>
 
-      <h2>Share this page with your friends &amp; family to connect.</h2>
+      <Text fontSize="4xl">
+        Share this page with your friends &amp; family to connect.
+      </Text>
+
       <ul>
         <li>Whatsapp</li>
         <li>LINE</li>
