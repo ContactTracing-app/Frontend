@@ -9,7 +9,7 @@ type LayoutProps = {
   showSidePanel?: boolean;
 };
 
-const Layout: React.FC<LayoutProps> = ({ children, showSidePanel = true }) => (
+const Layout: React.FC<LayoutProps> = ({ children, showSidePanel = false }) => (
   <ThemeProvider theme={theme}>
     <CSSReset />
     <GlobalStyles />
