@@ -40,7 +40,7 @@ const ProfileView = () => {
     size: 32,
     round: true
   };
-  const title = 'Share my profile';
+  const title = `Join me on Contact-Tracking and help each other stay safe.`;
   return (
     url && (
       <>
@@ -71,7 +71,7 @@ const ProfileView = () => {
           <WhatsappShareButton url={url}>
             <WhatsappIcon {...iconProps} />
           </WhatsappShareButton>
-          <TwitterShareButton url={url} title={title}>
+          <TwitterShareButton hashtags={['CTCovid19']} url={url} title={title}>
             <TwitterIcon {...iconProps} />
           </TwitterShareButton>
           <WeiboShareButton
