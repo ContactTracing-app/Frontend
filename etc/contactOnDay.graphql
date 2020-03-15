@@ -1,0 +1,9 @@
+{
+  contact_on_day(func: eq(PersonDay.id, "Q2XAXvtl9YZZTDDQt5je4CRV8Bg2_2020-04-14")) @normalize {    
+    PersonDay.contact_withs  {
+     Contact.person_days @filter(not(eq(PersonDay.id, "Q2XAXvtl9YZZTDDQt5je4CRV8Bg2_2020-04-14")))  {
+   			contact: PersonDay.id     
+      }
+    }
+  }
+}

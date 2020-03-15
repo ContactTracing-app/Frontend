@@ -1,0 +1,14 @@
+<Contact.id>: string @index(hash) @upsert .
+<Contact.person_days>: [uid] .
+<Person.connections>: [uid] .
+<Person.days>: [uid] .
+<Person.id>: string @index(hash) @upsert .
+<Person.infection_end>: datetime .
+<Person.infection_start>: datetime .
+<Person.is_infected>: bool .
+<Person.is_quarantined>: bool .
+<PersonDay.contact_withs>: [uid] .
+<PersonDay.date>: datetime @index(year) .
+<PersonDay.id>: string @index(hash, trigram) @upsert .
+<PersonDay.person>: uid .
+<dgraph.graphql.schema>: string .
