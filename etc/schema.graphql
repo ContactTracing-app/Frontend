@@ -9,7 +9,7 @@ type Person {
 }
 
 type PersonDay {
-  date: DateTime! @search
+  date: DateTime! @search()
   id: String! @id @search(by: [trigram])
   person: Person! @hasInverse(field: days)
   contact_withs: [Contact] @hasInverse(field: person_days)
