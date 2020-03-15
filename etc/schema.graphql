@@ -1,0 +1,21 @@
+type Person {
+  id: String! @id
+  is_quarantined: Boolean
+  is_infected: Boolean
+  infection_start: DateTime
+  infection_end: DateTime
+  connections: [Person] @hasInverse(field: connections)
+  days: [PersonDay] @hasInverse(field: person)
+}
+
+type PersonDay {
+  date: DateTime! @search
+  id: String! @id @search(by: [trigram])
+  person: Person! @hasInverse(field: days)
+  contact_withs: [Contact] @hasInverse(field: person_days)
+}
+
+type Contact {
+  id: String! @id
+  person_days: [PersonDay!] @hasInverse(field: contact_withs)
+}
