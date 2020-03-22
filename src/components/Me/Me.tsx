@@ -8,7 +8,7 @@ const Me: React.FC = () => {
   return (
     <div>
       {isLoading && <p>Loading..</p>}
-      {profile && <p>Current User: {profile.email}</p>}
+      {profile && <p>Hi: {profile.email}</p>}
       {isLoggedIn ? (
         <button type="button" onClick={() => auth.signOut()}>
           Log out
