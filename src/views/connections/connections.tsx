@@ -6,7 +6,7 @@ interface ConnectionProps {
 }
 const Connection: React.FC<ConnectionProps> = ({ name }) => (
   <Flex alignItems="center">
-    <Avatar name={name} src="https://bit.ly/broken-link" />
+    <Avatar name={name} />
     <Box
       ml="2"
       mt="1"

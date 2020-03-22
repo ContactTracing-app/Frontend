@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { auth, useAuth } from 'gatsby-theme-firebase';
 import { navigate } from 'gatsby';
+import { Avatar, Spinner } from '@chakra-ui/core';
 
 const Me: React.FC = () => {
   const { isLoading, isLoggedIn, profile } = useAuth();
-
+  const displayName = profile?.displayName || profile?.email;
   return (
-    <div>
-      {isLoading && <p>Loading..</p>}
-      {profile && <p>Hi: {profile.email}</p>}
+    <>
+      {isLoading && <Spinner size="xs" />}
+      {profile && <Avatar name={displayName} src={profile?.photoURL} />}
       {isLoggedIn ? (
         <button type="button" onClick={() => auth.signOut()}>
           Log out
@@ -18,7 +19,7 @@ const Me: React.FC = () => {
           Log in
         </button>
       )}
-    </div>
+    </>
   );
 };
 
