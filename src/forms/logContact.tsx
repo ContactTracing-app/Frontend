@@ -9,8 +9,10 @@ import {
 } from '@chakra-ui/core';
 import Select, { Option } from 'react-select';
 import useAnalytics from '../helpers/useAnalytics';
+import useFunctions from '../helpers/useFunctions';
 
 const analytics = useAnalytics();
+const functions = useFunctions();
 
 export type ContactWith = {
   name: string;
@@ -98,7 +100,8 @@ const LogContactForm = withFormik<LogContactFormProps, FormValues>({
     };
   },
 
-  handleSubmit: (values, actions) => {
+  handleSubmit: async (values, actions) => {
+    const resp = await functions.sendTestSMS();
     analytics.logEvent('contact_logged', {
       contact_with_quanitity: values.contactWith.length
     });
