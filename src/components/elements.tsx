@@ -9,8 +9,8 @@ export const Header: React.FC = () => (
 );
 
 export const Footer: React.FC = () => (
-  <Flex>
-    <Box>Hi</Box>
+  <Flex as="footer">
+    <Box>Footer content here</Box>
   </Flex>
 );
 

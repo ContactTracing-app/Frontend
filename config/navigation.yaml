@@ -1,2 +1,6 @@
-- name: 'About'
+- name: 'Home'
+  icon: 'TiHome'
   link: '/'
+- name: 'About'
+  icon: 'TiHeart'
+  link: '/about'

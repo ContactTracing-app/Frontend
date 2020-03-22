@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
-import { TiFlowSwitch, TiUser, TiThermometer, TiHome } from 'react-icons/ti';
+import * as Icons from 'react-icons/ti';
 import { useAuth } from 'gatsby-theme-firebase';
 import useProfileUrl from '../../helpers/useProfileUrl';
 import NavButton from './NavButton';
@@ -10,6 +10,7 @@ const query = graphql`
     navigation: allNavigationYaml {
       nodes {
         name
+        icon
         link
       }
     }
@@ -20,6 +21,7 @@ interface QueryResult {
   navigation: {
     nodes: {
       name: string;
+      icon: string;
       link: string;
     }[];
   };
@@ -37,7 +39,7 @@ const PrimaryNav: React.FC = () => {
       {nodes.map(item => (
         <NavButton
           key={item.link}
-          Icon={TiHome}
+          Icon={Icons[item.icon]}
           to={item.link}
           label={item.name}
         />
@@ -45,19 +47,19 @@ const PrimaryNav: React.FC = () => {
       {isLoggedIn && [
         <NavButton
           key="nav-log"
-          Icon={TiThermometer}
+          Icon={Icons.TiThermometer}
           to="/app/log"
           label="Log Contact"
         />,
         <NavButton
           key="nav-connections"
-          Icon={TiFlowSwitch}
+          Icon={Icons.TiFlowSwitch}
           to="/app/connections"
           label="Connections"
         />
       ]}
       {relativeUrl && (
-        <NavButton Icon={TiUser} to={relativeUrl} label="Profile" />
+        <NavButton Icon={Icons.TiUser} to={relativeUrl} label="Profile" />
       )}
     </>
   );

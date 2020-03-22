@@ -1,15 +1,17 @@
 import * as React from 'react';
-import { Form, FormState } from 'gatsby-theme-firebase';
+import { Form, FormState, auth } from 'gatsby-theme-firebase';
 import { Heading } from '@chakra-ui/core';
 import { RouteComponentProps } from '@reach/router';
 import { navigate } from 'gatsby';
 
 const LoginView: React.FC<RouteComponentProps> = () => (
   <>
-    <Heading>Login</Heading>
+    <Heading>Login2</Heading>
     <FormState.Provider>
       <Form
-        onLoginSuccess={() => {
+        onLoginSuccess={async () => {
+          const token = await auth.currentUser?.getIdToken();
+          console.log(token);
           navigate('/app/contact');
         }}
         onSignUpSuccess={() => {
