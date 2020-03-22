@@ -28,6 +28,7 @@ import {
   WhatsappShareButton
 } from 'react-share';
 import useProfileUrl from '../../helpers/useProfileUrl';
+import QRCOde from '../../components/QRCode';
 
 type params = {
   uid: string;
@@ -93,6 +94,7 @@ const ProfileView = () => {
             <LinkedinIcon {...iconProps} />
           </LinkedinShareButton>
         </Stack>
+        <QRCOde />
       </>
     )
   );

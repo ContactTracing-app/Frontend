@@ -20,14 +20,25 @@ type useProfileQuery = {
   };
 };
 
-const useProfileUrl = () => {
+interface UseProfileUrl {
+  uid?: string;
+}
+const useProfileUrl = (props?: UseProfileUrl) => {
   const { profile } = useAuth();
+
+  let uid;
+  if (props && props.uid) {
+    uid = props.uid;
+  } else if (profile && profile.uid) {
+    uid = profile.uid;
+  }
+
   const {
     site: {
       siteMetadata: { siteUrl }
     }
   } = useStaticQuery<useProfileQuery>(query);
-  const relativeUrl = `/app/profile/${profile?.uid}`;
+  const relativeUrl = `/app/profile/${uid}`;
   const absoluteUrl = `${siteUrl}${relativeUrl}`;
   return profile
     ? { absoluteUrl, relativeUrl }
