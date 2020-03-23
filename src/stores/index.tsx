@@ -1,2 +1,2 @@
 export { CounterStore } from './CounterStore';
-export { SessionStore } from './SessionStore';
+export { UserStore } from './UserStore';

@@ -4,11 +4,11 @@ import { Heading } from '@chakra-ui/core';
 import { useStores } from '../../hooks/useStore';
 
 const JunkView: React.FC = () => {
-  const { counterStore, sessionStore } = useStores();
+  const { counterStore, userStore } = useStores();
   return (
     <>
       <Heading>Junk</Heading>
-      <pre>{JSON.stringify(sessionStore, null, 2)}</pre>
+      <pre>{JSON.stringify(userStore, null, 2)}</pre>
       <div>{counterStore.count}</div>
       <button onClick={() => counterStore.increment()}>++</button>
       <button onClick={() => counterStore.decrement()}>--</button>

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { CounterStore, SessionStore } from '../stores';
+import { CounterStore, UserStore } from '../stores';
 
 export const storesContext = React.createContext({
   counterStore: new CounterStore(),
-  sessionStore: new SessionStore()
+  userStore: new UserStore()
 });
