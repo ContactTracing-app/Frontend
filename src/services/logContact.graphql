@@ -1,5 +1,5 @@
 mutation logContact($input: LogContactInput!) {
-  UnlogContact(input: $input) {
+  LogContact(input: $input) {
     id
     date {
       formatted
