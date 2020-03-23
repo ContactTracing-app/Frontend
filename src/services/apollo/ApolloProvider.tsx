@@ -9,9 +9,6 @@ const ApolloProvider: React.FC = ({ children }) => {
   const {
     userStore: { token }
   } = useStores();
-  if (!token) {
-    return <>{children}</>;
-  }
   const client = createClient(token);
   return <Provider client={client}>{children}</Provider>;
 };

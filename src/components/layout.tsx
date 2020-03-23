@@ -16,8 +16,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <ApolloProvider>
-        <UserProvider userStore={userStore}>
+      <UserProvider userStore={userStore}>
+        <ApolloProvider>
           <CSSReset />
           <GlobalStyles />
           <Flex flexDirection="column">
@@ -32,8 +32,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             </Flex>
           </Flex>
           <CookieConsent />
-        </UserProvider>
-      </ApolloProvider>
+        </ApolloProvider>
+      </UserProvider>
     </ThemeProvider>
   );
 };
