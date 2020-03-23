@@ -1,6 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/functions';
-import hasWindow from './hasWindow';
+import hasWindow from '../helpers/hasWindow';
 
 let f: firebase.functions.Functions;
 

@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Helmet from 'react-helmet';
 import hasWindow from '../../helpers/hasWindow';
-import useAnalytics from '../../helpers/useAnalytics';
+import useAnalytics from '../../hooks/useAnalytics';
 
 const CookieConsent: React.FC = () => {
   React.useEffect(() => {

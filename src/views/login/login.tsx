@@ -3,7 +3,7 @@ import { Form, FormState } from 'gatsby-theme-firebase';
 import { Heading } from '@chakra-ui/core';
 import { RouteComponentProps } from '@reach/router';
 import { navigate } from 'gatsby';
-import useAuth from '../../helpers/useAuth';
+import useAuth from '../../hooks/useAuth';
 
 const LoginView: React.FC<RouteComponentProps> = () => (
   <>

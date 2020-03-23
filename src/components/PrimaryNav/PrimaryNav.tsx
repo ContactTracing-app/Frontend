@@ -2,7 +2,7 @@ import * as React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import * as Icons from 'react-icons/ti';
 import { useAuth } from 'gatsby-theme-firebase';
-import useProfileUrl from '../../helpers/useProfileUrl';
+import useProfileUrl from '../../hooks/useProfileUrl';
 import NavButton from './NavButton';
 
 const query = graphql`
@@ -56,6 +56,12 @@ const PrimaryNav: React.FC = () => {
           Icon={Icons.TiFlowSwitch}
           to="/app/connections"
           label="Connections"
+        />,
+        <NavButton
+          key="nav-junk"
+          Icon={Icons.TiFlowSwitch}
+          to="/app/junk"
+          label="Junk"
         />
       ]}
       {relativeUrl && (

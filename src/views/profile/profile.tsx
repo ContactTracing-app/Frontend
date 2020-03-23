@@ -27,7 +27,7 @@ import {
   WhatsappIcon,
   WhatsappShareButton
 } from 'react-share';
-import useProfileUrl from '../../helpers/useProfileUrl';
+import useProfileUrl from '../../hooks/useProfileUrl';
 import QRCOde from '../../components/QRCode';
 
 type params = {

@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/core';
 import { useLogContactMutation } from '../generated/graphql';
 import toDateObject from '../helpers/toDateObject';
-import useAuth from '../helpers/useAuth';
+import useAuth from '../hooks/useAuth';
 
 export type ContactWith = {
   name: string;

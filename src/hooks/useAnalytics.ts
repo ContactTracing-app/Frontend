@@ -1,6 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/analytics';
-import hasWindow from './hasWindow';
+import hasWindow from '../helpers/hasWindow';
 
 let analytics: firebase.analytics.Analytics;
 

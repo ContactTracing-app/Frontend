@@ -1,6 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import hasWindow from './hasWindow';
+import hasWindow from '../helpers/hasWindow';
 
 let auth: firebase.auth.Auth;
 

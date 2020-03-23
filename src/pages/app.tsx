@@ -6,6 +6,7 @@ import LogView from '../views/log';
 import ProfileView from '../views/profile';
 import LoginView from '../views/login';
 import ConnectionsView from '../views/connections';
+import JunkView from '../views/junk';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <PrivateRoute path="/connections" component={ConnectionsView} />
         <PrivateRoute path="/log" component={LogView} />
         <PrivateRoute path="/profile/:uid" component={ProfileView} />
+        <PrivateRoute path="/junk" component={JunkView} />
       </Router>
     </Layout>
   );
