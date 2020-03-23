@@ -9,10 +9,11 @@ import {
 } from '@chakra-ui/core';
 import Select, { Option } from 'react-select';
 import useAnalytics from '../helpers/useAnalytics';
-import useFunctions from '../helpers/useFunctions';
+import useAuth from '../helpers/useAuth';
+import { useLogContactMutation } from '../generated/graphql';
 
 const analytics = useAnalytics();
-const functions = useFunctions();
+const auth = useAuth();
 
 export type ContactWith = {
   name: string;
@@ -101,7 +102,20 @@ const LogContactForm = withFormik<LogContactFormProps, FormValues>({
   },
 
   handleSubmit: async (values, actions) => {
-    const resp = await functions.sendTestSMS();
+    // const resp = await functions.sendTestSMS();
+
+    const [logContactMutation] = useLogContactMutation({
+      variables: {
+        input: {
+          fromUid: auth.currentUser!.uid,
+          toUid: 'julie',
+          yyyy: '2020',
+          mm: '02',
+          dd: '03'
+        }
+      }
+    });
+    logContactMutation();
     analytics.logEvent('contact_logged', {
       contact_with_quanitity: values.contactWith.length
     });
