@@ -17,7 +17,10 @@ class UserProvider extends React.Component<UserProviderProps> {
     this.listener = auth.onAuthStateChanged(
       authUser => {
         userStore.setAuthUser(authUser);
-        auth.currentUser?.getIdToken().then(token => userStore.setToken(token));
+        auth.currentUser?.getIdToken().then(token => {
+          localStorage.setItem('token', token);
+          userStore.setToken(token);
+        });
       },
       () => {
         userStore.setAuthUser(null);

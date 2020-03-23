@@ -6,13 +6,15 @@ import {
   InMemoryCache
 } from '@apollo/client';
 
-const createClient = (authToken: string) => {
+const createClient = () => {
   const uri = process.env.GATSBY_GRAPHQL_ENDPOINT;
 
   const httpLink = createHttpLink({
     uri,
     fetch
   });
+
+  const authToken = localStorage.getItem('token');
 
   const authLink = new ApolloLink((operation, forward) => {
     operation.setContext({

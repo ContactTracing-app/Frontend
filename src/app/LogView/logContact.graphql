@@ -1,11 +1,5 @@
 mutation logContact($input: LogContactInput!) {
   LogContact(input: $input) {
     id
-    date {
-      formatted
-    }
-    contactWith {
-      uid
-    }
   }
 }
