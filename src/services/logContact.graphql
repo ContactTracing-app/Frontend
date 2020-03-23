@@ -1,0 +1,11 @@
+mutation logContact($input: LogContactInput!) {
+  UnlogContact(input: $input) {
+    id
+    date {
+      formatted
+    }
+    contactWith {
+      uid
+    }
+  }
+}
