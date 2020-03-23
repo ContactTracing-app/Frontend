@@ -56,12 +56,6 @@ const PrimaryNav: React.FC = () => {
           Icon={Icons.TiFlowSwitch}
           to="/app/contacts"
           label="Contacts"
-        />,
-        <NavButton
-          key="nav-junk"
-          Icon={Icons.TiFlowSwitch}
-          to="/app/junk"
-          label="Junk"
         />
       ]}
       {relativeUrl && (
