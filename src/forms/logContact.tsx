@@ -8,7 +8,7 @@ import {
   FormLabel,
   FormErrorMessage
 } from '@chakra-ui/core';
-import { useLogContactMutation } from '../generated/graphql';
+import { useLogContactMutation } from '../__generated/graphql';
 import toDateObject from '../helpers/toDateObject';
 import useAuth from '../hooks/useAuth';
 

@@ -2,7 +2,7 @@ overwrite: true
 schema: 'https://neo4j-graphql-api-3sqatpania-ew.a.run.app/graphql'
 documents: 'src/**/*.graphql'
 generates:
-  src/generated/graphql.tsx:
+  src/__generated/graphql.tsx:
     plugins:
       - 'typescript'
       - 'typescript-operations'
