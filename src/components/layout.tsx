@@ -3,7 +3,6 @@ import { ThemeProvider, CSSReset, Divider, Flex } from '@chakra-ui/core';
 import { Footer, GlobalStyles, Main } from './elements';
 import theme from '../../config/theme';
 import SideNav from './SideNav';
-import SidePanel from './SidePanel';
 import CookieConsent from './CookieConsent';
 import ApolloProvider from '../services/apollo/ApolloProvider';
 import { useStores } from '../hooks/useStore';
@@ -28,7 +27,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 {children}
                 <Footer />
               </Main>
-              <SidePanel />
             </Flex>
           </Flex>
           <CookieConsent />

@@ -20,10 +20,10 @@ const Connection: React.FC<ConnectionProps> = ({ name }) => (
   </Flex>
 );
 
-const ConnectionsView = () => {
+const ContactsView: React.FC = () => {
   return (
     <>
-      <Heading>Connections</Heading>
+      <Heading>Contact</Heading>
       <Text>Real list coming soon…</Text>
       <Connection name="Michele Memoli" />
       <Connection name="Ponk Memoli" />
@@ -34,4 +34,4 @@ const ConnectionsView = () => {
   );
 };
 
-export default ConnectionsView;
+export default ContactsView;

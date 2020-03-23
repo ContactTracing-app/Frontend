@@ -52,10 +52,10 @@ const PrimaryNav: React.FC = () => {
           label="Log Contact"
         />,
         <NavButton
-          key="nav-connections"
+          key="nav-contacts"
           Icon={Icons.TiFlowSwitch}
-          to="/app/connections"
-          label="Connections"
+          to="/app/contacts"
+          label="Contacts"
         />,
         <NavButton
           key="nav-junk"

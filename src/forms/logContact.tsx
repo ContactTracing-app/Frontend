@@ -1,6 +1,7 @@
 import * as React from 'react';
 import DatePicker from 'react-date-picker';
-import { Formik, Field, useFormik } from 'formik';
+import { useAuth } from 'gatsby-theme-firebase';
+import { Field, useFormik } from 'formik';
 import Select, { Option } from 'react-select';
 import {
   Button,
@@ -10,7 +11,6 @@ import {
 } from '@chakra-ui/core';
 import { useLogContactMutation } from '../__generated/graphql';
 import toDateObject from '../helpers/toDateObject';
-import useAuth from '../hooks/useAuth';
 
 export type ContactWith = {
   name: string;
@@ -24,20 +24,24 @@ interface FormValues {
 
 const LogContactForm: React.FC = () => {
   const [logContactMutation] = useLogContactMutation();
-  const auth = useAuth();
+  const { profile } = useAuth();
 
-  const formik = useFormik<FormValues>({
+  const {
+    errors,
+    setFieldValue,
+    touched,
+    isSubmitting,
+    handleSubmit
+  } = useFormik<FormValues>({
     initialValues: {
       entryDate: new Date(),
       contactWith: []
     },
     onSubmit: (values, actions) => {
-      console.log({ values, actions });
-      alert(JSON.stringify(values, null, 2));
       logContactMutation({
         variables: {
           input: {
-            fromUid: auth.currentUser.uid,
+            fromUid: profile!.uid,
             toUid: 'julie',
             ...toDateObject(values.entryDate)
           }
@@ -48,7 +52,7 @@ const LogContactForm: React.FC = () => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form onSubmit={handleSubmit}>
       {/* <Field name="entryDate">
         {({ field }) => {
           return (
@@ -87,12 +91,7 @@ const LogContactForm: React.FC = () => {
         }}
       </Field> */}
 
-      <Button
-        mt={4}
-        variantColor="teal"
-        isLoading={formik.isSubmitting}
-        type="submit"
-      >
+      <Button mt={4} variantColor="teal" isLoading={isSubmitting} type="submit">
         Submit
       </Button>
     </form>

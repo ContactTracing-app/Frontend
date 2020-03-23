@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Heading, Text, Divider } from '@chakra-ui/core';
+import { Heading, Text } from '@chakra-ui/core';
 import LogContactForm, { ContactWith } from '../../forms/logContact';
 
 const contactWithOptions: ContactWith[] = [
