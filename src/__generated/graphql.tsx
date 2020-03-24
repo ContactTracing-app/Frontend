@@ -12,7 +12,7 @@ export type Scalars = {
 };
 
 export type _Neo4jDate = {
-   __typename?: '_Neo4jDate';
+  __typename?: '_Neo4jDate';
   year?: Maybe<Scalars['Int']>;
   month?: Maybe<Scalars['Int']>;
   day?: Maybe<Scalars['Int']>;
@@ -27,7 +27,7 @@ export type _Neo4jDateInput = {
 };
 
 export type _Neo4jDateTime = {
-   __typename?: '_Neo4jDateTime';
+  __typename?: '_Neo4jDateTime';
   year?: Maybe<Scalars['Int']>;
   month?: Maybe<Scalars['Int']>;
   day?: Maybe<Scalars['Int']>;
@@ -56,7 +56,7 @@ export type _Neo4jDateTimeInput = {
 };
 
 export type _Neo4jLocalDateTime = {
-   __typename?: '_Neo4jLocalDateTime';
+  __typename?: '_Neo4jLocalDateTime';
   year?: Maybe<Scalars['Int']>;
   month?: Maybe<Scalars['Int']>;
   day?: Maybe<Scalars['Int']>;
@@ -83,7 +83,7 @@ export type _Neo4jLocalDateTimeInput = {
 };
 
 export type _Neo4jLocalTime = {
-   __typename?: '_Neo4jLocalTime';
+  __typename?: '_Neo4jLocalTime';
   hour?: Maybe<Scalars['Int']>;
   minute?: Maybe<Scalars['Int']>;
   second?: Maybe<Scalars['Int']>;
@@ -104,7 +104,7 @@ export type _Neo4jLocalTimeInput = {
 };
 
 export type _Neo4jPoint = {
-   __typename?: '_Neo4jPoint';
+  __typename?: '_Neo4jPoint';
   x?: Maybe<Scalars['Float']>;
   y?: Maybe<Scalars['Float']>;
   z?: Maybe<Scalars['Float']>;
@@ -132,7 +132,7 @@ export type _Neo4jPointInput = {
 };
 
 export type _Neo4jTime = {
-   __typename?: '_Neo4jTime';
+  __typename?: '_Neo4jTime';
   hour?: Maybe<Scalars['Int']>;
   minute?: Maybe<Scalars['Int']>;
   second?: Maybe<Scalars['Int']>;
@@ -211,12 +211,11 @@ export type LogContactInput = {
 };
 
 export type LogEntry = {
-   __typename?: 'LogEntry';
+  __typename?: 'LogEntry';
   id: Scalars['ID'];
   date: _Neo4jDateTime;
   contactWith: Array<Maybe<Person>>;
 };
-
 
 export type LogEntryContactWithArgs = {
   first?: Maybe<Scalars['Int']>;
@@ -225,7 +224,7 @@ export type LogEntryContactWithArgs = {
 };
 
 export type Mutation = {
-   __typename?: 'Mutation';
+  __typename?: 'Mutation';
   CreateKnows?: Maybe<Person>;
   HidePerson?: Maybe<Person>;
   ShowPerson?: Maybe<Person>;
@@ -237,36 +236,29 @@ export type Mutation = {
   MergePerson?: Maybe<Person>;
 };
 
-
 export type MutationCreateKnowsArgs = {
   input: CreateKnowsInput;
 };
-
 
 export type MutationHidePersonArgs = {
   input: PersonVisibilityInput;
 };
 
-
 export type MutationShowPersonArgs = {
   input: PersonVisibilityInput;
 };
-
 
 export type MutationCreatePersonArgs = {
   input: CreatePersonInput;
 };
 
-
 export type MutationUnlogContactArgs = {
   input: LogContactInput;
 };
 
-
 export type MutationLogContactArgs = {
   input: LogContactInput;
 };
-
 
 export type MutationUpdatePersonArgs = {
   uid: Scalars['ID'];
@@ -274,11 +266,9 @@ export type MutationUpdatePersonArgs = {
   isInQuarantine?: Maybe<Scalars['Boolean']>;
 };
 
-
 export type MutationDeletePersonArgs = {
   uid: Scalars['ID'];
 };
-
 
 export type MutationMergePersonArgs = {
   uid: Scalars['ID'];
@@ -287,7 +277,7 @@ export type MutationMergePersonArgs = {
 };
 
 export type Person = {
-   __typename?: 'Person';
+  __typename?: 'Person';
   _id?: Maybe<Scalars['String']>;
   uid: Scalars['ID'];
   isInfected: Scalars['Boolean'];
@@ -298,20 +288,17 @@ export type Person = {
   recentIndirectContactWith?: Maybe<Array<Maybe<Person>>>;
 };
 
-
 export type PersonKnowsArgs = {
   first?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<Array<Maybe<_PersonOrdering>>>;
 };
 
-
 export type PersonRecentDirectContactWithArgs = {
   first?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<Array<Maybe<_PersonOrdering>>>;
 };
-
 
 export type PersonRecentIndirectContactWithArgs = {
   first?: Maybe<Scalars['Int']>;
@@ -324,10 +311,9 @@ export type PersonVisibilityInput = {
 };
 
 export type Query = {
-   __typename?: 'Query';
+  __typename?: 'Query';
   Person?: Maybe<Array<Maybe<Person>>>;
 };
-
 
 export type QueryPersonArgs = {
   _id?: Maybe<Scalars['ID']>;
@@ -344,47 +330,43 @@ export type ContactsForLogViewQueryVariables = {
   uid: Scalars['ID'];
 };
 
-
-export type ContactsForLogViewQuery = (
-  { __typename?: 'Query' }
-  & { Me?: Maybe<Array<Maybe<(
-    { __typename?: 'Person' }
-    & { contacts?: Maybe<Array<Maybe<(
-      { __typename?: 'Person' }
-      & Pick<Person, 'uid'>
-    )>>> }
-  )>>> }
-);
+export type ContactsForLogViewQuery = { __typename?: 'Query' } & {
+  Me?: Maybe<
+    Array<
+      Maybe<
+        { __typename?: 'Person' } & {
+          contacts?: Maybe<
+            Array<Maybe<{ __typename?: 'Person' } & Pick<Person, 'uid'>>>
+          >;
+        }
+      >
+    >
+  >;
+};
 
 export type LogContactMutationVariables = {
   input: LogContactInput;
 };
 
-
-export type LogContactMutation = (
-  { __typename?: 'Mutation' }
-  & { LogContact?: Maybe<(
-    { __typename?: 'LogEntry' }
-    & Pick<LogEntry, 'id'>
-  )> }
-);
-
+export type LogContactMutation = { __typename?: 'Mutation' } & {
+  LogContact?: Maybe<{ __typename?: 'LogEntry' } & Pick<LogEntry, 'id'>>;
+};
 
 export const ContactsForLogViewDocument = gql`
-    query ContactsForLogView($uid: ID!) {
-  Me: Person(uid: $uid) {
-    contacts: knows {
-      uid
+  query ContactsForLogView($uid: ID!) {
+    Me: Person(uid: $uid) {
+      contacts: knows {
+        uid
+      }
     }
   }
-}
-    `;
+`;
 
 /**
  * __useContactsForLogViewQuery__
  *
  * To run a query within a React component, call `useContactsForLogViewQuery` and pass it any options that fit your needs.
- * When your component renders, `useContactsForLogViewQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * When your component renders, `useContactsForLogViewQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
@@ -396,23 +378,49 @@ export const ContactsForLogViewDocument = gql`
  *   },
  * });
  */
-export function useContactsForLogViewQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<ContactsForLogViewQuery, ContactsForLogViewQueryVariables>) {
-        return ApolloReactHooks.useQuery<ContactsForLogViewQuery, ContactsForLogViewQueryVariables>(ContactsForLogViewDocument, baseOptions);
-      }
-export function useContactsForLogViewLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<ContactsForLogViewQuery, ContactsForLogViewQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<ContactsForLogViewQuery, ContactsForLogViewQueryVariables>(ContactsForLogViewDocument, baseOptions);
-        }
-export type ContactsForLogViewQueryHookResult = ReturnType<typeof useContactsForLogViewQuery>;
-export type ContactsForLogViewLazyQueryHookResult = ReturnType<typeof useContactsForLogViewLazyQuery>;
-export type ContactsForLogViewQueryResult = ApolloReactCommon.QueryResult<ContactsForLogViewQuery, ContactsForLogViewQueryVariables>;
-export const LogContactDocument = gql`
-    mutation logContact($input: LogContactInput!) {
-  LogContact(input: $input) {
-    id
-  }
+export function useContactsForLogViewQuery(
+  baseOptions?: ApolloReactHooks.QueryHookOptions<
+    ContactsForLogViewQuery,
+    ContactsForLogViewQueryVariables
+  >
+) {
+  return ApolloReactHooks.useQuery<
+    ContactsForLogViewQuery,
+    ContactsForLogViewQueryVariables
+  >(ContactsForLogViewDocument, baseOptions);
 }
-    `;
-export type LogContactMutationFn = ApolloReactCommon.MutationFunction<LogContactMutation, LogContactMutationVariables>;
+export function useContactsForLogViewLazyQuery(
+  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
+    ContactsForLogViewQuery,
+    ContactsForLogViewQueryVariables
+  >
+) {
+  return ApolloReactHooks.useLazyQuery<
+    ContactsForLogViewQuery,
+    ContactsForLogViewQueryVariables
+  >(ContactsForLogViewDocument, baseOptions);
+}
+export type ContactsForLogViewQueryHookResult = ReturnType<
+  typeof useContactsForLogViewQuery
+>;
+export type ContactsForLogViewLazyQueryHookResult = ReturnType<
+  typeof useContactsForLogViewLazyQuery
+>;
+export type ContactsForLogViewQueryResult = ApolloReactCommon.QueryResult<
+  ContactsForLogViewQuery,
+  ContactsForLogViewQueryVariables
+>;
+export const LogContactDocument = gql`
+  mutation logContact($input: LogContactInput!) {
+    LogContact(input: $input) {
+      id
+    }
+  }
+`;
+export type LogContactMutationFn = ApolloReactCommon.MutationFunction<
+  LogContactMutation,
+  LogContactMutationVariables
+>;
 
 /**
  * __useLogContactMutation__
@@ -431,9 +439,24 @@ export type LogContactMutationFn = ApolloReactCommon.MutationFunction<LogContact
  *   },
  * });
  */
-export function useLogContactMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<LogContactMutation, LogContactMutationVariables>) {
-        return ApolloReactHooks.useMutation<LogContactMutation, LogContactMutationVariables>(LogContactDocument, baseOptions);
-      }
-export type LogContactMutationHookResult = ReturnType<typeof useLogContactMutation>;
-export type LogContactMutationResult = ApolloReactCommon.MutationResult<LogContactMutation>;
-export type LogContactMutationOptions = ApolloReactCommon.BaseMutationOptions<LogContactMutation, LogContactMutationVariables>;
+export function useLogContactMutation(
+  baseOptions?: ApolloReactHooks.MutationHookOptions<
+    LogContactMutation,
+    LogContactMutationVariables
+  >
+) {
+  return ApolloReactHooks.useMutation<
+    LogContactMutation,
+    LogContactMutationVariables
+  >(LogContactDocument, baseOptions);
+}
+export type LogContactMutationHookResult = ReturnType<
+  typeof useLogContactMutation
+>;
+export type LogContactMutationResult = ApolloReactCommon.MutationResult<
+  LogContactMutation
+>;
+export type LogContactMutationOptions = ApolloReactCommon.BaseMutationOptions<
+  LogContactMutation,
+  LogContactMutationVariables
+>;

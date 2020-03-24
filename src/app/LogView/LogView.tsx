@@ -8,10 +8,14 @@ import {
   FormErrorMessage
 } from '@chakra-ui/core';
 import useLogContactForm, { ContactWith } from './useLogContactForm';
-import { useContactsForLogViewQuery } from '../../__generated/graphql';
+import {
+  ContactsForLogViewQuery,
+  ContactsForLogViewDocument
+} from '../../__generated/graphql';
 import { useAuth } from 'gatsby-theme-firebase';
 import { Field } from 'formik';
 import DatePicker from 'react-date-picker';
+import { useApolloClient } from '@apollo/client';
 
 const contactWithOptions: ContactWith[] = [
   {
@@ -34,19 +38,20 @@ const contactWithOptions: ContactWith[] = [
 
 const LogView = () => {
   const { profile, isLoading } = useAuth();
-
-  const { data, loading } = useContactsForLogViewQuery({
+  const client = useApolloClient();
+  const { data, loading } = client.query<ContactsForLogViewQuery>({
+    query: ContactsForLogViewDocument,
     variables: {
       uid: profile ? profile.uid : null
     }
   });
 
-  const { errors, touched, setFieldValue } = useLogContactForm({
-    initialValues: {
-      entryDate: new Date(),
-      contactWith: []
-    }
-  });
+  // const { errors, touched, setFieldValue } = useLogContactForm({
+  //   initialValues: {
+  //     entryDate: new Date(),
+  //     contactWith: []
+  //   }
+  // });
 
   if (isLoading || loading) {
     return <Spinner />;
