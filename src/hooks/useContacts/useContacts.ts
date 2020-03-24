@@ -10,7 +10,7 @@ const useContacts = () => {
     }
   });
 
-  const contacts =
+  const contacts: string[] =
     data && data.Me && data.Me[0] && data.Me[0].contacts
       ? data.Me[0].contacts.map(({ uid }) => uid)
       : [];

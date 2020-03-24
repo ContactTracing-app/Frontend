@@ -1,27 +1,19 @@
 import * as React from 'react';
 import { Box, Avatar, Flex, Text, Spinner } from '@chakra-ui/core';
-import { useObjectVal } from 'react-firebase-hooks/database';
-import { firebase } from 'gatsby-theme-firebase';
-import { Profile } from '../../app/InviteView/InviteView';
+import withPerson from '../../hooks/withPerson';
 
 interface ContactAvatarProps {
   uid: string;
 }
 const ContactAvatar: React.FC<ContactAvatarProps> = ({ uid }) => {
-  const [value, loading] = useObjectVal<Profile>(
-    firebase.database().ref(`profiles/${uid}`)
-  );
-  const displayName =
-    value && value.displayName ? value.displayName : 'Anonymous';
-  const photoURL = value && value.photoURL ? value.photoURL : null;
-
+  const [person, loading] = withPerson(uid);
   return (
     <Flex alignItems="center">
       {loading ? (
         <Spinner />
       ) : (
         <>
-          <Avatar name={displayName} src={photoURL} />
+          <Avatar name={person.displayName} src={person.photoURL} />
           <Box
             ml="2"
             mt="1"
@@ -30,7 +22,7 @@ const ContactAvatar: React.FC<ContactAvatarProps> = ({ uid }) => {
             lineHeight="tight"
             isTruncated
           >
-            {displayName}
+            {person.displayName}
           </Box>
         </>
       )}

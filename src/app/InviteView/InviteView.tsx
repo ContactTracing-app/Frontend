@@ -17,11 +17,6 @@ type params = {
   uid: string;
 };
 
-export interface Profile {
-  displayName?: string;
-  photoURL?: string;
-}
-
 const InviteView: React.FC<RouteComponentProps> = () => {
   const { uid }: params = useParams();
   const { profile } = useAuth();

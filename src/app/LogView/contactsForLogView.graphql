@@ -1,7 +1,0 @@
-query ContactsForLogView($uid: ID!) {
-  Me: Person(uid: $uid) {
-    contacts: knows {
-      uid
-    }
-  }
-}
