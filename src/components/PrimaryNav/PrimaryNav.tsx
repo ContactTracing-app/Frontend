@@ -45,7 +45,7 @@ const PrimaryNav: React.FC = () => {
       ))}
       {isLoggedIn && [
         <NavButton
-          key="nav-log"
+          key="nav-profile"
           Icon={Icons.TiThermometer}
           to="/app/profile"
           label="Profile"
