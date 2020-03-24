@@ -340,22 +340,6 @@ export type QueryPersonArgs = {
   filter?: Maybe<_PersonFilter>;
 };
 
-export type ContactsForContactsViewQueryVariables = {
-  uid: Scalars['ID'];
-};
-
-
-export type ContactsForContactsViewQuery = (
-  { __typename?: 'Query' }
-  & { Me?: Maybe<Array<Maybe<(
-    { __typename?: 'Person' }
-    & { contacts?: Maybe<Array<Maybe<(
-      { __typename?: 'Person' }
-      & Pick<Person, 'uid'>
-    )>>> }
-  )>>> }
-);
-
 export type CreateKnowsMutationVariables = {
   fromUid: Scalars['ID'];
   toUid: Scalars['ID'];
@@ -399,42 +383,23 @@ export type LogContactMutation = (
   )> }
 );
 
+export type ContactsHookQueryVariables = {
+  uid: Scalars['ID'];
+};
 
-export const ContactsForContactsViewDocument = gql`
-    query ContactsForContactsView($uid: ID!) {
-  Me: Person(uid: $uid) {
-    contacts: knows {
-      uid
-    }
-  }
-}
-    `;
 
-/**
- * __useContactsForContactsViewQuery__
- *
- * To run a query within a React component, call `useContactsForContactsViewQuery` and pass it any options that fit your needs.
- * When your component renders, `useContactsForContactsViewQuery` returns an object from Apollo Client that contains loading, error, and data properties 
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useContactsForContactsViewQuery({
- *   variables: {
- *      uid: // value for 'uid'
- *   },
- * });
- */
-export function useContactsForContactsViewQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<ContactsForContactsViewQuery, ContactsForContactsViewQueryVariables>) {
-        return ApolloReactHooks.useQuery<ContactsForContactsViewQuery, ContactsForContactsViewQueryVariables>(ContactsForContactsViewDocument, baseOptions);
-      }
-export function useContactsForContactsViewLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<ContactsForContactsViewQuery, ContactsForContactsViewQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<ContactsForContactsViewQuery, ContactsForContactsViewQueryVariables>(ContactsForContactsViewDocument, baseOptions);
-        }
-export type ContactsForContactsViewQueryHookResult = ReturnType<typeof useContactsForContactsViewQuery>;
-export type ContactsForContactsViewLazyQueryHookResult = ReturnType<typeof useContactsForContactsViewLazyQuery>;
-export type ContactsForContactsViewQueryResult = ApolloReactCommon.QueryResult<ContactsForContactsViewQuery, ContactsForContactsViewQueryVariables>;
+export type ContactsHookQuery = (
+  { __typename?: 'Query' }
+  & { Me?: Maybe<Array<Maybe<(
+    { __typename?: 'Person' }
+    & { contacts?: Maybe<Array<Maybe<(
+      { __typename?: 'Person' }
+      & Pick<Person, 'uid'>
+    )>>> }
+  )>>> }
+);
+
+
 export const CreateKnowsDocument = gql`
     mutation CreateKnows($fromUid: ID!, $toUid: ID!) {
   CreateKnows(input: {fromUid: $fromUid, toUid: $toUid}) {
@@ -535,3 +500,38 @@ export function useLogContactMutation(baseOptions?: ApolloReactHooks.MutationHoo
 export type LogContactMutationHookResult = ReturnType<typeof useLogContactMutation>;
 export type LogContactMutationResult = ApolloReactCommon.MutationResult<LogContactMutation>;
 export type LogContactMutationOptions = ApolloReactCommon.BaseMutationOptions<LogContactMutation, LogContactMutationVariables>;
+export const ContactsHookDocument = gql`
+    query ContactsHook($uid: ID!) {
+  Me: Person(uid: $uid) {
+    contacts: knows {
+      uid
+    }
+  }
+}
+    `;
+
+/**
+ * __useContactsHookQuery__
+ *
+ * To run a query within a React component, call `useContactsHookQuery` and pass it any options that fit your needs.
+ * When your component renders, `useContactsHookQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useContactsHookQuery({
+ *   variables: {
+ *      uid: // value for 'uid'
+ *   },
+ * });
+ */
+export function useContactsHookQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<ContactsHookQuery, ContactsHookQueryVariables>) {
+        return ApolloReactHooks.useQuery<ContactsHookQuery, ContactsHookQueryVariables>(ContactsHookDocument, baseOptions);
+      }
+export function useContactsHookLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<ContactsHookQuery, ContactsHookQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<ContactsHookQuery, ContactsHookQueryVariables>(ContactsHookDocument, baseOptions);
+        }
+export type ContactsHookQueryHookResult = ReturnType<typeof useContactsHookQuery>;
+export type ContactsHookLazyQueryHookResult = ReturnType<typeof useContactsHookLazyQuery>;
+export type ContactsHookQueryResult = ApolloReactCommon.QueryResult<ContactsHookQuery, ContactsHookQueryVariables>;

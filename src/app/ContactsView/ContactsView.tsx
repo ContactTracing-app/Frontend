@@ -6,19 +6,13 @@ import {
   AlertIcon,
   AlertTitle
 } from '@chakra-ui/core';
-import { useAuth } from 'gatsby-theme-firebase';
 import ContactAvatar from '../../components/ContactAvatar/ContactAvatar';
-import { useContactsForContactsViewQuery } from '../../__generated/graphql';
+import useContacts from '../../hooks/useContacts';
 
 const ContactsView: React.FC = () => {
-  const { profile, isLoading } = useAuth();
-  const { data, loading, error } = useContactsForContactsViewQuery({
-    variables: {
-      uid: profile?.uid
-    }
-  });
+  const [contacts, loading, error] = useContacts();
 
-  if (isLoading || loading) {
+  if (loading) {
     return <Spinner />;
   }
 
@@ -31,15 +25,10 @@ const ContactsView: React.FC = () => {
     );
   }
 
-  const contactsIds =
-    data && data.Me && data.Me[0] && data.Me[0].contacts
-      ? data.Me[0].contacts.map(contact => contact!.uid)
-      : [];
-
   return (
     <>
-      <Heading>Contact</Heading>
-      {contactsIds.map(uid => (
+      <Heading>My Contacts</Heading>
+      {contacts.map(uid => (
         <ContactAvatar key={uid} uid={uid} />
       ))}
     </>

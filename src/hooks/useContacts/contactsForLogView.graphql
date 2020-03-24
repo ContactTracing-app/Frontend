@@ -1,4 +1,4 @@
-query ContactsForContactsView($uid: ID!) {
+query ContactsHook($uid: ID!) {
   Me: Person(uid: $uid) {
     contacts: knows {
       uid
