@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Tooltip, Box, Flex } from '@chakra-ui/core';
+import { Box, Flex, Text } from '@chakra-ui/core';
 import { Link as GatsbyLink } from 'gatsby';
 
 const isPartiallyActive = ({
@@ -28,15 +28,12 @@ type NavButtonProps = {
 };
 
 const NavButton: React.FC<NavButtonProps> = ({ to, label, Icon }) => (
-  <Flex justifyContent="center">
-    <PartialNavLink to={to}>
-      <Tooltip label={label} aria-label={label}>
-        <Box p={4}>
-          <Box as={Icon} size="32px" />
-        </Box>
-      </Tooltip>
-    </PartialNavLink>
-  </Flex>
+  <PartialNavLink to={to}>
+    <Flex alignItems="center" p={4}>
+      <Box as={Icon} size="1.4em" mr={5} />
+      <Text>{label}</Text>
+    </Flex>
+  </PartialNavLink>
 );
 
 export default NavButton;

@@ -5,7 +5,7 @@ import PrimaryNav from '../PrimaryNav';
 import Me from '../Me';
 
 const SideNav: React.FC = () => (
-  <Flex flexDirection="column" justifyContent="space-between" width="6em">
+  <Flex flexDirection="column" justifyContent="space-between" width="14em">
     <Box>
       <Logo />
       <Divider />

@@ -8,7 +8,7 @@ import {
   Input,
   Button
 } from '@chakra-ui/core';
-import { useParams } from '@reach/router';
+import { useAuth } from 'gatsby-theme-firebase';
 import {
   EmailIcon,
   EmailShareButton,
@@ -27,14 +27,10 @@ import {
   WhatsappIcon,
   WhatsappShareButton
 } from 'react-share';
-import useProfileUrl from '../../hooks/useProfileUrl';
+import useProfileUrl from '../../hooks/useInviteUrl';
 import QRCOde from '../../components/QRCode';
 
-type params = {
-  uid: string;
-};
 const ProfileView = () => {
-  const params: params = useParams();
   const { absoluteUrl: url } = useProfileUrl();
   const { onCopy, hasCopied } = useClipboard(url);
   const iconProps = {
@@ -47,9 +43,6 @@ const ProfileView = () => {
       <>
         SEO!
         <Heading>You are</Heading>
-        <pre>
-          <code>{params.uid}</code>
-        </pre>
         <Text fontSize="4xl">
           Share this page with your friends &amp; family to connect.
         </Text>

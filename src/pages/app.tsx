@@ -16,7 +16,7 @@ const App = () => {
         <InviteView path="/invite/:uid" />
         <PrivateRoute path="/contacts" component={ContactsView} />
         <PrivateRoute path="/log" component={LogView} />
-        <PrivateRoute path="/profile/:uid" component={ProfileView} />
+        <PrivateRoute path="/profile" component={ProfileView} />
       </Router>
     </Layout>
   );

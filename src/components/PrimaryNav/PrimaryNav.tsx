@@ -2,7 +2,7 @@ import * as React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import * as Icons from 'react-icons/ti';
 import { useAuth } from 'gatsby-theme-firebase';
-import useProfileUrl from '../../hooks/useProfileUrl';
+import useProfileUrl from '../../hooks/useInviteUrl';
 import NavButton from './NavButton';
 
 const query = graphql`
@@ -32,7 +32,6 @@ const PrimaryNav: React.FC = () => {
     navigation: { nodes }
   } = useStaticQuery<QueryResult>(query);
   const { isLoggedIn } = useAuth();
-  const { relativeUrl } = useProfileUrl();
 
   return (
     <>
@@ -48,6 +47,12 @@ const PrimaryNav: React.FC = () => {
         <NavButton
           key="nav-log"
           Icon={Icons.TiThermometer}
+          to="/app/profile"
+          label="Profile"
+        />,
+        <NavButton
+          key="nav-log"
+          Icon={Icons.TiThermometer}
           to="/app/log"
           label="Log Contact"
         />,
@@ -58,9 +63,6 @@ const PrimaryNav: React.FC = () => {
           label="Contacts"
         />
       ]}
-      {relativeUrl && (
-        <NavButton Icon={Icons.TiUser} to={relativeUrl} label="Profile" />
-      )}
     </>
   );
 };

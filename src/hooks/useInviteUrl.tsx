@@ -12,7 +12,7 @@ const query = graphql`
   }
 `;
 
-type useProfileQuery = {
+type useInviteQuery = {
   site: {
     siteMetadata: {
       siteUrl: string;
@@ -20,10 +20,10 @@ type useProfileQuery = {
   };
 };
 
-interface UseProfileUrl {
+interface useInviteUrl {
   uid?: string;
 }
-const useProfileUrl = (props?: UseProfileUrl) => {
+const useInviteUrl = (props?: useInviteUrl) => {
   const { profile } = useAuth();
 
   let uid;
@@ -38,11 +38,11 @@ const useProfileUrl = (props?: UseProfileUrl) => {
       siteMetadata: { siteUrl }
     }
   } = useStaticQuery<useProfileQuery>(query);
-  const relativeUrl = `/app/profile/${profile?.uid}`;
+  const relativeUrl = `/app/invite/${profile?.uid}`;
   const absoluteUrl = `${siteUrl}${relativeUrl}`;
   return profile
     ? { absoluteUrl, relativeUrl }
     : { absoluteUrl: null, relativeUrl: null };
 };
 
-export default useProfileUrl;
+export default useInviteUrl;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import QRCode from 'qrcode';
-import useProfileUrl from '../../hooks/useProfileUrl';
+import useProfileUrl from '../../hooks/useInviteUrl';
 
 const QRCOde: React.FC = () => {
   const canvasRef = React.useRef(null);
