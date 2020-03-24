@@ -51,7 +51,6 @@
     "gatsby-plugin-sitemap": "^2.2.27",
     "gatsby-plugin-typescript": "^2.2.0",
     "gatsby-source-filesystem": "^2.1.48",
-    "gatsby-source-instagram": "^0.7.0",
     "gatsby-theme-firebase": "^1.0.8",
     "gatsby-transformer-sharp": "^2.3.16",
     "gatsby-transformer-yaml": "^2.2.25",

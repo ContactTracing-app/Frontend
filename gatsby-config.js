@@ -58,13 +58,6 @@ module.exports = {
         socialLogins: ['google', 'facebook']
       }
     },
-    {
-      resolve: 'gatsby-source-instagram',
-      options: {
-        access_token: process.env.ACCESS_TOKEN,
-        instagram_id: process.env.BUSINESS_ID
-      }
-    },
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sitemap',
@@ -78,7 +71,7 @@ module.exports = {
         background_color: config.backgroundColor,
         theme_color: config.themeColor,
         display: 'standalone',
-        icon: 'src/favicon.png'
+        icon: 'src/images/favicon.png'
       }
     },
     'gatsby-plugin-offline',
