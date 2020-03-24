@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/core';
 import Select, { Option } from 'react-select';
 import useAnalytics from '../../hooks/useAnalytics';
+import withPerson from '../../hooks/withPerson';
 
 const analytics = useAnalytics();
 
@@ -34,10 +35,13 @@ const InnerForm: React.FC<InjectedFormikProps<
     setFieldValue
   } = props;
 
-  const contacts: ContactWith[] = contactOptions.map(uid => ({
-    uid,
-    displayName: uid
-  }));
+  const contacts: ContactWith[] = contactOptions.map(uid => {
+    const [person] = withPerson({ uid });
+    return {
+      uid,
+      displayName: person.displayName
+    };
+  });
 
   return (
     <Form>

@@ -6,7 +6,7 @@ interface ContactAvatarProps {
   uid: string;
 }
 const ContactAvatar: React.FC<ContactAvatarProps> = ({ uid }) => {
-  const [person, loading] = withPerson(uid);
+  const [person, loading] = withPerson({ uid });
   return (
     <Flex alignItems="center">
       {loading ? (
