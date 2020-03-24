@@ -17,7 +17,7 @@ type params = {
   uid: string;
 };
 
-interface Profile {
+export interface Profile {
   displayName?: string;
   photoURL?: string;
 }
