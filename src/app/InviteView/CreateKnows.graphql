@@ -1,0 +1,5 @@
+mutation CreateKnows($fromUid: ID!, $toUid: ID!) {
+  CreateKnows(input: { fromUid: $fromUid, toUid: $toUid }) {
+    uid
+  }
+}
