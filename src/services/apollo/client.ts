@@ -5,6 +5,7 @@ import {
   createHttpLink,
   InMemoryCache
 } from '@apollo/client';
+import hasWindow from '../../helpers/hasWindow';
 
 const createClient = () => {
   const uri = process.env.GATSBY_GRAPHQL_ENDPOINT;
@@ -14,7 +15,7 @@ const createClient = () => {
     fetch
   });
 
-  const authToken = localStorage.getItem('token');
+  const authToken = hasWindow ? localStorage.getItem('token') : '';
 
   const authLink = new ApolloLink((operation, forward) => {
     operation.setContext({
