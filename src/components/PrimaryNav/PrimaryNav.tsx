@@ -4,6 +4,7 @@ import * as Icons from 'react-icons/md';
 import { useAuth } from 'gatsby-theme-firebase';
 import useProfileUrl from '../../hooks/useInviteUrl';
 import NavButton from './NavButton';
+import { Divider } from '@chakra-ui/core';
 
 const query = graphql`
   query PrimaryNav {
@@ -31,7 +32,9 @@ const PrimaryNav: React.FC = () => {
   const {
     navigation: { nodes }
   } = useStaticQuery<QueryResult>(query);
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, profile } = useAuth();
+
+  const me = profile?.displayName ? profile?.displayName : profile?.email!;
 
   return (
     <>
@@ -43,12 +46,13 @@ const PrimaryNav: React.FC = () => {
           label={item.name}
         />
       ))}
+      <Divider />
       {isLoggedIn && [
         <NavButton
-          key="nav-share"
+          key="nav-profile"
           Icon={Icons.MdShare}
-          to="/app/share"
-          label="Share"
+          to="/app/profile"
+          label={me}
         />,
         <NavButton
           key="nav-log"
@@ -61,6 +65,12 @@ const PrimaryNav: React.FC = () => {
           Icon={Icons.MdGroup}
           to="/app/contacts"
           label="Contacts"
+        />,
+        <NavButton
+          key="nav-share"
+          Icon={Icons.MdShare}
+          to="/app/share"
+          label="Share"
         />,
         <NavButton
           key="nav-settings"
