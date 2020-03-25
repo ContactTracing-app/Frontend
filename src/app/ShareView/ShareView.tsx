@@ -29,6 +29,7 @@ import {
 } from 'react-share';
 import useProfileUrl from '../../hooks/useInviteUrl';
 import QRCOde from '../../components/QRCode';
+import PageHeader from '../../components/PageHeader';
 
 const ShareView = () => {
   const { absoluteUrl: url } = useProfileUrl();
@@ -41,11 +42,10 @@ const ShareView = () => {
   return (
     url && (
       <>
-        SEO!
-        <Heading>You are</Heading>
-        <Text fontSize="4xl">
-          Share this page with your friends &amp; family to connect.
-        </Text>
+        <PageHeader
+          heading="Share your Profile"
+          lead="Send this page with your friends &amp; family"
+        />
         <Flex mb={2}>
           <Input value={url} isReadOnly />
           <Button onClick={onCopy} ml={2}>

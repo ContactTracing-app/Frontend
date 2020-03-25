@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Heading } from '@chakra-ui/core';
+import PageHeader from '../../components/PageHeader';
 
 const ProfileView = () => {
   return (
     <>
-      <Heading>Your Risk Level</Heading>
+      <PageHeader heading="Your Risk Level" lead="Line of text here" />
     </>
   );
 };

@@ -8,6 +8,7 @@ import {
 } from '@chakra-ui/core';
 import ContactAvatar from '../../components/ContactAvatar/ContactAvatar';
 import useContacts from '../../hooks/useContacts';
+import PageHeader from '../../components/PageHeader';
 
 const ContactsView: React.FC = () => {
   const [contacts, loading, error] = useContacts();
@@ -27,7 +28,7 @@ const ContactsView: React.FC = () => {
 
   return (
     <>
-      <Heading>My Contacts</Heading>
+      <PageHeader heading="Contacts" lead="Line of text here" />
       {contacts.map(uid => (
         <ContactAvatar key={uid} uid={uid} />
       ))}

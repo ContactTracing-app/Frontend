@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { Heading } from '@chakra-ui/core';
 import SettingsForm from './SettingsForm';
+import PageHeader from '../../components/PageHeader';
 
 const SettingsView = () => {
   return (
     <>
-      <Heading>Settings</Heading>
+      <PageHeader heading="Settings" lead="Line of text here" />
       <SettingsForm />
     </>
   );

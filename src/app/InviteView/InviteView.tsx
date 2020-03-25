@@ -1,17 +1,11 @@
 import * as React from 'react';
-import {
-  Heading,
-  Spinner,
-  Avatar,
-  Button,
-  Alert,
-  AlertIcon
-} from '@chakra-ui/core';
+import { Spinner, Avatar, Button, Alert, AlertIcon } from '@chakra-ui/core';
 import { RouteComponentProps } from '@reach/router';
 import { useObjectVal } from 'react-firebase-hooks/database';
 import { firebase, useAuth } from 'gatsby-theme-firebase';
 import { useParams } from '@reach/router';
 import { useCreateKnowsMutation } from '../../__generated/graphql';
+import PageHeader from '../../components/PageHeader';
 
 type params = {
   uid: string;
@@ -44,7 +38,11 @@ const InviteView: React.FC<RouteComponentProps> = () => {
           Successfully connected. You can now log contact with {displayName}.
         </Alert>
       )}
-      <Heading>Connect with {displayName}</Heading>
+      <PageHeader
+        heading={`Connect with ${displayName}`}
+        lead="Line of text here"
+      />
+
       <Avatar name={displayName} src={photoURL} />
       {shouldShowConnectButton && (
         <Button
