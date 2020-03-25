@@ -20,5 +20,5 @@ decorate(CounterStore, {
   count: observable,
   doubleCount: computed,
   decrement: action,
-  increment: action
+  increment: action,
 });

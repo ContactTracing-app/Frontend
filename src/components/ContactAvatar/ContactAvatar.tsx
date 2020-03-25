@@ -1,15 +1,19 @@
 import * as React from 'react';
-import { Box, Avatar, Flex, Text, Spinner } from '@chakra-ui/core';
-import withPerson from '../../hooks/withPerson';
+import { Box, Avatar, Flex, Spinner } from '@chakra-ui/core';
+import { useStores } from '../../hooks/useStore';
+import { Person } from '../../stores/PersonStore';
 
 interface ContactAvatarProps {
   uid: string;
 }
 const ContactAvatar: React.FC<ContactAvatarProps> = ({ uid }) => {
-  const [person, loading] = withPerson({ uid });
+  const { personStore } = useStores();
+  const [person, setPerson] = React.useState<Person>();
+  personStore.getPerson(uid).then(setPerson);
+
   return (
     <Flex alignItems="center">
-      {loading ? (
+      {!person ? (
         <Spinner />
       ) : (
         <>
