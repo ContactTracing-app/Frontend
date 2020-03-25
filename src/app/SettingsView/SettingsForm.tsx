@@ -88,7 +88,7 @@ const SettingsForm: React.FC<SettingsFormProps> = props => {
 
   return (
     <>
-      {JSON.stringify(me.displayName, null, 2)}
+      {/* {JSON.stringify(me.displayName, null, 2)} */}
       <WithFormik
         uid={profile?.uid}
         initialDisplayName={me.displayName}

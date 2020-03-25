@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Flex, Text } from '@chakra-ui/core';
+import { Box, Flex, Heading } from '@chakra-ui/core';
 import { Link as GatsbyLink } from 'gatsby';
 
 const isPartiallyActive = ({
@@ -31,7 +31,9 @@ const NavButton: React.FC<NavButtonProps> = ({ to, label, Icon }) => (
   <PartialNavLink to={to}>
     <Flex alignItems="center" p={4}>
       <Box as={Icon} size="1.4em" mr={5} />
-      <Text>{label}</Text>
+      <Heading as="span" size="sm">
+        {label}
+      </Heading>
     </Flex>
   </PartialNavLink>
 );

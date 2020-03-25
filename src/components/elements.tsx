@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Flex, Box } from '@chakra-ui/core';
+import { Flex, Box, Text } from '@chakra-ui/core';
 import { Global } from '@emotion/core';
 
 export const Header: React.FC = () => (
@@ -9,8 +9,13 @@ export const Header: React.FC = () => (
 );
 
 export const Footer: React.FC = () => (
-  <Flex as="footer">
-    <Box>Footer content here</Box>
+  <Flex as="footer" mt="10em">
+    <Text fontSize="sm" as="p">
+      &copy; All Rights Reserved
+    </Text>
+    <Text fontSize="sm" as="p">
+      Made with hope.
+    </Text>
   </Flex>
 );
 
