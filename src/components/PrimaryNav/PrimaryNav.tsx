@@ -41,7 +41,7 @@ const PrimaryNav: React.FC = () => {
 
   return (
     <>
-      {nodes.map(item => (
+      {nodes.map((item) => (
         <NavButton
           key={item.link}
           Icon={Icons[item.icon]}
@@ -76,6 +76,18 @@ const PrimaryNav: React.FC = () => {
               Icon={Icons.MdSettings}
               to="/app/settings"
               label="Settings"
+            />,
+            <NavButton
+              key="nav-test"
+              Icon={Icons.MdSettings}
+              to="/app/test"
+              label="Testing"
+            />,
+            <NavButton
+              key="nav-test2"
+              Icon={Icons.MdSettings}
+              to="/app/test2"
+              label="Testing2"
             />,
             <LogoutButton key="nav-logout" Icon={Icons.MdPowerSettingsNew} />
           ]

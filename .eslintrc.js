@@ -5,44 +5,44 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:import/typescript',
     'plugin:prettier/recommended',
-    'prettier/@typescript-eslint'
+    'prettier/@typescript-eslint',
   ],
   plugins: ['@typescript-eslint', 'prettier'],
   parserOptions: {
     ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
     sourceType: 'module', // Allows for the use of imports
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
     },
-    project: './tsconfig.json'
+    project: './tsconfig.json',
   },
   env: {
     browser: true,
     jest: true,
-    node: true
+    node: true,
   },
   globals: {
-    cy: true
+    cy: true,
   },
   rules: {
     'no-unused-vars': [
       1,
       {
-        argsIgnorePattern: 'res|next|stage|^err|on|config'
-      }
+        argsIgnorePattern: 'res|next|stage|^err|on|config',
+      },
     ],
     'arrow-body-style': [2, 'as-needed'],
     'no-param-reassign': [
       2,
       {
-        props: false
-      }
+        props: false,
+      },
     ],
     'no-unused-expressions': [
       1,
       {
-        allowTaggedTemplates: true
-      }
+        allowTaggedTemplates: true,
+      },
     ],
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/prefer-interface': 0,
@@ -73,25 +73,25 @@ module.exports = {
     'react/jsx-filename-extension': [
       1,
       {
-        extensions: ['.js', '.jsx', '.tsx']
-      }
+        extensions: ['.js', '.jsx', '.tsx'],
+      },
     ],
     indent: ['error', 2, { SwitchCase: 1 }],
     'prettier/prettier': [
       'error',
       {
         semi: true,
-        trailingComma: false,
+        trailingComma: 'none',
         singleQuote: true,
-        printWidth: 70
-      }
+        printWidth: 70,
+      },
     ],
     'jsx-a11y/href-no-hash': 'off',
     'jsx-a11y/anchor-is-valid': [
       'warn',
       {
-        aspects: ['invalidHref']
-      }
-    ]
-  }
+        aspects: ['invalidHref'],
+      },
+    ],
+  },
 };

@@ -31,7 +31,7 @@ const createClient = () => {
   const client = new ApolloClient({
     link: authLink.concat(httpLink),
     cache: new InMemoryCache({
-      dataIdFromObject: object => {
+      dataIdFromObject: (object) => {
         // eslint-disable-next-line no-underscore-dangle
         switch (object.__typename) {
           case 'Person':

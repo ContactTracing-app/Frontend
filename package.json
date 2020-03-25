@@ -117,6 +117,7 @@
     "url": "https://github.com/LekoArts/gatsby-starter-portfolio-jodie/issues"
   },
   "prettier": {
-    "singleQuote": true
+    "singleQuote": true,
+    "trailingComma": "none"
   }
 }

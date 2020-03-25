@@ -354,22 +354,6 @@ export type CreateKnowsMutation = (
   )> }
 );
 
-export type ContactsForLogViewQueryVariables = {
-  uid: Scalars['ID'];
-};
-
-
-export type ContactsForLogViewQuery = (
-  { __typename?: 'Query' }
-  & { Me?: Maybe<Array<Maybe<(
-    { __typename?: 'Person' }
-    & { contacts?: Maybe<Array<Maybe<(
-      { __typename?: 'Person' }
-      & Pick<Person, 'uid'>
-    )>>> }
-  )>>> }
-);
-
 export type LogContactMutationVariables = {
   input: LogContactInput;
 };
@@ -383,6 +367,19 @@ export type LogContactMutation = (
   )> }
 );
 
+export type TestQueryVariables = {
+  uid: Scalars['ID'];
+};
+
+
+export type TestQuery = (
+  { __typename?: 'Query' }
+  & { Me?: Maybe<Array<Maybe<(
+    { __typename?: 'Person' }
+    & Pick<Person, 'uid'>
+  )>>> }
+);
+
 export type ContactsHookQueryVariables = {
   uid: Scalars['ID'];
 };
@@ -392,6 +389,7 @@ export type ContactsHookQuery = (
   { __typename?: 'Query' }
   & { Me?: Maybe<Array<Maybe<(
     { __typename?: 'Person' }
+    & Pick<Person, 'uid'>
     & { contacts?: Maybe<Array<Maybe<(
       { __typename?: 'Person' }
       & Pick<Person, 'uid'>
@@ -433,41 +431,6 @@ export function useCreateKnowsMutation(baseOptions?: ApolloReactHooks.MutationHo
 export type CreateKnowsMutationHookResult = ReturnType<typeof useCreateKnowsMutation>;
 export type CreateKnowsMutationResult = ApolloReactCommon.MutationResult<CreateKnowsMutation>;
 export type CreateKnowsMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateKnowsMutation, CreateKnowsMutationVariables>;
-export const ContactsForLogViewDocument = gql`
-    query ContactsForLogView($uid: ID!) {
-  Me: Person(uid: $uid) {
-    contacts: knows {
-      uid
-    }
-  }
-}
-    `;
-
-/**
- * __useContactsForLogViewQuery__
- *
- * To run a query within a React component, call `useContactsForLogViewQuery` and pass it any options that fit your needs.
- * When your component renders, `useContactsForLogViewQuery` returns an object from Apollo Client that contains loading, error, and data properties 
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useContactsForLogViewQuery({
- *   variables: {
- *      uid: // value for 'uid'
- *   },
- * });
- */
-export function useContactsForLogViewQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<ContactsForLogViewQuery, ContactsForLogViewQueryVariables>) {
-        return ApolloReactHooks.useQuery<ContactsForLogViewQuery, ContactsForLogViewQueryVariables>(ContactsForLogViewDocument, baseOptions);
-      }
-export function useContactsForLogViewLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<ContactsForLogViewQuery, ContactsForLogViewQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<ContactsForLogViewQuery, ContactsForLogViewQueryVariables>(ContactsForLogViewDocument, baseOptions);
-        }
-export type ContactsForLogViewQueryHookResult = ReturnType<typeof useContactsForLogViewQuery>;
-export type ContactsForLogViewLazyQueryHookResult = ReturnType<typeof useContactsForLogViewLazyQuery>;
-export type ContactsForLogViewQueryResult = ApolloReactCommon.QueryResult<ContactsForLogViewQuery, ContactsForLogViewQueryVariables>;
 export const LogContactDocument = gql`
     mutation logContact($input: LogContactInput!) {
   LogContact(input: $input) {
@@ -500,9 +463,43 @@ export function useLogContactMutation(baseOptions?: ApolloReactHooks.MutationHoo
 export type LogContactMutationHookResult = ReturnType<typeof useLogContactMutation>;
 export type LogContactMutationResult = ApolloReactCommon.MutationResult<LogContactMutation>;
 export type LogContactMutationOptions = ApolloReactCommon.BaseMutationOptions<LogContactMutation, LogContactMutationVariables>;
+export const TestDocument = gql`
+    query Test($uid: ID!) {
+  Me: Person(uid: $uid) {
+    uid
+  }
+}
+    `;
+
+/**
+ * __useTestQuery__
+ *
+ * To run a query within a React component, call `useTestQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTestQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTestQuery({
+ *   variables: {
+ *      uid: // value for 'uid'
+ *   },
+ * });
+ */
+export function useTestQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<TestQuery, TestQueryVariables>) {
+        return ApolloReactHooks.useQuery<TestQuery, TestQueryVariables>(TestDocument, baseOptions);
+      }
+export function useTestLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<TestQuery, TestQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<TestQuery, TestQueryVariables>(TestDocument, baseOptions);
+        }
+export type TestQueryHookResult = ReturnType<typeof useTestQuery>;
+export type TestLazyQueryHookResult = ReturnType<typeof useTestLazyQuery>;
+export type TestQueryResult = ApolloReactCommon.QueryResult<TestQuery, TestQueryVariables>;
 export const ContactsHookDocument = gql`
     query ContactsHook($uid: ID!) {
   Me: Person(uid: $uid) {
+    uid
     contacts: knows {
       uid
     }

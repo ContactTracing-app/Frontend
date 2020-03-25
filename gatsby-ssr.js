@@ -5,3 +5,5 @@ import 'firebase/database';
 // https://mobx-react.js.org/recipes-ssr
 import { useStaticRendering } from 'mobx-react-lite';
 useStaticRendering(true);
+
+export { wrapRootElement } from './gatsby-browser';

@@ -9,6 +9,8 @@ import LogView from '../app/LogView';
 import PrivateRoute from '../components/PrivateRoute';
 import SettingsView from '../app/SettingsView';
 import ShareView from '../app/ShareView';
+import TestView from '../app/TestView';
+import TestView2 from '../app/TestView/TestView2';
 
 const App = () => {
   return (
@@ -21,6 +23,8 @@ const App = () => {
         <PrivateRoute path="/log" component={LogView} />
         <PrivateRoute path="/share" component={ShareView} />
         <PrivateRoute path="/settings" component={SettingsView} />
+        <PrivateRoute path="/test" component={TestView} />
+        <PrivateRoute path="/test2" component={TestView2} />
       </Router>
     </Layout>
   );

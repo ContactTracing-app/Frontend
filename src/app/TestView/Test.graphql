@@ -1,0 +1,5 @@
+query Test($uid: ID!) {
+  Me: Person(uid: $uid) {
+    uid
+  }
+}
