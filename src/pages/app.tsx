@@ -1,13 +1,13 @@
 import React from 'react';
 import { Router } from '@reach/router';
-import Layout from '../components/layout';
-import PrivateRoute from '../components/PrivateRoute';
-import LogView from '../app/LogView';
-import ProfileView from '../app/ProfileView';
-import LoginView from '../app/LoginView';
 import ContactsView from '../app/ContactsView';
 import InviteView from '../app/InviteView';
+import Layout from '../components/layout';
+import LoginView from '../app/LoginView';
+import LogView from '../app/LogView';
+import PrivateRoute from '../components/PrivateRoute';
 import SettingsView from '../app/SettingsView';
+import ShareView from '../app/ShareView';
 
 const App = () => {
   return (
@@ -17,7 +17,7 @@ const App = () => {
         <InviteView path="/invite/:uid" />
         <PrivateRoute path="/contacts" component={ContactsView} />
         <PrivateRoute path="/log" component={LogView} />
-        <PrivateRoute path="/profile" component={ProfileView} />
+        <PrivateRoute path="/share" component={ShareView} />
         <PrivateRoute path="/settings" component={SettingsView} />
       </Router>
     </Layout>

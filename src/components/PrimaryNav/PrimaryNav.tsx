@@ -45,10 +45,10 @@ const PrimaryNav: React.FC = () => {
       ))}
       {isLoggedIn && [
         <NavButton
-          key="nav-profile"
-          Icon={Icons.MdInput}
-          to="/app/profile"
-          label="Profile"
+          key="nav-share"
+          Icon={Icons.MdShare}
+          to="/app/share"
+          label="Share"
         />,
         <NavButton
           key="nav-log"

@@ -30,7 +30,7 @@ import {
 import useProfileUrl from '../../hooks/useInviteUrl';
 import QRCOde from '../../components/QRCode';
 
-const ProfileView = () => {
+const ShareView = () => {
   const { absoluteUrl: url } = useProfileUrl();
   const { onCopy, hasCopied } = useClipboard(url);
   const iconProps = {
@@ -93,4 +93,4 @@ const ProfileView = () => {
   );
 };
 
-export default ProfileView;
+export default ShareView;
