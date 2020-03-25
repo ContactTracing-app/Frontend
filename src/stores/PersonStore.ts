@@ -38,7 +38,6 @@ export class PersonStore implements PersonStoreProps {
 
   async getPerson(uid: string) {
     if (this.personRegistry.has(uid)) {
-      console.log('retrieved');
       return this.personRegistry.get(uid);
     }
     return this.loadPerson(uid);

@@ -92,7 +92,7 @@ const InnerForm: React.FC<InjectedFormikProps<
       </Field>
 
       <Button mt={4} variantColor="teal" isLoading={isSubmitting} type="submit">
-        Submit
+        Save
       </Button>
     </Form>
   );
