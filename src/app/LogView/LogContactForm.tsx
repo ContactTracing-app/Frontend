@@ -59,6 +59,7 @@ const InnerForm: React.FC<InjectedFormikProps<
             <FormControl isInvalid={errors[field.name] && touched[field.name]}>
               <FormLabel htmlFor={field.name}>Entry Date</FormLabel>
               <DatePicker
+                clearIcon={null}
                 onChange={(v) => setFieldValue('entryDate', v)}
                 value={field.value}
               />
