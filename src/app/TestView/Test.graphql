@@ -1,5 +1,0 @@
-query Test($uid: ID!) {
-  Me: PersonById(input: { uid: $uid }) {
-    uid
-  }
-}

@@ -19,7 +19,7 @@ interface FormValues {
 const InnerForm: React.FC<InjectedFormikProps<
   SettingsFormProps,
   FormValues
->> = props => {
+>> = (props) => {
   const { touched, errors, isSubmitting } = props;
 
   return (
@@ -56,7 +56,7 @@ interface SettingsFormInnerProps extends SettingsFormProps {
 
 const WithFormik = withFormik<SettingsFormInnerProps, FormValues>({
   // Transform outer props into form values
-  mapPropsToValues: props => {
+  mapPropsToValues: (props) => {
     return {
       displayName: props.initialDisplayName || ''
     };
@@ -80,7 +80,7 @@ const WithFormik = withFormik<SettingsFormInnerProps, FormValues>({
 })(InnerForm);
 
 // Wrap our form with the withFormik HoC
-const SettingsForm: React.FC<SettingsFormProps> = props => {
+const SettingsForm: React.FC<SettingsFormProps> = (props) => {
   const { profile } = useAuth();
   const [me, loadingMe] = withPerson({
     uid: profile?.uid

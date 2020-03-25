@@ -1,0 +1,5 @@
+query Contacts($uid: ID!) {
+  contacts: ContactsForPerson(input: { uid: $uid }) {
+    uid
+  }
+}

@@ -8,9 +8,10 @@ export type Person = {
 };
 
 export interface PersonStoreProps {
-  loadPersonBatch: (uid: string) => Promise<Person>;
+  getPeople: (uids: string[]) => Promise<Person>;
   getPerson: (uid: string) => Promise<Person>;
   loadPerson: (uid: string) => Promise<Person>;
+  loadPeople: (uids: string[]) => Promise<Person>;
 }
 
 export class PersonStore implements PersonStoreProps {
@@ -30,7 +31,7 @@ export class PersonStore implements PersonStoreProps {
 
     const person: Person = {
       displayName,
-      photoURL,
+      photoURL
     };
     this.personRegistry.set(uid, person);
     return person;
@@ -52,5 +53,5 @@ decorate(PersonStore, {
   personRegistry: observable,
   getPeople: action,
   getPerson: action,
-  loadPerson: action,
+  loadPerson: action
 });

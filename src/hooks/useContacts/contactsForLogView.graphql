@@ -1,5 +1,0 @@
-query ContactsHook($uid: ID!) {
-  Me: Person(uid: $uid) {
-    uid
-  }
-}

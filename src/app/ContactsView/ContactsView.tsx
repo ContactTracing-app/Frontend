@@ -2,22 +2,23 @@ import * as React from 'react';
 import { Spinner, Alert, AlertIcon, AlertTitle } from '@chakra-ui/core';
 import ContactAvatar from '../../components/ContactAvatar/ContactAvatar';
 import PageHeader from '../../components/PageHeader';
+import useContacts from '../../hooks/useContacts';
 
 const ContactsView: React.FC = () => {
-  const contacts = ['erQozVk1AtXJHVbAexu4ZyVNSur1'];
+  const [contacts, loading, error] = useContacts();
 
-  // if (loading) {
-  //   return <Spinner />;
-  // }
+  if (loading) {
+    return <Spinner />;
+  }
 
-  // if (error) {
-  //   return (
-  //     <Alert status="error">
-  //       <AlertIcon />
-  //       <AlertTitle mr={2}>Error</AlertTitle>
-  //     </Alert>
-  //   );
-  // }
+  if (error) {
+    return (
+      <Alert status="error">
+        <AlertIcon />
+        <AlertTitle mr={2}>Error</AlertTitle>
+      </Alert>
+    );
+  }
 
   return (
     <>

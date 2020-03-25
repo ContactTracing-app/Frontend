@@ -7,14 +7,14 @@ import {
   FormControl,
   FormLabel,
   FormErrorMessage,
-  Spinner,
+  Spinner
 } from '@chakra-ui/core';
 import Select, { Option } from 'react-select';
 import useAnalytics from '../../hooks/useAnalytics';
 import withPerson from '../../hooks/withPerson';
 import {
   useLogContactMutation,
-  LogContactMutationFn,
+  LogContactMutationFn
 } from '../../__generated/graphql';
 import toDateObject from '../../helpers/toDateObject';
 import useContacts from '../../hooks/useContacts';
@@ -40,14 +40,14 @@ const InnerForm: React.FC<InjectedFormikProps<
     touched,
     errors,
     isSubmitting,
-    setFieldValue,
+    setFieldValue
   } = props;
 
   const contactWithOptions: ContactWith[] = contactOptions.map((uid) => {
     const [person] = withPerson({ uid });
     return {
       uid,
-      displayName: person.displayName,
+      displayName: person.displayName
     };
   });
 
@@ -114,7 +114,7 @@ const WithFormik = withFormik<LogContactFormInnerProps, FormValues>({
   mapPropsToValues: (props) => {
     return {
       entryDate: props.initialEntryDate || new Date(),
-      contactWith: props.initialContactWith || [],
+      contactWith: props.initialContactWith || []
     };
   },
 
@@ -126,19 +126,19 @@ const WithFormik = withFormik<LogContactFormInnerProps, FormValues>({
           input: {
             fromUid: actions.props.uid,
             toUid: contact.uid,
-            ...toDateObject(values.entryDate),
-          },
-        },
+            ...toDateObject(values.entryDate)
+          }
+        }
       });
     });
 
     setTimeout(() => {
       analytics.logEvent('contact_logged', {
-        contact_with_quanitity: values.contactWith.length,
+        contact_with_quanitity: values.contactWith.length
       });
       actions.setSubmitting(false);
     }, 1000);
-  },
+  }
 })(InnerForm);
 
 // Wrap our form with the withFormik HoC

@@ -77,18 +77,6 @@ const PrimaryNav: React.FC = () => {
               to="/app/settings"
               label="Settings"
             />,
-            <NavButton
-              key="nav-test"
-              Icon={Icons.MdSettings}
-              to="/app/test"
-              label="Testing"
-            />,
-            <NavButton
-              key="nav-test2"
-              Icon={Icons.MdSettings}
-              to="/app/test2"
-              label="Testing2"
-            />,
             <LogoutButton key="nav-logout" Icon={Icons.MdPowerSettingsNew} />
           ]
         : [<LoginButton key="nav-login" Icon={Icons.MdPowerSettingsNew} />]}

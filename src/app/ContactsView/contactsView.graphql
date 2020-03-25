@@ -1,5 +1,0 @@
-query ContactsView($uid: ID!) {
-  ContactsForPerson(input: { uid: $uid }) {
-    uid
-  }
-}
