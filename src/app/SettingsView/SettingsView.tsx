@@ -5,7 +5,10 @@ import PageHeader from '../../components/PageHeader';
 const SettingsView = () => {
   return (
     <>
-      <PageHeader heading="Settings" lead="Line of text here" />
+      <PageHeader
+        heading="Settings"
+        lead="Change your preferences on Contract Tracing."
+      />
       <SettingsForm />
     </>
   );
