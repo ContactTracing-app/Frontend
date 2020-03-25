@@ -12,7 +12,7 @@ const SideNav: React.FC = () => (
   >
     <Box>
       <Flex mt={10} justifyContent="center">
-        <Box size="5em">
+        <Box size="5em" mb={8}>
           <Logo />
         </Box>
       </Flex>
