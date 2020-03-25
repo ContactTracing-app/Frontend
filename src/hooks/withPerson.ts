@@ -10,11 +10,10 @@ export interface Person {
 
 interface WithPerson {
   uid: string;
-  pathSuffix?: string;
 }
-const withPerson = ({ uid, pathSuffix = '' }: WithPerson) => {
+const withPerson = ({ uid }: WithPerson) => {
   const [value, loading, error] = useObjectVal<Person>(
-    firebase.database().ref(`profiles/${uid}/${pathSuffix}`)
+    firebase.database().ref(`profiles/${uid}`)
   );
 
   const displayName =

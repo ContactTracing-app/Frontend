@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
-import * as Icons from 'react-icons/ti';
+import * as Icons from 'react-icons/md';
 import { useAuth } from 'gatsby-theme-firebase';
 import useProfileUrl from '../../hooks/useInviteUrl';
 import NavButton from './NavButton';
@@ -46,21 +46,27 @@ const PrimaryNav: React.FC = () => {
       {isLoggedIn && [
         <NavButton
           key="nav-profile"
-          Icon={Icons.TiThermometer}
+          Icon={Icons.MdInput}
           to="/app/profile"
           label="Profile"
         />,
         <NavButton
           key="nav-log"
-          Icon={Icons.TiThermometer}
+          Icon={Icons.MdEdit}
           to="/app/log"
           label="Log Contact"
         />,
         <NavButton
           key="nav-contacts"
-          Icon={Icons.TiFlowSwitch}
+          Icon={Icons.MdGroup}
           to="/app/contacts"
           label="Contacts"
+        />,
+        <NavButton
+          key="nav-settings"
+          Icon={Icons.MdSettings}
+          to="/app/settings"
+          label="Settings"
         />
       ]}
     </>

@@ -7,6 +7,7 @@ import ProfileView from '../app/ProfileView';
 import LoginView from '../app/LoginView';
 import ContactsView from '../app/ContactsView';
 import InviteView from '../app/InviteView';
+import SettingsView from '../app/SettingsView';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <PrivateRoute path="/contacts" component={ContactsView} />
         <PrivateRoute path="/log" component={LogView} />
         <PrivateRoute path="/profile" component={ProfileView} />
+        <PrivateRoute path="/settings" component={SettingsView} />
       </Router>
     </Layout>
   );
