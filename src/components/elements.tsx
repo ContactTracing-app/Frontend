@@ -25,4 +25,10 @@ export const Main: React.FC = ({ children }) => (
   </Box>
 );
 
+export const P: React.FC = ({ children, ...rest }) => (
+  <Text mt={4} {...rest}>
+    {children}
+  </Text>
+);
+
 export const GlobalStyles: React.FC = () => <Global styles={{}} />;
