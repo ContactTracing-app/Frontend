@@ -20,7 +20,7 @@ export const Footer: React.FC = () => (
 );
 
 export const Main: React.FC = ({ children }) => (
-  <Box alignItems="center" flexGrow={1} as="main" p="20">
+  <Box alignItems="center" flexGrow={1} as="main" p={[10, 20]}>
     {children}
   </Box>
 );
