@@ -8,7 +8,6 @@ const UserProvider: React.FC = ({ children }) => {
   React.useEffect(() => {
     const listener = auth.onAuthStateChanged((authUser) => {
       userStore.setAuthUser(authUser);
-      console.log('new token');
       auth.currentUser?.getIdToken().then((token) => {
         localStorage.setItem('token', token);
         userStore.setToken(token);

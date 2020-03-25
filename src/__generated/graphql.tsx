@@ -193,6 +193,10 @@ export enum _RelationDirections {
   Out = 'OUT'
 }
 
+export type ContactsForPersonInput = {
+  uid: Scalars['ID'];
+};
+
 export type CreateKnowsInput = {
   fromUid: Scalars['ID'];
   toUid: Scalars['ID'];
@@ -208,6 +212,10 @@ export type LogContactInput = {
   yyyy: Scalars['String'];
   mm: Scalars['String'];
   dd: Scalars['String'];
+};
+
+export type LogEntriesForPersonInput = {
+  uid: Scalars['ID'];
 };
 
 export type LogEntry = {
@@ -292,24 +300,7 @@ export type Person = {
   uid: Scalars['ID'];
   isInfected: Scalars['Boolean'];
   isInQuarantine: Scalars['Boolean'];
-  knows?: Maybe<Array<Maybe<Person>>>;
-  logEntries: Array<Maybe<LogEntry>>;
-  recentDirectContactWith?: Maybe<Array<Maybe<Person>>>;
   recentIndirectContactWith?: Maybe<Array<Maybe<Person>>>;
-};
-
-
-export type PersonKnowsArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_PersonOrdering>>>;
-};
-
-
-export type PersonRecentDirectContactWithArgs = {
-  first?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_PersonOrdering>>>;
 };
 
 
@@ -317,6 +308,11 @@ export type PersonRecentIndirectContactWithArgs = {
   first?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<Array<Maybe<_PersonOrdering>>>;
+  filter?: Maybe<_PersonFilter>;
+};
+
+export type PersonByIdInput = {
+  uid: Scalars['ID'];
 };
 
 export type PersonVisibilityInput = {
@@ -325,7 +321,46 @@ export type PersonVisibilityInput = {
 
 export type Query = {
    __typename?: 'Query';
+  PersonById?: Maybe<Person>;
+  LogEntriesForPerson: Array<Maybe<LogEntry>>;
+  ContactsForPerson: Array<Maybe<Person>>;
+  RecentDirectContactsForPerson: Array<Maybe<Person>>;
+  RecentIndirectContactsForPerson: Array<Maybe<Person>>;
   Person?: Maybe<Array<Maybe<Person>>>;
+};
+
+
+export type QueryPersonByIdArgs = {
+  input: PersonByIdInput;
+};
+
+
+export type QueryLogEntriesForPersonArgs = {
+  input: LogEntriesForPersonInput;
+};
+
+
+export type QueryContactsForPersonArgs = {
+  input: ContactsForPersonInput;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_PersonOrdering>>>;
+};
+
+
+export type QueryRecentDirectContactsForPersonArgs = {
+  input: RecentDirectContactsForPersonInput;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_PersonOrdering>>>;
+};
+
+
+export type QueryRecentIndirectContactsForPersonArgs = {
+  input: RecentIndirectContactsForPersonInput;
+  first?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_PersonOrdering>>>;
 };
 
 
@@ -339,6 +374,27 @@ export type QueryPersonArgs = {
   orderBy?: Maybe<Array<Maybe<_PersonOrdering>>>;
   filter?: Maybe<_PersonFilter>;
 };
+
+export type RecentDirectContactsForPersonInput = {
+  uid: Scalars['ID'];
+};
+
+export type RecentIndirectContactsForPersonInput = {
+  uid: Scalars['ID'];
+};
+
+export type ContactsViewQueryVariables = {
+  uid: Scalars['ID'];
+};
+
+
+export type ContactsViewQuery = (
+  { __typename?: 'Query' }
+  & { ContactsForPerson: Array<Maybe<(
+    { __typename?: 'Person' }
+    & Pick<Person, 'uid'>
+  )>> }
+);
 
 export type CreateKnowsMutationVariables = {
   fromUid: Scalars['ID'];
@@ -374,10 +430,10 @@ export type TestQueryVariables = {
 
 export type TestQuery = (
   { __typename?: 'Query' }
-  & { Me?: Maybe<Array<Maybe<(
+  & { Me?: Maybe<(
     { __typename?: 'Person' }
     & Pick<Person, 'uid'>
-  )>>> }
+  )> }
 );
 
 export type ContactsHookQueryVariables = {
@@ -390,14 +446,43 @@ export type ContactsHookQuery = (
   & { Me?: Maybe<Array<Maybe<(
     { __typename?: 'Person' }
     & Pick<Person, 'uid'>
-    & { contacts?: Maybe<Array<Maybe<(
-      { __typename?: 'Person' }
-      & Pick<Person, 'uid'>
-    )>>> }
   )>>> }
 );
 
 
+export const ContactsViewDocument = gql`
+    query ContactsView($uid: ID!) {
+  ContactsForPerson(input: {uid: $uid}) {
+    uid
+  }
+}
+    `;
+
+/**
+ * __useContactsViewQuery__
+ *
+ * To run a query within a React component, call `useContactsViewQuery` and pass it any options that fit your needs.
+ * When your component renders, `useContactsViewQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useContactsViewQuery({
+ *   variables: {
+ *      uid: // value for 'uid'
+ *   },
+ * });
+ */
+export function useContactsViewQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<ContactsViewQuery, ContactsViewQueryVariables>) {
+        return ApolloReactHooks.useQuery<ContactsViewQuery, ContactsViewQueryVariables>(ContactsViewDocument, baseOptions);
+      }
+export function useContactsViewLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<ContactsViewQuery, ContactsViewQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<ContactsViewQuery, ContactsViewQueryVariables>(ContactsViewDocument, baseOptions);
+        }
+export type ContactsViewQueryHookResult = ReturnType<typeof useContactsViewQuery>;
+export type ContactsViewLazyQueryHookResult = ReturnType<typeof useContactsViewLazyQuery>;
+export type ContactsViewQueryResult = ApolloReactCommon.QueryResult<ContactsViewQuery, ContactsViewQueryVariables>;
 export const CreateKnowsDocument = gql`
     mutation CreateKnows($fromUid: ID!, $toUid: ID!) {
   CreateKnows(input: {fromUid: $fromUid, toUid: $toUid}) {
@@ -465,7 +550,7 @@ export type LogContactMutationResult = ApolloReactCommon.MutationResult<LogConta
 export type LogContactMutationOptions = ApolloReactCommon.BaseMutationOptions<LogContactMutation, LogContactMutationVariables>;
 export const TestDocument = gql`
     query Test($uid: ID!) {
-  Me: Person(uid: $uid) {
+  Me: PersonById(input: {uid: $uid}) {
     uid
   }
 }
@@ -500,9 +585,6 @@ export const ContactsHookDocument = gql`
     query ContactsHook($uid: ID!) {
   Me: Person(uid: $uid) {
     uid
-    contacts: knows {
-      uid
-    }
   }
 }
     `;

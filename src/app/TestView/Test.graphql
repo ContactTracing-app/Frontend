@@ -1,5 +1,5 @@
 query Test($uid: ID!) {
-  Me: Person(uid: $uid) {
+  Me: PersonById(input: { uid: $uid }) {
     uid
   }
 }

@@ -16,7 +16,7 @@ const TestView = () => {
   const cacheData = client.readQuery({
     query: gql`
       query testCache {
-        Person(uid: "erQozVk1AtXJHVbAexu4ZyVNSur1") {
+        PersonById(input: { uid: "erQozVk1AtXJHVbAexu4ZyVNSur1" }) {
           uid
         }
       }
