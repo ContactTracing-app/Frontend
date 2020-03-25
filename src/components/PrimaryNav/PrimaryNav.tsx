@@ -5,6 +5,9 @@ import { useAuth } from 'gatsby-theme-firebase';
 import useProfileUrl from '../../hooks/useInviteUrl';
 import NavButton from './NavButton';
 import { Divider } from '@chakra-ui/core';
+import ProfileButton from './ProfileButton';
+import LogoutButton from './LogoutButton';
+import LoginButton from './LoginButton';
 
 const query = graphql`
   query PrimaryNav {
@@ -47,38 +50,36 @@ const PrimaryNav: React.FC = () => {
         />
       ))}
       <Divider />
-      {isLoggedIn && [
-        <NavButton
-          key="nav-profile"
-          Icon={Icons.MdShare}
-          to="/app/profile"
-          label={me}
-        />,
-        <NavButton
-          key="nav-log"
-          Icon={Icons.MdEdit}
-          to="/app/log"
-          label="Log Contact"
-        />,
-        <NavButton
-          key="nav-contacts"
-          Icon={Icons.MdGroup}
-          to="/app/contacts"
-          label="Contacts"
-        />,
-        <NavButton
-          key="nav-share"
-          Icon={Icons.MdShare}
-          to="/app/share"
-          label="Share"
-        />,
-        <NavButton
-          key="nav-settings"
-          Icon={Icons.MdSettings}
-          to="/app/settings"
-          label="Settings"
-        />
-      ]}
+      {isLoggedIn
+        ? [
+            <ProfileButton key="nav-profile" to="/app/profile" label={me} />,
+            <NavButton
+              key="nav-log"
+              Icon={Icons.MdEdit}
+              to="/app/log"
+              label="Log Contact"
+            />,
+            <NavButton
+              key="nav-contacts"
+              Icon={Icons.MdGroup}
+              to="/app/contacts"
+              label="Contacts"
+            />,
+            <NavButton
+              key="nav-share"
+              Icon={Icons.MdShare}
+              to="/app/share"
+              label="Share"
+            />,
+            <NavButton
+              key="nav-settings"
+              Icon={Icons.MdSettings}
+              to="/app/settings"
+              label="Settings"
+            />,
+            <LogoutButton key="nav-logout" Icon={Icons.MdPowerSettingsNew} />
+          ]
+        : [<LoginButton key="nav-login" Icon={Icons.MdPowerSettingsNew} />]}
     </>
   );
 };

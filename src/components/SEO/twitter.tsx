@@ -1,11 +1,15 @@
-import React from 'react'
-import Helmet from 'react-helmet'
+import React from 'react';
+import Helmet from 'react-helmet';
 
-type Props = { title: string; desc: string; image: string } & typeof defaultProps
+type Props = {
+  title: string;
+  desc: string;
+  image: string;
+} & typeof defaultProps;
 
 const defaultProps = {
-  username: '',
-}
+  username: ''
+};
 
 const Twitter = ({ username, title, desc, image }: Props) => (
   <Helmet>
@@ -16,8 +20,8 @@ const Twitter = ({ username, title, desc, image }: Props) => (
     <meta name="twitter:image" content={image} />
     <meta name="twitter:image:alt" content={desc} />
   </Helmet>
-)
+);
 
-export default Twitter
+export default Twitter;
 
-Twitter.defaultProps = defaultProps
+Twitter.defaultProps = defaultProps;

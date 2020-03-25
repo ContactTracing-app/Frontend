@@ -1,10 +1,10 @@
-import React from 'react'
-import Helmet from 'react-helmet'
-import { useStaticQuery, graphql } from 'gatsby'
-import Facebook from './facebook'
-import Twitter from './twitter'
+import React from 'react';
+import Helmet from 'react-helmet';
+import { useStaticQuery, graphql } from 'gatsby';
+import Facebook from './facebook';
+import Twitter from './twitter';
 
-type Props = {} & typeof defaultProps
+type Props = {} & typeof defaultProps;
 
 const defaultProps = {
   title: '',
@@ -13,13 +13,13 @@ const defaultProps = {
   pathname: '',
   node: {
     modifiedTime: '',
-    birthTime: '',
+    birthTime: ''
   },
-  individual: false,
-}
+  individual: false
+};
 
 const SEO = ({ title, desc, banner, pathname, node, individual }: Props) => {
-  const { site } = useStaticQuery(query)
+  const { site } = useStaticQuery(query);
 
   const {
     buildTime,
@@ -33,16 +33,16 @@ const SEO = ({ title, desc, banner, pathname, node, individual }: Props) => {
       ogLanguage,
       author,
       twitter,
-      facebook,
-    },
-  } = site
+      facebook
+    }
+  } = site;
 
   const seo = {
     title: title || defaultTitle,
     description: desc || defaultDescription,
     image: `${siteUrl}${banner || defaultBanner}`,
-    url: `${siteUrl}${pathname || ''}`,
-  }
+    url: `${siteUrl}${pathname || ''}`
+  };
 
   // schema.org in JSONLD format
   // https://developers.google.com/search/docs/guides/intro-structured-data
@@ -59,28 +59,28 @@ const SEO = ({ title, desc, banner, pathname, node, individual }: Props) => {
     name: defaultTitle,
     author: {
       '@type': 'Person',
-      name: author,
+      name: author
     },
     copyrightHolder: {
       '@type': 'Person',
-      name: author,
+      name: author
     },
     copyrightYear: '2019',
     creator: {
       '@type': 'Person',
-      name: author,
+      name: author
     },
     publisher: {
       '@type': 'Person',
-      name: author,
+      name: author
     },
     datePublished: '2019-03-10T10:30:00+01:00',
     dateModified: buildTime,
     image: {
       '@type': 'ImageObject',
-      url: `${siteUrl}${defaultBanner}`,
-    },
-  }
+      url: `${siteUrl}${defaultBanner}`
+    }
+  };
 
   // Initial breadcrumb list
 
@@ -89,37 +89,37 @@ const SEO = ({ title, desc, banner, pathname, node, individual }: Props) => {
       '@type': 'ListItem',
       item: {
         '@id': siteUrl,
-        name: 'Homepage',
+        name: 'Homepage'
       },
-      position: 1,
+      position: 1
     },
     {
       '@type': 'ListItem',
       item: {
         '@id': `${siteUrl}/about`,
-        name: 'About',
+        name: 'About'
       },
-      position: 2,
+      position: 2
     },
     {
       '@type': 'ListItem',
       item: {
         '@id': `${siteUrl}/projects`,
-        name: 'About',
+        name: 'About'
       },
-      position: 3,
+      position: 3
     },
     {
       '@type': 'ListItem',
       item: {
         '@id': `${siteUrl}/instagram`,
-        name: 'About',
+        name: 'About'
       },
-      position: 4,
-    },
-  ]
+      position: 4
+    }
+  ];
 
-  let schemaArticle = null
+  let schemaArticle = null;
 
   if (individual) {
     schemaArticle = {
@@ -127,24 +127,24 @@ const SEO = ({ title, desc, banner, pathname, node, individual }: Props) => {
       '@type': 'Article',
       author: {
         '@type': 'Person',
-        name: author,
+        name: author
       },
       copyrightHolder: {
         '@type': 'Person',
-        name: author,
+        name: author
       },
       copyrightYear: '2019',
       creator: {
         '@type': 'Person',
-        name: author,
+        name: author
       },
       publisher: {
         '@type': 'Organization',
         name: author,
         logo: {
           '@type': 'ImageObject',
-          url: `${siteUrl}${defaultBanner}`,
-        },
+          url: `${siteUrl}${defaultBanner}`
+        }
       },
       datePublished: node ? node.birthTime : '2019-03-10T10:30:00+01:00',
       dateModified: node ? node.modifiedTime : '2019-03-10T10:30:00+01:00',
@@ -155,19 +155,19 @@ const SEO = ({ title, desc, banner, pathname, node, individual }: Props) => {
       name: seo.title,
       image: {
         '@type': 'ImageObject',
-        url: seo.image,
+        url: seo.image
       },
-      mainEntityOfPage: seo.url,
-    }
+      mainEntityOfPage: seo.url
+    };
     // Push current blogpost into breadcrumb list
     itemListElement.push({
       '@type': 'ListItem',
       item: {
         '@id': seo.url,
-        name: seo.title,
+        name: seo.title
       },
-      position: 5,
-    })
+      position: 5
+    });
   }
 
   const breadcrumb = {
@@ -175,8 +175,8 @@ const SEO = ({ title, desc, banner, pathname, node, individual }: Props) => {
     '@type': 'BreadcrumbList',
     description: 'Breadcrumbs list',
     name: 'Breadcrumbs',
-    itemListElement,
-  }
+    itemListElement
+  };
 
   return (
     <>
@@ -186,8 +186,16 @@ const SEO = ({ title, desc, banner, pathname, node, individual }: Props) => {
         <meta name="image" content={seo.image} />
         <meta name="gatsby-starter" content="Gatsby Starter Portfolio Jodie" />
         {/* Insert schema.org data conditionally (webpage/article) + everytime (breadcrumbs) */}
-        {!individual && <script type="application/ld+json">{JSON.stringify(schemaOrgWebPage)}</script>}
-        {individual && <script type="application/ld+json">{JSON.stringify(schemaArticle)}</script>}
+        {!individual && (
+          <script type="application/ld+json">
+            {JSON.stringify(schemaOrgWebPage)}
+          </script>
+        )}
+        {individual && (
+          <script type="application/ld+json">
+            {JSON.stringify(schemaArticle)}
+          </script>
+        )}
         <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
       </Helmet>
       <Facebook
@@ -199,14 +207,19 @@ const SEO = ({ title, desc, banner, pathname, node, individual }: Props) => {
         locale={ogLanguage}
         name={facebook}
       />
-      <Twitter title={seo.title} image={seo.image} desc={seo.description} username={twitter} />
+      <Twitter
+        title={seo.title}
+        image={seo.image}
+        desc={seo.description}
+        username={twitter}
+      />
     </>
-  )
-}
+  );
+};
 
-export default SEO
+export default SEO;
 
-SEO.defaultProps = defaultProps
+SEO.defaultProps = defaultProps;
 
 const query = graphql`
   query SEO {
@@ -226,4 +239,4 @@ const query = graphql`
       }
     }
   }
-`
+`;

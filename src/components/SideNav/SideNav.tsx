@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Flex, Divider, Box } from '@chakra-ui/core';
 import Logo from '../logo';
 import PrimaryNav from '../PrimaryNav';
-import Me from '../Me';
 
 const SideNav: React.FC = () => (
   <Flex
@@ -22,7 +21,6 @@ const SideNav: React.FC = () => (
         <PrimaryNav />
       </nav>
     </Box>
-    <Me />
   </Flex>
 );
 

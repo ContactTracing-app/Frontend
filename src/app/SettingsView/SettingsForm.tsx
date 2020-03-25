@@ -6,7 +6,8 @@ import {
   FormLabel,
   Input,
   Button,
-  Spinner
+  Spinner,
+  FormHelperText
 } from '@chakra-ui/core';
 import withPerson from '../../hooks/withPerson';
 
@@ -29,6 +30,9 @@ const InnerForm: React.FC<InjectedFormikProps<
             <FormControl isInvalid={errors[field.name] && touched[field.name]}>
               <FormLabel htmlFor={field.name}>Display Name</FormLabel>
               <Input {...field} />
+              <FormHelperText id="email-helper-text">
+                This is public so other can find you.
+              </FormHelperText>
             </FormControl>
           );
         }}

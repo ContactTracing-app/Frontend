@@ -8,7 +8,7 @@ const isPartiallyActive = ({
   isPartiallyCurrent: boolean;
 }) => (isPartiallyCurrent ? { bg: 'tomato' } : {});
 
-const PartialNavLink = ({
+export const PartialNavLink = ({
   children,
   to,
   ...rest
@@ -21,7 +21,7 @@ const PartialNavLink = ({
   </GatsbyLink>
 );
 
-type NavButtonProps = {
+export type NavButtonProps = {
   to: string;
   label: string;
   Icon: React.ComponentType;
