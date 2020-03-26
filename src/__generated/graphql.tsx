@@ -410,15 +410,16 @@ export type LogContactMutation = (
   )> }
 );
 
-export type LogEntriesQueryVariables = {
+export type LogHistoryQueryVariables = {
   uid: Scalars['ID'];
 };
 
 
-export type LogEntriesQuery = (
+export type LogHistoryQuery = (
   { __typename?: 'Query' }
-  & { LogEntriesForPerson: Array<Maybe<(
+  & { logEntries: Array<Maybe<(
     { __typename?: 'LogEntry' }
+    & Pick<LogEntry, 'id'>
     & { date: (
       { __typename?: '_Neo4jDateTime' }
       & Pick<_Neo4jDateTime, 'formatted'>
@@ -508,9 +509,10 @@ export function useLogContactMutation(baseOptions?: ApolloReactHooks.MutationHoo
 export type LogContactMutationHookResult = ReturnType<typeof useLogContactMutation>;
 export type LogContactMutationResult = ApolloReactCommon.MutationResult<LogContactMutation>;
 export type LogContactMutationOptions = ApolloReactCommon.BaseMutationOptions<LogContactMutation, LogContactMutationVariables>;
-export const LogEntriesDocument = gql`
-    query LogEntries($uid: ID!) {
-  LogEntriesForPerson(input: {uid: $uid}) {
+export const LogHistoryDocument = gql`
+    query LogHistory($uid: ID!) {
+  logEntries: LogEntriesForPerson(input: {uid: $uid}) {
+    id
     date {
       formatted
     }
@@ -522,30 +524,30 @@ export const LogEntriesDocument = gql`
     `;
 
 /**
- * __useLogEntriesQuery__
+ * __useLogHistoryQuery__
  *
- * To run a query within a React component, call `useLogEntriesQuery` and pass it any options that fit your needs.
- * When your component renders, `useLogEntriesQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * To run a query within a React component, call `useLogHistoryQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLogHistoryQuery` returns an object from Apollo Client that contains loading, error, and data properties 
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useLogEntriesQuery({
+ * const { data, loading, error } = useLogHistoryQuery({
  *   variables: {
  *      uid: // value for 'uid'
  *   },
  * });
  */
-export function useLogEntriesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<LogEntriesQuery, LogEntriesQueryVariables>) {
-        return ApolloReactHooks.useQuery<LogEntriesQuery, LogEntriesQueryVariables>(LogEntriesDocument, baseOptions);
+export function useLogHistoryQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<LogHistoryQuery, LogHistoryQueryVariables>) {
+        return ApolloReactHooks.useQuery<LogHistoryQuery, LogHistoryQueryVariables>(LogHistoryDocument, baseOptions);
       }
-export function useLogEntriesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<LogEntriesQuery, LogEntriesQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<LogEntriesQuery, LogEntriesQueryVariables>(LogEntriesDocument, baseOptions);
+export function useLogHistoryLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<LogHistoryQuery, LogHistoryQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<LogHistoryQuery, LogHistoryQueryVariables>(LogHistoryDocument, baseOptions);
         }
-export type LogEntriesQueryHookResult = ReturnType<typeof useLogEntriesQuery>;
-export type LogEntriesLazyQueryHookResult = ReturnType<typeof useLogEntriesLazyQuery>;
-export type LogEntriesQueryResult = ApolloReactCommon.QueryResult<LogEntriesQuery, LogEntriesQueryVariables>;
+export type LogHistoryQueryHookResult = ReturnType<typeof useLogHistoryQuery>;
+export type LogHistoryLazyQueryHookResult = ReturnType<typeof useLogHistoryLazyQuery>;
+export type LogHistoryQueryResult = ApolloReactCommon.QueryResult<LogHistoryQuery, LogHistoryQueryVariables>;
 export const ContactsDocument = gql`
     query Contacts($uid: ID!) {
   contacts: ContactsForPerson(input: {uid: $uid}) {

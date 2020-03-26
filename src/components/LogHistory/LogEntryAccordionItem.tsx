@@ -6,11 +6,16 @@ import {
   AccordionPanel,
   Box
 } from '@chakra-ui/core';
+import ContactAvatar from '../ContactAvatar/ContactAvatar';
 
 interface LogEntry {
   date: Date;
+  contactWithUids: string[];
 }
-const LogEntryAccordionItem: React.FC<LogEntry> = ({ date }) => {
+const LogEntryAccordionItem: React.FC<LogEntry> = ({
+  date,
+  contactWithUids
+}) => {
   return (
     <AccordionItem>
       <AccordionHeader>
@@ -20,10 +25,9 @@ const LogEntryAccordionItem: React.FC<LogEntry> = ({ date }) => {
         <AccordionIcon />
       </AccordionHeader>
       <AccordionPanel pb={4}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
+        {contactWithUids.map((uid) => (
+          <ContactAvatar key={uid} uid={uid} avatar={{ size: 'sm' }} />
+        ))}
       </AccordionPanel>
     </AccordionItem>
   );

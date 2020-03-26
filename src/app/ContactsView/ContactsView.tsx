@@ -8,7 +8,7 @@ const ContactsView: React.FC = () => {
   return (
     <>
       <PageHeader
-        heading="My Contacts"
+        heading="Contacts"
         lead="The list of people you’ve been in contact."
       />
       <Heading mb={4} as="h2" size="lg">

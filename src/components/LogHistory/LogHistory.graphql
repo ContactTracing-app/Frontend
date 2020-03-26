@@ -1,5 +1,6 @@
-query LogEntries($uid: ID!) {
-  LogEntriesForPerson(input: { uid: $uid }) {
+query LogHistory($uid: ID!) {
+  logEntries: LogEntriesForPerson(input: { uid: $uid }) {
+    id
     date {
       formatted
     }
