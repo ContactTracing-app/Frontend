@@ -13,7 +13,7 @@ const ShareView = () => {
       <>
         <PageHeader
           heading="Share your Profile"
-          lead="Send this page with your friends &amp; family"
+          lead="Send this link to your friends &amp; family to connect."
         />
         <Flex mb={2}>
           <Input value={url} isReadOnly />

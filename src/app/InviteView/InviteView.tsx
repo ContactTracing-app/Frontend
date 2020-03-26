@@ -39,8 +39,8 @@ const InviteView: React.FC<RouteComponentProps> = () => {
         </Alert>
       )}
       <PageHeader
-        heading={`${displayName} invites you to join her on contact-tracing`}
-        lead="Line of text here"
+        heading="You’re invited!"
+        lead={`${displayName} invites you to join Contact Tracing.`}
       />
 
       <Avatar name={displayName} src={photoURL} />
@@ -50,8 +50,8 @@ const InviteView: React.FC<RouteComponentProps> = () => {
             createKnowsMutation({
               variables: {
                 fromUid: profile?.uid,
-                toUid: uid,
-              },
+                toUid: uid
+              }
             }).then(() => setSuccessful(true))
           }
         >

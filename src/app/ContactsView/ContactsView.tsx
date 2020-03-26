@@ -22,7 +22,10 @@ const ContactsView: React.FC = () => {
 
   return (
     <>
-      <PageHeader heading="Contacts" lead="Line of text here" />
+      <PageHeader
+        heading="My Contacts"
+        lead="The list of people you’ve been in contact."
+      />
       {contacts.map((uid) => (
         <ContactAvatar key={uid} uid={uid} />
       ))}
