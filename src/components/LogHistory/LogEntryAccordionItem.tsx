@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as moment from 'moment';
 import {
   AccordionItem,
   AccordionHeader,
@@ -20,7 +21,7 @@ const LogEntryAccordionItem: React.FC<LogEntry> = ({
     <AccordionItem>
       <AccordionHeader>
         <Box flex="1" textAlign="left">
-          {date.toLocaleString()}
+          {moment(date).format('ddd, DD MMM YYYY')}
         </Box>
         <AccordionIcon />
       </AccordionHeader>
