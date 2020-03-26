@@ -1,6 +1,6 @@
 # Frontend: ContactTracing.app
 
-Our air
+Our aim is to let people keep track of who they meet in the face of the COVID-19 pandemic. Should anything happen to you, Contract Tracing will notify your friends & family to keep them safe.
 
 ## Getting set up
 
