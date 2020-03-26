@@ -20,7 +20,8 @@ module.exports = {
     ogLanguage: config.ogLanguage,
     author: config.author,
     twitter: config.userTwitter,
-    facebook: config.ogSiteName
+    facebook: config.ogSiteName,
+    termsLink: config.termsLink
   },
   plugins: [
     'gatsby-plugin-react-helmet',
