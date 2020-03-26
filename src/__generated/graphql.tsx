@@ -410,6 +410,19 @@ export type LogContactMutation = (
   )> }
 );
 
+export type UnlogContactMutationVariables = {
+  input: LogContactInput;
+};
+
+
+export type UnlogContactMutation = (
+  { __typename?: 'Mutation' }
+  & { UnlogContact?: Maybe<(
+    { __typename?: 'LogEntry' }
+    & Pick<LogEntry, 'id'>
+  )> }
+);
+
 export type LogHistoryQueryVariables = {
   uid: Scalars['ID'];
 };
@@ -509,6 +522,38 @@ export function useLogContactMutation(baseOptions?: ApolloReactHooks.MutationHoo
 export type LogContactMutationHookResult = ReturnType<typeof useLogContactMutation>;
 export type LogContactMutationResult = ApolloReactCommon.MutationResult<LogContactMutation>;
 export type LogContactMutationOptions = ApolloReactCommon.BaseMutationOptions<LogContactMutation, LogContactMutationVariables>;
+export const UnlogContactDocument = gql`
+    mutation unlogContact($input: LogContactInput!) {
+  UnlogContact(input: $input) {
+    id
+  }
+}
+    `;
+export type UnlogContactMutationFn = ApolloReactCommon.MutationFunction<UnlogContactMutation, UnlogContactMutationVariables>;
+
+/**
+ * __useUnlogContactMutation__
+ *
+ * To run a mutation, you first call `useUnlogContactMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUnlogContactMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [unlogContactMutation, { data, loading, error }] = useUnlogContactMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useUnlogContactMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UnlogContactMutation, UnlogContactMutationVariables>) {
+        return ApolloReactHooks.useMutation<UnlogContactMutation, UnlogContactMutationVariables>(UnlogContactDocument, baseOptions);
+      }
+export type UnlogContactMutationHookResult = ReturnType<typeof useUnlogContactMutation>;
+export type UnlogContactMutationResult = ApolloReactCommon.MutationResult<UnlogContactMutation>;
+export type UnlogContactMutationOptions = ApolloReactCommon.BaseMutationOptions<UnlogContactMutation, UnlogContactMutationVariables>;
 export const LogHistoryDocument = gql`
     query LogHistory($uid: ID!) {
   logEntries: LogEntriesForPerson(input: {uid: $uid}) {

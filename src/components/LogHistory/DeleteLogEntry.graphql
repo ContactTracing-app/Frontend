@@ -1,0 +1,5 @@
+mutation unlogContact($input: LogContactInput!) {
+  UnlogContact(input: $input) {
+    id
+  }
+}
