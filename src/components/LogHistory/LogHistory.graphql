@@ -1,0 +1,10 @@
+query LogEntries($uid: ID!) {
+  LogEntriesForPerson(input: { uid: $uid }) {
+    date {
+      formatted
+    }
+    contactWith {
+      uid
+    }
+  }
+}

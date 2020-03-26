@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useAuth } from 'gatsby-theme-firebase';
-import { useContactsViewLazyQuery } from '../../__generated/graphql';
+import { useContactsLazyQuery } from '../../__generated/graphql';
 import { useStores } from '../useStore';
 
 const useContacts = () => {
@@ -9,7 +9,7 @@ const useContacts = () => {
   const [
     loadContacts,
     { data, loading: isLoadingQuery, error }
-  ] = useContactsViewLazyQuery({
+  ] = useContactsLazyQuery({
     onCompleted(TData) {
       const contactIds = TData.contacts.map(({ uid }) => uid);
       personStore.getPeople(contactIds);

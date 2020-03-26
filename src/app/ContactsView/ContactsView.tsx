@@ -1,34 +1,25 @@
 import * as React from 'react';
-import { Spinner, Alert, AlertIcon, AlertTitle } from '@chakra-ui/core';
-import ContactAvatar from '../../components/ContactAvatar/ContactAvatar';
+import { Heading } from '@chakra-ui/core';
 import PageHeader from '../../components/PageHeader';
-import useContacts from '../../hooks/useContacts';
+import ContactsList from '../../components/ContactsList';
+import LogHistory from '../../components/LogHistory/LogHistory';
 
 const ContactsView: React.FC = () => {
-  const [contacts, loading, error] = useContacts();
-
-  if (loading) {
-    return <Spinner />;
-  }
-
-  if (error) {
-    return (
-      <Alert status="error">
-        <AlertIcon />
-        <AlertTitle mr={2}>Error</AlertTitle>
-      </Alert>
-    );
-  }
-
   return (
     <>
       <PageHeader
         heading="My Contacts"
         lead="The list of people you’ve been in contact."
       />
-      {contacts.map((uid) => (
-        <ContactAvatar key={uid} uid={uid} />
-      ))}
+      <Heading mb={4} as="h2" size="lg">
+        Connections
+      </Heading>
+      <ContactsList />
+
+      <Heading mt={10} mb={4} as="h2" size="lg">
+        Log History
+      </Heading>
+      <LogHistory />
     </>
   );
 };
