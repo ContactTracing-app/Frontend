@@ -45,9 +45,15 @@ export const Footer: React.FC = () => {
 };
 
 export const Main: React.FC = ({ children }) => (
-  <Box alignItems="center" flexGrow={1} as="main" p={[10, 20]}>
+  <Flex
+    flexDirection="column"
+    justifyContent="space-between"
+    flexGrow={1}
+    as="main"
+    p={[10, 20]}
+  >
     {children}
-  </Box>
+  </Flex>
 );
 
 export const P: React.FC = ({ children, ...rest }) => (

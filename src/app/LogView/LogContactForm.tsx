@@ -1,16 +1,19 @@
 import * as React from 'react';
 import DatePicker from 'react-date-picker';
 import { useAuth } from 'gatsby-theme-firebase';
+import * as Yup from 'yup';
 import { withFormik, InjectedFormikProps, Form, Field } from 'formik';
 import {
+  Box,
   Button,
-  Link,
   FormControl,
-  FormLabel,
   FormErrorMessage,
+  FormHelperText,
+  FormLabel,
+  Link,
   Spinner,
   useToast,
-  FormHelperText
+  Stack
 } from '@chakra-ui/core';
 import { Link as GatsbyLink } from 'gatsby';
 import Select, { Option } from 'react-select';
@@ -33,7 +36,7 @@ interface ContactWith {
 
 interface FormValues {
   entryDate: Date;
-  contactWith: ContactWith[];
+  contactWith: ContactWith[] | null;
 }
 
 const InnerForm: React.FC<InjectedFormikProps<
@@ -42,10 +45,12 @@ const InnerForm: React.FC<InjectedFormikProps<
 >> = (props) => {
   const {
     contactOptions,
-    touched,
+    dirty,
     errors,
     isSubmitting,
-    setFieldValue
+    isValid,
+    setFieldValue,
+    touched
   } = props;
 
   const contactWithOptions: ContactWith[] = contactOptions.map((uid) => {
@@ -58,50 +63,69 @@ const InnerForm: React.FC<InjectedFormikProps<
 
   return (
     <Form>
-      <Field name="entryDate">
-        {({ field }) => (
-          <FormControl isInvalid={errors[field.name] && touched[field.name]}>
-            <FormLabel htmlFor={field.name}>Entry Date</FormLabel>
-            <DatePicker
-              clearIcon={null}
-              onChange={(v) => setFieldValue('entryDate', v)}
-              value={field.value}
-            />
-            <FormErrorMessage>{errors.entryDate}</FormErrorMessage>
-          </FormControl>
-        )}
-      </Field>
+      <Stack spacing={6}>
+        <Box>
+          <Field name="entryDate">
+            {({ field }) => (
+              <FormControl
+                isInvalid={errors[field.name] && touched[field.name]}
+              >
+                <FormLabel htmlFor={field.name}>Entry Date</FormLabel>
+                <Box>
+                  <DatePicker
+                    clearIcon={null}
+                    onChange={(v) => setFieldValue('entryDate', v)}
+                    value={field.value}
+                  />
+                </Box>
+                <FormErrorMessage>{errors.entryDate}</FormErrorMessage>
+              </FormControl>
+            )}
+          </Field>
+        </Box>
 
-      <Field name="contactWith">
-        {({ field }) => (
-          <FormControl isInvalid={errors[field.name] && touched[field.name]}>
-            <FormLabel htmlFor={field.name}>Entry Date</FormLabel>
-            <Select
-              getOptionLabel={(o: ContactWith) => o.displayName}
-              getOptionValue={(o: ContactWith) => o.uid}
-              defaultValue={field.value}
-              isMulti
-              name={field.name}
-              options={contactWithOptions}
-              onChange={(option: Option) => {
-                setFieldValue(field.name, option);
-              }}
-            />
-            <FormHelperText>
-              Can't find who you're looking for? Send them your{' '}
-              <Link to="/app/share/" as={GatsbyLink}>
-                Invite link
-              </Link>
-              .
-            </FormHelperText>
-            <FormErrorMessage>{errors.entryDate}</FormErrorMessage>
-          </FormControl>
-        )}
-      </Field>
-
-      <Button mt={4} variantColor="teal" isLoading={isSubmitting} type="submit">
-        Save
-      </Button>
+        <Box>
+          <Field name="contactWith">
+            {({ field }) => (
+              <FormControl
+                isInvalid={errors[field.name] && touched[field.name]}
+              >
+                <FormLabel htmlFor={field.name}>Who did you meet?</FormLabel>
+                <Select
+                  getOptionLabel={(o: ContactWith) => o.displayName}
+                  getOptionValue={(o: ContactWith) => o.uid}
+                  defaultValue={field.value}
+                  isMulti
+                  name={field.name}
+                  options={contactWithOptions}
+                  onChange={(option: Option) => {
+                    setFieldValue(field.name, option);
+                  }}
+                />
+                <FormHelperText>
+                  Can't find who you're looking for? Send them your{' '}
+                  <Link to="/app/share/" as={GatsbyLink}>
+                    Invite link
+                  </Link>
+                  .
+                </FormHelperText>
+                <FormErrorMessage>{errors.entryDate}</FormErrorMessage>
+              </FormControl>
+            )}
+          </Field>
+        </Box>
+        <Box>
+          <Button
+            mt={4}
+            isDisabled={!(isValid && dirty)}
+            variantColor="teal"
+            isLoading={isSubmitting}
+            type="submit"
+          >
+            Save
+          </Button>
+        </Box>
+      </Stack>
     </Form>
   );
 };
@@ -121,7 +145,14 @@ const WithFormik = withFormik<LogContactFormInnerProps, FormValues>({
   // Transform outer props into form values
   mapPropsToValues: (props) => ({
     entryDate: props.initialEntryDate || new Date(),
-    contactWith: props.initialContactWith || []
+    contactWith: props.initialContactWith || null
+  }),
+
+  // Add a custom validation function (this can be async too!)
+  validationSchema: Yup.object({
+    contactWith: Yup.array()
+      .min(1, 'You must have met at least one person')
+      .required('Required')
   }),
 
   handleSubmit: async (values, actions) =>

@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-  Divider,
-  Flex,
-  ThemeProvider,
-  CSSReset
-} from '@chakra-ui/core';
+import { Divider, Flex, ThemeProvider, CSSReset } from '@chakra-ui/core';
 import { Footer, Main, GlobalStyles } from './elements';
 import SideNav from './SideNav';
 import CookieConsent from './CookieConsent';
@@ -21,7 +16,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => (
         <SideNav />
         <Divider mx="0" orientation="vertical" />
         <Main>
-          {children}
+          <>{children}</>
           <Footer />
         </Main>
         <CookieConsent />
