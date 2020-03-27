@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useClipboard, Flex, Input, Button } from '@chakra-ui/core';
+import { useClipboard, Flex, Input, Button, Text } from '@chakra-ui/core';
 import useProfileUrl from '../../hooks/useInviteUrl';
 import QRCOde from '../../components/QRCode';
 import PageHeader from '../../components/PageHeader';
@@ -15,13 +15,16 @@ const ShareView = () => {
           heading="Share your Profile"
           lead="Send this link to your friends &amp; family to connect."
         />
+        <IconList />
         <Flex mb={2}>
           <Input value={url} isReadOnly />
           <Button onClick={onCopy} ml={2}>
             {hasCopied ? 'Copied' : 'Copy'}
           </Button>
         </Flex>
-        <IconList />
+
+        <Text mt={10}>Or get your friends to scan:</Text>
+
         <QRCOde />
       </>
     )

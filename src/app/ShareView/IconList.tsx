@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Stack } from '@chakra-ui/core';
+import { Stack, Box } from '@chakra-ui/core';
 import {
   EmailIcon,
   EmailShareButton,
@@ -7,14 +7,8 @@ import {
   FacebookShareButton,
   LineIcon,
   LineShareButton,
-  LinkedinIcon,
-  LinkedinShareButton,
-  RedditIcon,
-  RedditShareButton,
   TwitterIcon,
   TwitterShareButton,
-  WeiboIcon,
-  WeiboShareButton,
   WhatsappIcon,
   WhatsappShareButton
 } from 'react-share';
@@ -29,40 +23,32 @@ const IconList = () => {
   const title = `Join me on Contact-Tracking and help each other stay safe.`;
   return (
     url && (
-      <Stack isInline spacing={8} align="center">
-        <LineShareButton url={url} title={title}>
-          <LineIcon {...iconProps} />
-        </LineShareButton>
-        <FacebookShareButton url={url} quote={title}>
-          <FacebookIcon {...iconProps} />
-        </FacebookShareButton>
-        <EmailShareButton url={url} subject={title} body="body">
-          <EmailIcon {...iconProps} />
-        </EmailShareButton>
-        <WhatsappShareButton url={url}>
-          <WhatsappIcon {...iconProps} />
-        </WhatsappShareButton>
-        <TwitterShareButton hashtags={['CTCovid19']} url={url} title={title}>
-          <TwitterIcon {...iconProps} />
-        </TwitterShareButton>
-        <WeiboShareButton
-          url={url}
-          title={title}
-          // image={`${String(window.location)}/${exampleImage}`}
-        >
-          <WeiboIcon {...iconProps} />
-        </WeiboShareButton>
-        <RedditShareButton
-          url={url}
-          title={title}
-          windowWidth={660}
-          windowHeight={460}
-        >
-          <RedditIcon {...iconProps} />
-        </RedditShareButton>
-        <LinkedinShareButton url={url}>
-          <LinkedinIcon {...iconProps} />
-        </LinkedinShareButton>
+      <Stack isInline spacing={2} align="center" my={6}>
+        <Box>
+          <LineShareButton url={url} title={title}>
+            <LineIcon {...iconProps} />
+          </LineShareButton>
+        </Box>
+        <Box>
+          <FacebookShareButton url={url} quote={title}>
+            <FacebookIcon {...iconProps} />
+          </FacebookShareButton>
+        </Box>
+        <Box>
+          <EmailShareButton url={url} subject={title} body="body">
+            <EmailIcon {...iconProps} />
+          </EmailShareButton>
+        </Box>
+        <Box>
+          <WhatsappShareButton url={url}>
+            <WhatsappIcon {...iconProps} />
+          </WhatsappShareButton>
+        </Box>
+        <Box>
+          <TwitterShareButton hashtags={['CTCovid19']} url={url} title={title}>
+            <TwitterIcon {...iconProps} />
+          </TwitterShareButton>
+        </Box>
       </Stack>
     )
   );

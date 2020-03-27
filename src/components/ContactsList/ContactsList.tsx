@@ -4,7 +4,9 @@ import {
   Alert,
   AlertIcon,
   AlertTitle,
-  AlertDescription
+  AlertDescription,
+  Stack,
+  Box
 } from '@chakra-ui/core';
 import useContacts from '../../hooks/useContacts';
 import ContactAvatar from '../ContactAvatar/ContactAvatar';
@@ -29,11 +31,13 @@ const ContactsList: React.FC = () => {
   }
 
   return (
-    <>
+    <Stack spacing={2}>
       {contacts.map((uid) => (
-        <ContactAvatar key={uid} uid={uid} />
+        <Box key={uid}>
+          <ContactAvatar uid={uid} />
+        </Box>
       ))}
-    </>
+    </Stack>
   );
 };
 
