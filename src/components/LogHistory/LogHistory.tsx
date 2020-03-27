@@ -2,8 +2,13 @@ import * as React from 'react';
 import { useAuth } from 'gatsby-theme-firebase';
 import { Accordion, Spinner } from '@chakra-ui/core';
 import LogEntryAccordionItem from './LogEntryAccordionItem';
-import { useLogHistoryLazyQuery } from '../../__generated/graphql';
+import {
+  useLogHistoryLazyQuery,
+  useUnlogContactMutation,
+  LogHistoryDocument
+} from '../../__generated/graphql';
 import { useStores } from '../../hooks/useStore';
+import toDateObject from '../../helpers/toDateObject';
 
 const LogHistory: React.FC = () => {
   const { profile, isLoading: isLoadingProfile } = useAuth();
@@ -26,6 +31,12 @@ const LogHistory: React.FC = () => {
     }
   }, [profile]);
 
+  const [unlogContact] = useUnlogContactMutation({
+    onCompleted() {
+      window.alert('removed contact');
+    }
+  });
+
   if (error) {
     return <>error</>;
   }
@@ -41,13 +52,33 @@ const LogHistory: React.FC = () => {
   return (
     <>
       <Accordion>
-        {logEntries.map(({ id, date, contactWith }) => (
-          <LogEntryAccordionItem
-            key={id}
-            date={new Date(date.formatted)}
-            contactWithUids={contactWith.map(({ uid }) => uid)}
-          />
-        ))}
+        {logEntries.map(({ id, date, contactWith }) => {
+          const logDate = new Date(date.formatted);
+          return (
+            <LogEntryAccordionItem
+              key={id}
+              date={logDate}
+              contactWithUids={contactWith.map(({ uid }) => uid)}
+              deleteHandler={(uidToDelete: string) =>
+                unlogContact({
+                  variables: {
+                    input: {
+                      fromUid: profile?.uid,
+                      toUid: uidToDelete,
+                      ...toDateObject(logDate)
+                    }
+                  },
+                  refetchQueries: [
+                    {
+                      query: LogHistoryDocument,
+                      variables: { uid: profile?.uid }
+                    }
+                  ]
+                })
+              }
+            />
+          );
+        })}
       </Accordion>
     </>
   );

@@ -5,17 +5,21 @@ import {
   AccordionHeader,
   AccordionIcon,
   AccordionPanel,
-  Box
+  Box,
+  IconButton,
+  Flex
 } from '@chakra-ui/core';
 import ContactAvatar from '../ContactAvatar/ContactAvatar';
 
 interface LogEntry {
   date: Date;
   contactWithUids: string[];
+  deleteHandler: (uid: string) => void;
 }
 const LogEntryAccordionItem: React.FC<LogEntry> = ({
   date,
-  contactWithUids
+  contactWithUids,
+  deleteHandler
 }) => {
   return (
     <AccordionItem>
@@ -27,7 +31,15 @@ const LogEntryAccordionItem: React.FC<LogEntry> = ({
       </AccordionHeader>
       <AccordionPanel pb={4}>
         {contactWithUids.map((uid) => (
-          <ContactAvatar key={uid} uid={uid} avatar={{ size: 'sm' }} />
+          <Flex justifyContent="space-between">
+            <ContactAvatar key={uid} uid={uid} avatar={{ size: 'sm' }} />
+            <IconButton
+              variant="ghost"
+              aria-label="Unlog contact"
+              icon="small-close"
+              onClick={() => deleteHandler(uid)}
+            />
+          </Flex>
         ))}
       </AccordionPanel>
     </AccordionItem>

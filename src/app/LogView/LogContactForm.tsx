@@ -14,7 +14,8 @@ import useAnalytics from '../../hooks/useAnalytics';
 import withPerson from '../../hooks/withPerson';
 import {
   useLogContactMutation,
-  LogContactMutationFn
+  LogContactMutationFn,
+  LogHistoryDocument
 } from '../../__generated/graphql';
 import toDateObject from '../../helpers/toDateObject';
 import useContacts from '../../hooks/useContacts';
@@ -128,7 +129,13 @@ const WithFormik = withFormik<LogContactFormInnerProps, FormValues>({
             toUid: contact.uid,
             ...toDateObject(values.entryDate)
           }
-        }
+        },
+        refetchQueries: [
+          {
+            query: LogHistoryDocument,
+            variables: { uid: actions.props.uid }
+          }
+        ]
       });
     });
 
