@@ -7,7 +7,10 @@ import {
   FormControl,
   FormLabel,
   FormErrorMessage,
-  Spinner
+  Spinner,
+  Alert,
+  AlertIcon,
+  useToast
 } from '@chakra-ui/core';
 import Select, { Option } from 'react-select';
 import useAnalytics from '../../hooks/useAnalytics';
@@ -120,37 +123,43 @@ const WithFormik = withFormik<LogContactFormInnerProps, FormValues>({
   },
 
   handleSubmit: async (values, actions) => {
-    // const resp = await functions.sendTestSMS();
-    values.contactWith.forEach((contact) => {
-      actions.props.logContactMutation({
-        variables: {
-          input: {
-            fromUid: actions.props.uid,
-            toUid: contact.uid,
-            ...toDateObject(values.entryDate)
-          }
-        },
-        refetchQueries: [
-          {
-            query: LogHistoryDocument,
-            variables: { uid: actions.props.uid }
-          }
-        ]
-      });
-    });
-
-    setTimeout(() => {
-      contactLogged({
-        contact_with_quanitity: values.contactWith.length
-      });
-      actions.setSubmitting(false);
-    }, 1000);
+    return Promise.all(
+      values.contactWith.map((contact) =>
+        actions.props.logContactMutation({
+          variables: {
+            input: {
+              fromUid: actions.props.uid,
+              toUid: contact.uid,
+              ...toDateObject(values.entryDate)
+            }
+          },
+          refetchQueries: [
+            {
+              query: LogHistoryDocument,
+              variables: { uid: actions.props.uid }
+            }
+          ]
+        })
+      )
+    ).then(() => actions.setSubmitting(false));
   }
 })(InnerForm);
 
 // Wrap our form with the withFormik HoC
 const LogContactForm: React.FC<LogContactFormProps> = (props) => {
-  const [logContactMutation] = useLogContactMutation();
+  const toast = useToast();
+  const [logContactMutation] = useLogContactMutation({
+    onCompleted() {
+      toast({
+        position: 'bottom-right',
+        title: 'Contact Logged',
+        description: 'Keep up the good work',
+        status: 'success',
+        isClosable: true
+      });
+      contactLogged();
+    }
+  });
   const { profile, isLoading: loadingProfile } = useAuth();
   const [contacts, loadingContacts] = useContacts();
 
