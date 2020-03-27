@@ -29,11 +29,7 @@ export type NavButtonProps = {
 
 const NavButton: React.FC<NavButtonProps> = ({ to, label, Icon }) => (
   <PartialNavLink to={to}>
-    <Flex
-      alignItems="center"
-      justifyContent={['center', 'flex-start']}
-      p={4}
-    >
+    <Flex alignItems="center" justifyContent={['center', 'flex-start']} p={4}>
       <Box as={Icon} size="1.4em" mr={[0, 5]} />
       <Heading display={['none', 'inline-block']} as="span" size="sm">
         {label}

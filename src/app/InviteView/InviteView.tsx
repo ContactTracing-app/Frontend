@@ -5,7 +5,10 @@ import {
   Button,
   useToast,
   AvatarGroup,
-  Text
+  Text,
+  Heading,
+  List,
+  ListItem
 } from '@chakra-ui/core';
 import {
   RouteComponentProps,
@@ -68,6 +71,7 @@ const InviteView: React.FC<RouteComponentProps> = () => {
       {shouldShowConnectButton && (
         <Button
           width="200px"
+          mb={16}
           variantColor="teal"
           onClick={() => {
             if (!profile) {
@@ -90,6 +94,17 @@ const InviteView: React.FC<RouteComponentProps> = () => {
           Connect
         </Button>
       )}
+      <Heading as="h3" mb={2} size="lg">
+        Why use Contact Tracing App?
+      </Heading>
+      <List styleType="disc">
+        <ListItem>Protect people you love</ListItem>
+        <ListItem>Limit the spread of COVID-19</ListItem>
+        <ListItem>
+          Save time to trace back and immediately notify your contacts if
+          needed, in one click.
+        </ListItem>
+      </List>
     </>
   );
 };
