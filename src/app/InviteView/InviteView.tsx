@@ -3,7 +3,7 @@ import { Spinner, Avatar, Button, Alert, AlertIcon } from '@chakra-ui/core';
 import { RouteComponentProps } from '@reach/router';
 import { useObjectVal } from 'react-firebase-hooks/database';
 import { firebase, useAuth } from 'gatsby-theme-firebase';
-import { useParams } from '@reach/router';
+import { useParams, navigate, useLocation } from '@reach/router';
 import { useCreateKnowsMutation } from '../../__generated/graphql';
 import PageHeader from '../../components/PageHeader';
 import useAnalytics from '../../hooks/useAnalytics';
@@ -15,17 +15,19 @@ type params = {
 const InviteView: React.FC<RouteComponentProps> = () => {
   const { connectionMade } = useAnalytics();
   const { uid }: params = useParams();
+  const location = useLocation();
   const { profile } = useAuth();
+  const [isSuccessfullyConnected, setSuccessful] = React.useState<boolean>(
+    false
+  );
   const [createKnowsMutation] = useCreateKnowsMutation({
     onCompleted() {
       connectionMade();
+      setSuccessful(true);
     }
   });
   const [value, loading] = useObjectVal<Profile>(
     firebase.database().ref(`profiles/${uid}`)
-  );
-  const [isSuccessfullyConnected, setSuccessful] = React.useState<boolean>(
-    false
   );
 
   if (loading) {
@@ -52,14 +54,23 @@ const InviteView: React.FC<RouteComponentProps> = () => {
       <Avatar name={displayName} src={photoURL} />
       {shouldShowConnectButton && (
         <Button
-          onClick={() =>
+          onClick={() => {
+            if (!profile) {
+              navigate('/app/login', {
+                state: {
+                  next_url: location.pathname
+                }
+              });
+              return;
+            }
+
             createKnowsMutation({
               variables: {
                 fromUid: profile?.uid,
                 toUid: uid
               }
-            }).then(() => setSuccessful(true))
-          }
+            });
+          }}
         >
           Connect
         </Button>
