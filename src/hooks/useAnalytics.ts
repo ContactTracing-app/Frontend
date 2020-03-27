@@ -8,7 +8,12 @@ const useAnalytics = () => {
   if (hasWindow) {
     analytics = firebase.analytics();
   }
-  return analytics;
+  return {
+    analytics,
+    connectionMade: () => analytics.logEvent('connection_made'),
+    contactLogged: () => analytics.logEvent('contact_logged'),
+    contactUnlogged: () => analytics.logEvent('contact_unlogged')
+  };
 };
 
 export default useAnalytics;
