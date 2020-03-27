@@ -12,7 +12,8 @@ const useAnalytics = () => {
     analytics,
     connectionMade: () => analytics.logEvent('connection_made'),
     contactLogged: () => analytics.logEvent('contact_logged'),
-    contactUnlogged: () => analytics.logEvent('contact_unlogged')
+    contactUnlogged: () => analytics.logEvent('contact_unlogged'),
+    displaynameChanged: () => analytics.logEvent('profile_changed_displayname')
   };
 };
 
