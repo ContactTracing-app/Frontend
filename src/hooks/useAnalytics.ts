@@ -4,9 +4,6 @@ import hasWindow from '../helpers/hasWindow';
 
 let analytics: firebase.analytics.Analytics;
 
-interface ContactLogged {
-  contact_with_quanitity: number;
-}
 const useAnalytics = () => {
   if (hasWindow) {
     analytics = firebase.analytics();
@@ -14,8 +11,7 @@ const useAnalytics = () => {
   return {
     analytics,
     connectionMade: () => analytics.logEvent('connection_made'),
-    contactLogged: (eventParams: ContactLogged) =>
-      analytics.logEvent('contact_logged', eventParams),
+    contactLogged: () => analytics.logEvent('contact_logged'),
     contactUnlogged: () => analytics.logEvent('contact_unlogged')
   };
 };

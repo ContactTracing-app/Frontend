@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Flex, Divider, Box } from '@chakra-ui/core';
+import { Link } from 'gatsby';
 import Logo from '../Logo';
 import PrimaryNav from '../PrimaryNav';
-import { Link } from 'gatsby';
 
 const SideNav: React.FC = () => (
   <Flex

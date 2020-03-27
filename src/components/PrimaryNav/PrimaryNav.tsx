@@ -2,9 +2,9 @@ import * as React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import * as Icons from 'react-icons/md';
 import { useAuth } from 'gatsby-theme-firebase';
+import { Divider } from '@chakra-ui/core';
 import useProfileUrl from '../../hooks/useInviteUrl';
 import NavButton from './NavButton';
-import { Divider } from '@chakra-ui/core';
 import ProfileButton from './ProfileButton';
 import LogoutButton from './LogoutButton';
 import LoginButton from './LoginButton';
@@ -37,7 +37,9 @@ const PrimaryNav: React.FC = () => {
   } = useStaticQuery<QueryResult>(query);
   const { isLoggedIn, profile } = useAuth();
 
-  const me = profile?.displayName ? profile?.displayName : profile?.email!;
+  const me = profile?.displayName
+    ? profile?.displayName
+    : profile?.email!;
 
   return (
     <>
@@ -52,7 +54,11 @@ const PrimaryNav: React.FC = () => {
       <Divider />
       {isLoggedIn
         ? [
-            <ProfileButton key="nav-profile" to="/app/profile" label={me} />,
+            <ProfileButton
+            key="nav-profile"
+            to="/app/profile"
+            label={me}
+          />,
             <NavButton
               key="nav-log"
               Icon={Icons.MdEdit}
@@ -77,9 +83,17 @@ const PrimaryNav: React.FC = () => {
               to="/app/settings"
               label="Settings"
             />,
-            <LogoutButton key="nav-logout" Icon={Icons.MdPowerSettingsNew} />
+            <LogoutButton
+            key="nav-logout"
+            Icon={Icons.MdPowerSettingsNew}
+          />
           ]
-        : [<LoginButton key="nav-login" Icon={Icons.MdPowerSettingsNew} />]}
+        : [
+          <LoginButton
+            key="nav-login"
+            Icon={Icons.MdPowerSettingsNew}
+          />
+        ]}
     </>
   );
 };

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useAuth } from 'gatsby-theme-firebase';
 import { useStaticQuery, graphql } from 'gatsby';
 
@@ -12,7 +11,7 @@ const query = graphql`
   }
 `;
 
-type useInviteQuery = {
+type UseInviteQuery = {
   site: {
     siteMetadata: {
       siteUrl: string;
@@ -20,10 +19,10 @@ type useInviteQuery = {
   };
 };
 
-interface useInviteUrl {
+interface UseInviteUrl {
   uid?: string;
 }
-const useInviteUrl = (props?: useInviteUrl) => {
+const useInviteUrl = (props?: UseInviteUrl) => {
   const { profile } = useAuth();
 
   let uid;
@@ -37,8 +36,8 @@ const useInviteUrl = (props?: useInviteUrl) => {
     site: {
       siteMetadata: { siteUrl }
     }
-  } = useStaticQuery<useProfileQuery>(query);
-  const relativeUrl = `/app/invite/${profile?.uid}`;
+  } = useStaticQuery<UseInviteQuery>(query);
+  const relativeUrl = `/app/invite/${uid}`;
   const absoluteUrl = `${siteUrl}${relativeUrl}`;
   return profile
     ? { absoluteUrl, relativeUrl }

@@ -7,7 +7,10 @@ import {
   FormControl,
   FormLabel,
   FormErrorMessage,
-  Spinner
+  Spinner,
+  Alert,
+  AlertIcon,
+  useToast
 } from '@chakra-ui/core';
 import Select, { Option } from 'react-select';
 import useAnalytics from '../../hooks/useAnalytics';
@@ -44,55 +47,62 @@ const InnerForm: React.FC<InjectedFormikProps<
     setFieldValue
   } = props;
 
-  const contactWithOptions: ContactWith[] = contactOptions.map((uid) => {
-    const [person] = withPerson({ uid });
-    return {
-      uid,
-      displayName: person.displayName
-    };
-  });
+  const contactWithOptions: ContactWith[] = contactOptions.map(
+    (uid) => {
+      const [person] = withPerson({ uid });
+      return {
+        uid,
+        displayName: person.displayName
+      };
+    }
+  );
 
   return (
     <Form>
       <Field name="entryDate">
-        {({ field }) => {
-          return (
-            <FormControl isInvalid={errors[field.name] && touched[field.name]}>
-              <FormLabel htmlFor={field.name}>Entry Date</FormLabel>
-              <DatePicker
-                clearIcon={null}
-                onChange={(v) => setFieldValue('entryDate', v)}
-                value={field.value}
-              />
-              <FormErrorMessage>{errors.entryDate}</FormErrorMessage>
-            </FormControl>
-          );
-        }}
+        {({ field }) => (
+          <FormControl
+            isInvalid={errors[field.name] && touched[field.name]}
+          >
+            <FormLabel htmlFor={field.name}>Entry Date</FormLabel>
+            <DatePicker
+              clearIcon={null}
+              onChange={(v) => setFieldValue('entryDate', v)}
+              value={field.value}
+            />
+            <FormErrorMessage>{errors.entryDate}</FormErrorMessage>
+          </FormControl>
+        )}
       </Field>
 
       <Field name="contactWith">
-        {({ field }) => {
-          return (
-            <FormControl isInvalid={errors[field.name] && touched[field.name]}>
-              <FormLabel htmlFor={field.name}>Entry Date</FormLabel>
-              <Select
-                getOptionLabel={(o: ContactWith) => o.displayName}
-                getOptionValue={(o: ContactWith) => o.uid}
-                defaultValue={field.value}
-                isMulti
-                name={field.name}
-                options={contactWithOptions}
-                onChange={(option: Option) => {
-                  setFieldValue(field.name, option);
-                }}
-              />
-              <FormErrorMessage>{errors.entryDate}</FormErrorMessage>
-            </FormControl>
-          );
-        }}
+        {({ field }) => (
+          <FormControl
+            isInvalid={errors[field.name] && touched[field.name]}
+          >
+            <FormLabel htmlFor={field.name}>Entry Date</FormLabel>
+            <Select
+              getOptionLabel={(o: ContactWith) => o.displayName}
+              getOptionValue={(o: ContactWith) => o.uid}
+              defaultValue={field.value}
+              isMulti
+              name={field.name}
+              options={contactWithOptions}
+              onChange={(option: Option) => {
+                setFieldValue(field.name, option);
+              }}
+            />
+            <FormErrorMessage>{errors.entryDate}</FormErrorMessage>
+          </FormControl>
+        )}
       </Field>
 
-      <Button mt={4} variantColor="teal" isLoading={isSubmitting} type="submit">
+      <Button
+        mt={4}
+        variantColor="teal"
+        isLoading={isSubmitting}
+        type="submit"
+      >
         Save
       </Button>
     </Form>
@@ -112,45 +122,48 @@ interface LogContactFormInnerProps extends LogContactFormProps {
 
 const WithFormik = withFormik<LogContactFormInnerProps, FormValues>({
   // Transform outer props into form values
-  mapPropsToValues: (props) => {
-    return {
-      entryDate: props.initialEntryDate || new Date(),
-      contactWith: props.initialContactWith || []
-    };
-  },
+  mapPropsToValues: (props) => ({
+    entryDate: props.initialEntryDate || new Date(),
+    contactWith: props.initialContactWith || []
+  }),
 
-  handleSubmit: async (values, actions) => {
-    // const resp = await functions.sendTestSMS();
-    values.contactWith.forEach((contact) => {
-      actions.props.logContactMutation({
-        variables: {
-          input: {
-            fromUid: actions.props.uid,
-            toUid: contact.uid,
-            ...toDateObject(values.entryDate)
-          }
-        },
-        refetchQueries: [
-          {
-            query: LogHistoryDocument,
-            variables: { uid: actions.props.uid }
-          }
-        ]
-      });
-    });
-
-    setTimeout(() => {
-      contactLogged({
-        contact_with_quanitity: values.contactWith.length
-      });
-      actions.setSubmitting(false);
-    }, 1000);
-  }
+  handleSubmit: async (values, actions) =>
+    Promise.all(
+      values.contactWith.map((contact) =>
+        actions.props.logContactMutation({
+          variables: {
+            input: {
+              fromUid: actions.props.uid,
+              toUid: contact.uid,
+              ...toDateObject(values.entryDate)
+            }
+          },
+          refetchQueries: [
+            {
+              query: LogHistoryDocument,
+              variables: { uid: actions.props.uid }
+            }
+          ]
+        })
+      )
+    ).then(() => actions.setSubmitting(false))
 })(InnerForm);
 
 // Wrap our form with the withFormik HoC
 const LogContactForm: React.FC<LogContactFormProps> = (props) => {
-  const [logContactMutation] = useLogContactMutation();
+  const toast = useToast();
+  const [logContactMutation] = useLogContactMutation({
+    onCompleted() {
+      toast({
+        position: 'bottom-right',
+        title: 'Contact Logged',
+        description: 'Keep up the good work 💅',
+        status: 'success',
+        isClosable: true
+      });
+      contactLogged();
+    }
+  });
   const { profile, isLoading: loadingProfile } = useAuth();
   const [contacts, loadingContacts] = useContacts();
 

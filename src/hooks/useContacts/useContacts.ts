@@ -25,7 +25,9 @@ const useContacts = () => {
   }, [profile]);
 
   const loading = isLoadingProfile || isLoadingQuery;
-  const contacts = data?.contacts.map(({ uid }) => uid) as string[] | null;
+  const contacts = data?.contacts.map(({ uid }) => uid) as
+    | string[]
+    | null;
 
   return [contacts, loading, error];
 };

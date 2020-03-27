@@ -45,7 +45,11 @@ const IconList = () => {
           </WhatsappShareButton>
         </Box>
         <Box>
-          <TwitterShareButton hashtags={['CTCovid19']} url={url} title={title}>
+          <TwitterShareButton
+            hashtags={['CTCovid19']}
+            url={url}
+            title={title}
+          >
             <TwitterIcon {...iconProps} />
           </TwitterShareButton>
         </Box>
