@@ -18,7 +18,7 @@ const LoginView: React.FC<RouteComponentProps> = () => {
             if (next_url) {
               navigate(next_url);
             } else {
-              navigate('/app/contact');
+              navigate('/app/profile');
             }
           }}
           onSignUpSuccess={() => {
