@@ -1,3 +1,6 @@
 - name: 'About'
   icon: 'MdInfoOutline'
   link: '/'
+- name: 'Press'
+  icon: 'MdInfoOutline'
+  link: '/press'
