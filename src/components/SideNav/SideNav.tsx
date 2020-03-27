@@ -8,7 +8,7 @@ const SideNav: React.FC = () => (
   <Flex
     flexDirection="column"
     justifyContent="space-between"
-    width={['5em', '14em']}
+    minW={['5em', '14em']}
     bg="brand.warmGrey"
   >
     <Box>
