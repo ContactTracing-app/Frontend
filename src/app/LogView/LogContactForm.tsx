@@ -47,55 +47,62 @@ const InnerForm: React.FC<InjectedFormikProps<
     setFieldValue
   } = props;
 
-  const contactWithOptions: ContactWith[] = contactOptions.map((uid) => {
-    const [person] = withPerson({ uid });
-    return {
-      uid,
-      displayName: person.displayName
-    };
-  });
+  const contactWithOptions: ContactWith[] = contactOptions.map(
+    (uid) => {
+      const [person] = withPerson({ uid });
+      return {
+        uid,
+        displayName: person.displayName
+      };
+    }
+  );
 
   return (
     <Form>
       <Field name="entryDate">
-        {({ field }) => {
-          return (
-            <FormControl isInvalid={errors[field.name] && touched[field.name]}>
-              <FormLabel htmlFor={field.name}>Entry Date</FormLabel>
-              <DatePicker
-                clearIcon={null}
-                onChange={(v) => setFieldValue('entryDate', v)}
-                value={field.value}
-              />
-              <FormErrorMessage>{errors.entryDate}</FormErrorMessage>
-            </FormControl>
-          );
-        }}
+        {({ field }) => (
+          <FormControl
+            isInvalid={errors[field.name] && touched[field.name]}
+          >
+            <FormLabel htmlFor={field.name}>Entry Date</FormLabel>
+            <DatePicker
+              clearIcon={null}
+              onChange={(v) => setFieldValue('entryDate', v)}
+              value={field.value}
+            />
+            <FormErrorMessage>{errors.entryDate}</FormErrorMessage>
+          </FormControl>
+        )}
       </Field>
 
       <Field name="contactWith">
-        {({ field }) => {
-          return (
-            <FormControl isInvalid={errors[field.name] && touched[field.name]}>
-              <FormLabel htmlFor={field.name}>Entry Date</FormLabel>
-              <Select
-                getOptionLabel={(o: ContactWith) => o.displayName}
-                getOptionValue={(o: ContactWith) => o.uid}
-                defaultValue={field.value}
-                isMulti
-                name={field.name}
-                options={contactWithOptions}
-                onChange={(option: Option) => {
-                  setFieldValue(field.name, option);
-                }}
-              />
-              <FormErrorMessage>{errors.entryDate}</FormErrorMessage>
-            </FormControl>
-          );
-        }}
+        {({ field }) => (
+          <FormControl
+            isInvalid={errors[field.name] && touched[field.name]}
+          >
+            <FormLabel htmlFor={field.name}>Entry Date</FormLabel>
+            <Select
+              getOptionLabel={(o: ContactWith) => o.displayName}
+              getOptionValue={(o: ContactWith) => o.uid}
+              defaultValue={field.value}
+              isMulti
+              name={field.name}
+              options={contactWithOptions}
+              onChange={(option: Option) => {
+                setFieldValue(field.name, option);
+              }}
+            />
+            <FormErrorMessage>{errors.entryDate}</FormErrorMessage>
+          </FormControl>
+        )}
       </Field>
 
-      <Button mt={4} variantColor="teal" isLoading={isSubmitting} type="submit">
+      <Button
+        mt={4}
+        variantColor="teal"
+        isLoading={isSubmitting}
+        type="submit"
+      >
         Save
       </Button>
     </Form>
@@ -115,15 +122,13 @@ interface LogContactFormInnerProps extends LogContactFormProps {
 
 const WithFormik = withFormik<LogContactFormInnerProps, FormValues>({
   // Transform outer props into form values
-  mapPropsToValues: (props) => {
-    return {
-      entryDate: props.initialEntryDate || new Date(),
-      contactWith: props.initialContactWith || []
-    };
-  },
+  mapPropsToValues: (props) => ({
+    entryDate: props.initialEntryDate || new Date(),
+    contactWith: props.initialContactWith || []
+  }),
 
-  handleSubmit: async (values, actions) => {
-    return Promise.all(
+  handleSubmit: async (values, actions) =>
+    Promise.all(
       values.contactWith.map((contact) =>
         actions.props.logContactMutation({
           variables: {
@@ -141,8 +146,7 @@ const WithFormik = withFormik<LogContactFormInnerProps, FormValues>({
           ]
         })
       )
-    ).then(() => actions.setSubmitting(false));
-  }
+    ).then(() => actions.setSubmitting(false))
 })(InnerForm);
 
 // Wrap our form with the withFormik HoC

@@ -14,7 +14,15 @@ const defaultProps = {
   type: 'website'
 };
 
-const Facebook = ({ url, title, desc, image, locale, name, type }: Props) => (
+const Facebook = ({
+  url,
+  title,
+  desc,
+  image,
+  locale,
+  name,
+  type
+}: Props) => (
   <Helmet>
     {name && <meta property="og:site_name" content={name} />}
     <meta property="og:locale" content={locale} />

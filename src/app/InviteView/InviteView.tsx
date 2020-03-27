@@ -1,9 +1,14 @@
 import * as React from 'react';
 import { Spinner, Avatar, Button, useToast } from '@chakra-ui/core';
-import { RouteComponentProps } from '@reach/router';
+import {
+  RouteComponentProps,
+  useParams,
+  navigate,
+  useLocation
+} from '@reach/router';
 import { useObjectVal } from 'react-firebase-hooks/database';
 import { firebase, useAuth } from 'gatsby-theme-firebase';
-import { useParams, navigate, useLocation } from '@reach/router';
+
 import { useCreateKnowsMutation } from '../../__generated/graphql';
 import PageHeader from '../../components/PageHeader';
 import useAnalytics from '../../hooks/useAnalytics';
@@ -38,7 +43,8 @@ const InviteView: React.FC<RouteComponentProps> = () => {
     return <Spinner />;
   }
 
-  const displayName = value && value.displayName ? value.displayName : 'user';
+  const displayName =
+    value && value.displayName ? value.displayName : 'user';
   const photoURL = value && value.photoURL ? value.photoURL : null;
   const shouldShowConnectButton = profile?.uid !== uid;
 

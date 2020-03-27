@@ -25,20 +25,25 @@ const InnerForm: React.FC<InjectedFormikProps<
   return (
     <Form>
       <Field name="displayName">
-        {({ field }) => {
-          return (
-            <FormControl isInvalid={errors[field.name] && touched[field.name]}>
-              <FormLabel htmlFor={field.name}>Display Name</FormLabel>
-              <Input {...field} />
-              <FormHelperText id="email-helper-text">
-                This is public so other can find you.
-              </FormHelperText>
-            </FormControl>
-          );
-        }}
+        {({ field }) => (
+          <FormControl
+            isInvalid={errors[field.name] && touched[field.name]}
+          >
+            <FormLabel htmlFor={field.name}>Display Name</FormLabel>
+            <Input {...field} />
+            <FormHelperText id="email-helper-text">
+              This is public so other can find you.
+            </FormHelperText>
+          </FormControl>
+        )}
       </Field>
 
-      <Button mt={4} variantColor="teal" isLoading={isSubmitting} type="submit">
+      <Button
+        mt={4}
+        variantColor="teal"
+        isLoading={isSubmitting}
+        type="submit"
+      >
         Submit
       </Button>
     </Form>
@@ -56,11 +61,9 @@ interface SettingsFormInnerProps extends SettingsFormProps {
 
 const WithFormik = withFormik<SettingsFormInnerProps, FormValues>({
   // Transform outer props into form values
-  mapPropsToValues: (props) => {
-    return {
-      displayName: props.initialDisplayName || ''
-    };
-  },
+  mapPropsToValues: (props) => ({
+    displayName: props.initialDisplayName || ''
+  }),
 
   handleSubmit: async (values, actions) => {
     // const resp = await functions.sendTestSMS();

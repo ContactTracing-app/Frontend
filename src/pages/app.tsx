@@ -10,20 +10,18 @@ import PrivateRoute from '../components/PrivateRoute';
 import SettingsView from '../app/SettingsView';
 import ShareView from '../app/ShareView';
 
-const App = () => {
-  return (
-    <Layout>
-      <Router basepath="/app">
-        <LoginView path="/login" />
-        <InviteView path="/invite/:uid" />
-        <PrivateRoute path="/contacts" component={ContactsView} />
-        <PrivateRoute path="/profile" component={ProfileView} />
-        <PrivateRoute path="/log" component={LogView} />
-        <PrivateRoute path="/share" component={ShareView} />
-        <PrivateRoute path="/settings" component={SettingsView} />
-      </Router>
-    </Layout>
-  );
-};
+const App = () => (
+  <Layout>
+    <Router basepath="/app">
+      <LoginView path="/login" />
+      <InviteView path="/invite/:uid" />
+      <PrivateRoute path="/contacts" component={ContactsView} />
+      <PrivateRoute path="/profile" component={ProfileView} />
+      <PrivateRoute path="/log" component={LogView} />
+      <PrivateRoute path="/share" component={ShareView} />
+      <PrivateRoute path="/settings" component={SettingsView} />
+    </Router>
+  </Layout>
+);
 
 export default App;

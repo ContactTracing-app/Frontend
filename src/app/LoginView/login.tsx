@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Form, FormState } from 'gatsby-theme-firebase';
-import { RouteComponentProps } from '@reach/router';
-import { useLocation } from '@reach/router';
+import { RouteComponentProps, useLocation } from '@reach/router';
+
 import { navigate } from 'gatsby';
 import PageHeader from '../../components/PageHeader';
 
