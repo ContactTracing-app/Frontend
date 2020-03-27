@@ -47,23 +47,19 @@ const InnerForm: React.FC<InjectedFormikProps<
     setFieldValue
   } = props;
 
-  const contactWithOptions: ContactWith[] = contactOptions.map(
-    (uid) => {
-      const [person] = withPerson({ uid });
-      return {
-        uid,
-        displayName: person.displayName
-      };
-    }
-  );
+  const contactWithOptions: ContactWith[] = contactOptions.map((uid) => {
+    const [person] = withPerson({ uid });
+    return {
+      uid,
+      displayName: person.displayName
+    };
+  });
 
   return (
     <Form>
       <Field name="entryDate">
         {({ field }) => (
-          <FormControl
-            isInvalid={errors[field.name] && touched[field.name]}
-          >
+          <FormControl isInvalid={errors[field.name] && touched[field.name]}>
             <FormLabel htmlFor={field.name}>Entry Date</FormLabel>
             <DatePicker
               clearIcon={null}
@@ -77,9 +73,7 @@ const InnerForm: React.FC<InjectedFormikProps<
 
       <Field name="contactWith">
         {({ field }) => (
-          <FormControl
-            isInvalid={errors[field.name] && touched[field.name]}
-          >
+          <FormControl isInvalid={errors[field.name] && touched[field.name]}>
             <FormLabel htmlFor={field.name}>Entry Date</FormLabel>
             <Select
               getOptionLabel={(o: ContactWith) => o.displayName}
@@ -97,12 +91,7 @@ const InnerForm: React.FC<InjectedFormikProps<
         )}
       </Field>
 
-      <Button
-        mt={4}
-        variantColor="teal"
-        isLoading={isSubmitting}
-        type="submit"
-      >
+      <Button mt={4} variantColor="teal" isLoading={isSubmitting} type="submit">
         Save
       </Button>
     </Form>

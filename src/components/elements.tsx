@@ -38,7 +38,7 @@ export const Footer: React.FC = () => {
         &copy; All Rights Reserved.{' '}
       </Text>
       <Text fontSize="xs" as="p">
-        Made with <span role="img">🙏</span>
+        Made with <span role="img">🙏</span> at home.
       </Text>
     </Box>
   );

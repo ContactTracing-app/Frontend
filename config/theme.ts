@@ -10,8 +10,9 @@ const customTheme = {
   colors: {
     ...theme.colors,
     brand: {
-      ice: 'white',
-      coldGrey: '#d5dae7'
+      blue: '#5C6DF8',
+      orange: '#FF550D',
+      warmGrey: '#F8F8F8'
     }
   }
 };

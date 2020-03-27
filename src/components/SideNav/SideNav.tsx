@@ -9,7 +9,7 @@ const SideNav: React.FC = () => (
     flexDirection="column"
     justifyContent="space-between"
     width={['5em', '14em']}
-    bg="gray.50"
+    bg="brand.warmGrey"
   >
     <Box>
       <Flex mt={10} justifyContent="center">
