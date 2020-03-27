@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Spinner, Avatar, Button, Alert, AlertIcon } from '@chakra-ui/core';
+import { Spinner, Avatar, Button, useToast } from '@chakra-ui/core';
 import { RouteComponentProps } from '@reach/router';
 import { useObjectVal } from 'react-firebase-hooks/database';
 import { firebase, useAuth } from 'gatsby-theme-firebase';
@@ -16,14 +16,18 @@ const InviteView: React.FC<RouteComponentProps> = () => {
   const { connectionMade } = useAnalytics();
   const { uid }: params = useParams();
   const location = useLocation();
+  const toast = useToast();
   const { profile } = useAuth();
-  const [isSuccessfullyConnected, setSuccessful] = React.useState<boolean>(
-    false
-  );
   const [createKnowsMutation] = useCreateKnowsMutation({
     onCompleted() {
       connectionMade();
-      setSuccessful(true);
+      toast({
+        position: 'bottom-right',
+        title: 'Connected',
+        description: `You can now log contact with ${value.displayName}`,
+        status: 'success',
+        isClosable: true
+      });
     }
   });
   const [value, loading] = useObjectVal<Profile>(
@@ -40,12 +44,6 @@ const InviteView: React.FC<RouteComponentProps> = () => {
 
   return (
     <>
-      {isSuccessfullyConnected && (
-        <Alert status="success">
-          <AlertIcon />
-          Successfully connected. You can now log contact with {displayName}.
-        </Alert>
-      )}
       <PageHeader
         heading="You’re invited!"
         lead={`${displayName} invites you to join Contact Tracing.`}
