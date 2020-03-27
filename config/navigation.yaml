@@ -2,5 +2,5 @@
   icon: 'MdInfoOutline'
   link: '/'
 - name: 'Press'
-  icon: 'MdInfoOutline'
+  icon: 'MdLibraryBooks'
   link: '/press'
