@@ -8,10 +8,10 @@ import useAnalytics from '../../hooks/useAnalytics';
 const CookieConsent: React.FC = () => {
   React.useEffect(() => {
     if (hasWindow) {
-      const analytics = useAnalytics();
+      const { analytics } = useAnalytics();
       const handler = () => {
         window.cookieconsent.initialise({
-          onInitialise: function(status) {
+          onInitialise: function (status) {
             if (this.hasConsented('required')) {
             }
             if (this.hasConsented('analytics')) {
@@ -20,7 +20,7 @@ const CookieConsent: React.FC = () => {
             if (this.hasConsented('marketing')) {
             }
           },
-          onAllow: function(category) {
+          onAllow: function (category) {
             if (category === 'required') {
             }
             if (category === 'analytics') {
@@ -29,7 +29,7 @@ const CookieConsent: React.FC = () => {
             if (category === 'marketing') {
             }
           },
-          onRevoke: function(category) {
+          onRevoke: function (category) {
             if (category === 'required') {
             }
             if (category === 'analytics') {
