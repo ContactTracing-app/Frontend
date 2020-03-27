@@ -18,21 +18,21 @@ const InviteView: React.FC<RouteComponentProps> = () => {
   const location = useLocation();
   const toast = useToast();
   const { profile } = useAuth();
+  const [value, loading] = useObjectVal<Profile>(
+    firebase.database().ref(`profiles/${uid}`)
+  );
   const [createKnowsMutation] = useCreateKnowsMutation({
     onCompleted() {
       connectionMade();
       toast({
         position: 'bottom-right',
         title: 'Connected',
-        description: `You can now log contact with ${value.displayName}`,
+        description: `You can now log contact with ${value.displayName} 😎`,
         status: 'success',
         isClosable: true
       });
     }
   });
-  const [value, loading] = useObjectVal<Profile>(
-    firebase.database().ref(`profiles/${uid}`)
-  );
 
   if (loading) {
     return <Spinner />;

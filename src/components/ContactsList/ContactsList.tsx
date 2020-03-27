@@ -1,33 +1,24 @@
 import * as React from 'react';
-import {
-  Spinner,
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription,
-  Stack,
-  Box
-} from '@chakra-ui/core';
+import { Spinner, Stack, Box, useToast, Text } from '@chakra-ui/core';
 import useContacts from '../../hooks/useContacts';
 import ContactAvatar from '../ContactAvatar/ContactAvatar';
 
 const ContactsList: React.FC = () => {
   const [contacts, loading, error] = useContacts();
+  const toast = useToast();
 
   if (loading) {
     return <Spinner />;
   }
 
   if (error) {
-    return (
-      <Alert status="error">
-        <AlertIcon />
-        <AlertTitle mr={2}>😡 Well that sucks</AlertTitle>
-        <AlertDescription>
-          Something went wrong and we couldn't get your contacts.
-        </AlertDescription>
-      </Alert>
-    );
+    toast({
+      title: `That's annoying…`,
+      description: 'Something went wrong. Maybe try again?',
+      status: 'error',
+      isClosable: true
+    });
+    return <Text>😡</Text>;
   }
 
   return (

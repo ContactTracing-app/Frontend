@@ -153,7 +153,7 @@ const LogContactForm: React.FC<LogContactFormProps> = (props) => {
       toast({
         position: 'bottom-right',
         title: 'Contact Logged',
-        description: 'Keep up the good work',
+        description: 'Keep up the good work 💅',
         status: 'success',
         isClosable: true
       });
