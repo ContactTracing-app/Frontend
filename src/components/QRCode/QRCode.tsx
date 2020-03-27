@@ -10,7 +10,7 @@ const QRCOde: React.FC = () => {
     const canvas = canvasRef.current;
 
     if (absoluteUrl) {
-      QRCode.toCanvas(canvas, absoluteUrl);
+      QRCode.toCanvas(canvas, absoluteUrl, { errorCorrectionLevel: 'L' });
     }
   });
 
