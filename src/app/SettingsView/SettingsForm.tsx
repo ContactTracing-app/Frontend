@@ -49,6 +49,15 @@ interface SettingsFormProps {
   initialDisplayName?: string;
 }
 
+export interface Account {
+  email?: string;
+  sms_number?: string;
+  preferences: {
+    contact_via_email: boolean;
+    contact_via_sms: boolean;
+  };
+}
+
 interface SettingsFormInnerProps extends SettingsFormProps {
   saveDisplayName: () => void;
   uid: string;
@@ -70,11 +79,19 @@ const WithFormik = withFormik<SettingsFormInnerProps, FormValues>({
       .ref(`profiles/${actions.props.uid}/displayName`)
       .set(values.displayName);
 
-    window.alert('done');
+    /*
+      1. If SMS is enabled:
+        - Update Firestore account: preferences.contact_via_sms = true
+        - Update Firestore phone: sms_number = true
 
-    // analytics.logEvent('display_name', {
-    //   contact_with_quanitity: values.contactWith.length
-    // });
+      await firebase
+        .firestore()
+        .collection(`accounts`)
+        .doc(actions.props.uid)
+        .update({});
+        
+      */
+
     actions.setSubmitting(false);
   }
 })(InnerForm);
