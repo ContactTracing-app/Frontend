@@ -4,14 +4,15 @@ import { useAuth } from 'gatsby-theme-firebase';
 import { withFormik, InjectedFormikProps, Form, Field } from 'formik';
 import {
   Button,
+  Link,
   FormControl,
   FormLabel,
   FormErrorMessage,
   Spinner,
-  Alert,
-  AlertIcon,
-  useToast
+  useToast,
+  FormHelperText
 } from '@chakra-ui/core';
+import { Link as GatsbyLink } from 'gatsby';
 import Select, { Option } from 'react-select';
 import useAnalytics from '../../hooks/useAnalytics';
 import withPerson from '../../hooks/withPerson';
@@ -86,6 +87,13 @@ const InnerForm: React.FC<InjectedFormikProps<
                 setFieldValue(field.name, option);
               }}
             />
+            <FormHelperText>
+              Can't find who you're looking for? Send them your{' '}
+              <Link to="/app/share/" as={GatsbyLink}>
+                Invite link
+              </Link>
+              .
+            </FormHelperText>
             <FormErrorMessage>{errors.entryDate}</FormErrorMessage>
           </FormControl>
         )}
