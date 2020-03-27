@@ -20,7 +20,7 @@ import {
 import toDateObject from '../../helpers/toDateObject';
 import useContacts from '../../hooks/useContacts';
 
-const analytics = useAnalytics();
+const { contactLogged } = useAnalytics();
 
 interface ContactWith {
   displayName: string;
@@ -140,7 +140,7 @@ const WithFormik = withFormik<LogContactFormInnerProps, FormValues>({
     });
 
     setTimeout(() => {
-      analytics.logEvent('contact_logged', {
+      contactLogged({
         contact_with_quanitity: values.contactWith.length
       });
       actions.setSubmitting(false);

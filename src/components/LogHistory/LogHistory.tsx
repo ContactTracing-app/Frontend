@@ -9,8 +9,10 @@ import {
 } from '../../__generated/graphql';
 import { useStores } from '../../hooks/useStore';
 import toDateObject from '../../helpers/toDateObject';
+import useAnalytics from '../../hooks/useAnalytics';
 
 const LogHistory: React.FC = () => {
+  const { contactUnlogged } = useAnalytics();
   const { profile, isLoading: isLoadingProfile } = useAuth();
   const { personStore } = useStores();
   const [
@@ -34,6 +36,7 @@ const LogHistory: React.FC = () => {
   const [unlogContact] = useUnlogContactMutation({
     onCompleted() {
       window.alert('removed contact');
+      contactUnlogged();
     }
   });
 

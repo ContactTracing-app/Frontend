@@ -6,12 +6,14 @@ import { firebase, useAuth } from 'gatsby-theme-firebase';
 import { useParams, navigate, useLocation } from '@reach/router';
 import { useCreateKnowsMutation } from '../../__generated/graphql';
 import PageHeader from '../../components/PageHeader';
+import useAnalytics from '../../hooks/useAnalytics';
 
 type params = {
   uid: string;
 };
 
 const InviteView: React.FC<RouteComponentProps> = () => {
+  const { connectionMade } = useAnalytics();
   const { uid }: params = useParams();
   const location = useLocation();
   const { profile } = useAuth();
@@ -20,6 +22,7 @@ const InviteView: React.FC<RouteComponentProps> = () => {
   );
   const [createKnowsMutation] = useCreateKnowsMutation({
     onCompleted() {
+      connectionMade();
       setSuccessful(true);
     }
   });
