@@ -9,17 +9,16 @@ module.exports = {
   siteUrl: 'https://contacttracing.app', // Domain of your site. No trailing slash!
   siteLanguage: 'en', // Language Tag on <html> element
   siteLogo: '/logos/logo.png', // Used for SEO and manifest
-  siteDescription:
-    'Image-heavy photography portfolio with colorful accents & great typography',
+  siteDescription: 'Keep the ones you love informed if you fall ill.',
   author: 'ContactTracing', // Author for schema.org JSONLD
 
-  // siteFBAppID: '123456789', // Facebook App ID - Optional
+  siteFBAppID: '840398369807905', // Facebook App ID - Optional
   userTwitter: '@jodie', // Twitter Username
   ogSiteName: 'contacttracing.app', // Facebook Site Name
   ogLanguage: 'en_GB', // og:language
 
   // Manifest and Progress color
-  themeColor: '#db7436',
+  themeColor: '#FF550D',
   backgroundColor: '#3b3c4f',
   termsLink: 'https://getterms.io/g/2VbOrhD'
 };
