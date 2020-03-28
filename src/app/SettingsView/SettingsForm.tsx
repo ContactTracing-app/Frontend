@@ -11,7 +11,13 @@ import {
   Stack,
   Box,
   useToastOptions,
-  useToast
+  useToast,
+  Checkbox,
+  CheckboxGroup,
+  RadioGroup,
+  Radio,
+  InputGroup,
+  InputLeftAddon
 } from '@chakra-ui/core';
 import withPerson from '../../hooks/withPerson';
 import useAnalytics from '../../hooks/useAnalytics';
@@ -19,13 +25,16 @@ import useAnalytics from '../../hooks/useAnalytics';
 interface FormValues {
   displayName: Date;
   should_show_profileURL: boolean;
+  preferences: any;
+  smsChecked: boolean;
+  smsNumber: String;
 }
 
 const InnerForm: React.FC<InjectedFormikProps<
   SettingsFormProps,
   FormValues
 >> = (props) => {
-  const { touched, errors, isSubmitting } = props;
+  const { touched, errors, isSubmitting, setFieldValue } = props;
 
   return (
     <Form>
@@ -41,6 +50,61 @@ const InnerForm: React.FC<InjectedFormikProps<
                 <FormHelperText id="email-helper-text">
                   This is public so other can find you.
                 </FormHelperText>
+              </FormControl>
+            )}
+          </Field>
+        </Box>
+        <Box>
+          <Field name="preferences">
+            {(field) => (
+              <FormControl>
+                <FormLabel>Notification Preferences</FormLabel>
+                <CheckboxGroup
+                  name="preferences"
+                  onChange={(e) => {
+                    // check if sms deselected and sms is available, clear sms number
+                    if (
+                      props.values.preferences.contact_via_sms &&
+                      props.values.smsNumber
+                    ) {
+                      setFieldValue('smsNumber', '');
+                    }
+                    setFieldValue(
+                      'preferences.contact_via_sms',
+                      !props.values.preferences?.contact_via_sms
+                    );
+                  }}
+                >
+                  <Checkbox isDisabled defaultIsChecked>
+                    Email
+                  </Checkbox>
+
+                  <Checkbox
+                    defaultIsChecked={props.values.preferences?.contact_via_sms}
+                  >
+                    SMS
+                    {props.values.preferences?.contact_via_sms ? (
+                      <Field name="smsNumber">
+                        {({ field }) => (
+                          <FormControl>
+                            <InputGroup>
+                              <InputLeftAddon children="+" />
+                              <Input
+                                type="tel"
+                                roundedLeft="0"
+                                defaultValue={props.initialSmsNumber}
+                                placeholder="44XXXXXX"
+                                {...field}
+                              />
+                            </InputGroup>
+                          </FormControl>
+                        )}
+                      </Field>
+                    ) : (
+                      ''
+                    )}
+                  </Checkbox>
+                </CheckboxGroup>
               </FormControl>
             )}
           </Field>
@@ -62,6 +126,8 @@ const InnerForm: React.FC<InjectedFormikProps<
 
 interface SettingsFormProps {
   initialDisplayName?: string;
+  initialPreferences?: {};
+  initialSmsNumber?: string;
 }
 
 interface SettingsFormInnerProps extends SettingsFormProps {
@@ -73,25 +139,47 @@ interface SettingsFormInnerProps extends SettingsFormProps {
 const WithFormik = withFormik<SettingsFormInnerProps, FormValues>({
   // Transform outer props into form values
   mapPropsToValues: (props) => ({
-    displayName: props.initialDisplayName || ''
+    displayName: props.initialDisplayName || '',
+    preferences: props.initialPreferences || {},
+    smsNumber: props.initialSmsNumber || ''
   }),
 
   handleSubmit: async (values, actions) => {
     const { displaynameChanged } = useAnalytics();
 
+    //Check if notification preference is set to SMS and contact number is not null
+    if (values.preferences.contact_via_sms && !values.smsNumber) {
+      actions.props.toast({
+        position: 'bottom-right',
+        title: 'SMS Number is missing',
+        description:
+          'You have chosen SMS as preferred notification. However, no sms number was provided',
+        status: 'error',
+        isClosable: true
+      });
+      actions.setSubmitting(false);
+      return;
+    }
+
     try {
       await firebase
         .database()
-        .ref(`profiles/${actions.props.uid}/displayName`)
-        .set(values.displayName);
-
-      actions.props.toast({
-        position: 'bottom-right',
-        title: 'Display name changed',
-        description: 'Your new display name is now public.',
-        status: 'success',
-        isClosable: true
-      });
+        .ref(`profiles/${actions.props.uid}/`)
+        .update(values)
+        .then((data) => {
+          console.log('success');
+          actions.props.toast({
+            position: 'bottom-right',
+            title: 'Profile has been updated',
+            description: 'Your profile has been ',
+            status: 'success',
+            isClosable: true
+          });
+        })
+        .catch((err) => {
+          // Console log if there is a firebase error
+          console.log(err);
+        });
 
       displaynameChanged();
       actions.setSubmitting(false);
@@ -116,6 +204,8 @@ const SettingsForm: React.FC<SettingsFormProps> = (props) => {
     uid: profile?.uid
   });
 
+  console.log(me);
+
   if (loadingMe) {
     return <Spinner />;
   }
@@ -127,6 +217,8 @@ const SettingsForm: React.FC<SettingsFormProps> = (props) => {
         toast={toast}
         uid={profile?.uid}
         initialDisplayName={me.displayName}
+        initialPreferences={me.preferences}
+        initialSmsNumber={me.smsNumber}
         {...props}
       />
     </>
