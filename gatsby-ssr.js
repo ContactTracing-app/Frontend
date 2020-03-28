@@ -7,7 +7,7 @@ import i18n from './src/i18n';
 import { useStaticRendering } from 'mobx-react-lite';
 useStaticRendering(true);
 
-export replaceRenderer = ({ bodyComponent, replaceBodyHTMLString }) => {
+export const replaceRenderer = ({ bodyComponent, replaceBodyHTMLString }) => {
   i18n.loadNamespaces(['common'], () => {
     replaceBodyHTMLString(bodyComponent);
   });

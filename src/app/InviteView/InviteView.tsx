@@ -1,14 +1,13 @@
 import * as React from 'react';
 import {
-  Spinner,
   Avatar,
-  Button,
-  useToast,
   AvatarGroup,
-  Text,
+  Button,
   Heading,
   List,
-  ListItem
+  ListItem,
+  Spinner,
+  useToast
 } from '@chakra-ui/core';
 import {
   RouteComponentProps,
@@ -29,7 +28,7 @@ type params = {
 };
 
 const InviteView: React.FC<RouteComponentProps> = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(['InviteView', 'common']);
   const { connectionMade } = useAnalytics();
   const { uid }: params = useParams();
   const location = useLocation();

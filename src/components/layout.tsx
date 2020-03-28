@@ -4,6 +4,7 @@ import { Footer, Main, GlobalStyles, Content } from './elements';
 import SideNav from './SideNav';
 import CookieConsent from './CookieConsent';
 import theme from '../../config/theme';
+import '../i18n';
 
 type LayoutProps = {};
 
