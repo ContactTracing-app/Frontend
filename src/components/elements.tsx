@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Flex, Box, Text, Link } from '@chakra-ui/core';
 import { Global } from '@emotion/core';
 import { useStaticQuery, graphql } from 'gatsby';
+import LanguageSwitcher from './LanguageSwitcher/LanguageSwitcher';
 
 export const Header: React.FC = () => (
   <Flex>
@@ -36,6 +37,7 @@ export const Footer: React.FC = () => {
   `);
   return (
     <Box as="footer" mt="10em">
+      <LanguageSwitcher />
       <Link href={termsLink}>Terms &amp; Conditions</Link>
       <Text fontSize="xs" as="p">
         &copy; All Rights Reserved.{' '}

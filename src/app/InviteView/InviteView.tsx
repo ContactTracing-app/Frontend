@@ -17,6 +17,7 @@ import {
   useLocation
 } from '@reach/router';
 import { useObjectVal } from 'react-firebase-hooks/database';
+import { useTranslation } from 'react-i18next';
 import { firebase, useAuth } from 'gatsby-theme-firebase';
 import { useCreateKnowsMutation } from '../../__generated/graphql';
 import PageHeader from '../../components/PageHeader';
@@ -28,6 +29,7 @@ type params = {
 };
 
 const InviteView: React.FC<RouteComponentProps> = () => {
+  const { t } = useTranslation();
   const { connectionMade } = useAnalytics();
   const { uid }: params = useParams();
   const location = useLocation();
@@ -95,7 +97,7 @@ const InviteView: React.FC<RouteComponentProps> = () => {
         </Button>
       )}
       <Heading as="h3" mb={2} size="lg">
-        Why use Contact Tracing App?
+        {t('whyHeading')}
       </Heading>
       <List styleType="disc">
         <ListItem>Protect people you love</ListItem>
