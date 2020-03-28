@@ -59,6 +59,12 @@ export const Main: React.FC = ({ children }) => (
   </Flex>
 );
 
+export const ResponsiveContainer: React.FC = ({ children }) => (
+  <Box position="relative" height="0" overflow="hidden" maxW="100%" pb="56.25%">
+    {children}
+  </Box>
+);
+
 export const Content: React.FC = ({ children }) => (
   <Box bg="blue" flexGrow={1} as="div">
     {children}
