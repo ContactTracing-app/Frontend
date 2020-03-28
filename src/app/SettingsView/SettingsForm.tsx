@@ -166,8 +166,7 @@ const WithFormik = withFormik<SettingsFormInnerProps, FormValues>({
         .database()
         .ref(`profiles/${actions.props.uid}/`)
         .update(values)
-        .then((data) => {
-          console.log('success');
+        .then(() => {
           actions.props.toast({
             position: 'bottom-right',
             title: 'Profile has been updated',
