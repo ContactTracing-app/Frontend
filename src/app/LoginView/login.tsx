@@ -19,7 +19,7 @@ const LoginView: React.FC<RouteComponentProps> = () => {
             if (state && state.next_url) {
               navigate(state.next_url);
             } else {
-              navigate('/app/profile');
+              navigate('/me');
             }
           }}
           onSignUpSuccess={() => {

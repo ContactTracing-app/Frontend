@@ -75,7 +75,7 @@ const InviteView: React.FC<RouteComponentProps> = () => {
           variantColor="teal"
           onClick={() => {
             if (!profile) {
-              navigate('/app/login', {
+              navigate('/me/login', {
                 state: {
                   next_url: location.pathname
                 }

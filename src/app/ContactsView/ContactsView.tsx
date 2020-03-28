@@ -21,7 +21,7 @@ const ContactsView: React.FC = () => (
     </Heading>
     <Text my={8}>
       View or remove your contacts from your log. Forgot someone?{' '}
-      <Link color="brand.orange" as={GatsbyLink} to="/app/log">
+      <Link color="brand.orange" as={GatsbyLink} to="/me/log">
         Log Contact
       </Link>
       .
