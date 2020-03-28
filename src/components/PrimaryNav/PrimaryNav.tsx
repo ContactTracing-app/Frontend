@@ -51,29 +51,29 @@ const PrimaryNav: React.FC = () => {
       <Divider />
       {isLoggedIn
         ? [
-            <ProfileButton key="nav-profile" to="/app/profile" label={me} />,
+            <ProfileButton key="nav-profile" to="/me" label={me} />,
             <NavButton
               key="nav-log"
               Icon={Icons.MdEdit}
-              to="/app/log"
+              to="/me/log"
               label="Log Contact"
             />,
             <NavButton
               key="nav-contacts"
               Icon={Icons.MdGroup}
-              to="/app/contacts"
+              to="/me/contacts"
               label="Contacts"
             />,
             <NavButton
               key="nav-share"
               Icon={Icons.MdShare}
-              to="/app/share"
+              to="/me/share"
               label="Share"
             />,
             <NavButton
               key="nav-settings"
               Icon={Icons.MdSettings}
-              to="/app/settings"
+              to="/me/settings"
               label="Settings"
             />,
             <LogoutButton key="nav-logout" Icon={Icons.MdPowerSettingsNew} />

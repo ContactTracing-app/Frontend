@@ -10,13 +10,13 @@ import PrivateRoute from '../components/PrivateRoute';
 import SettingsView from '../app/SettingsView';
 import ShareView from '../app/ShareView';
 
-const App = () => (
+const Me: React.FC = () => (
   <Layout>
-    <Router basepath="/app">
+    <Router basepath="/me">
       <LoginView path="/login" />
       <InviteView path="/invite/:uid" />
+      <PrivateRoute path="/" component={ProfileView} />
       <PrivateRoute path="/contacts" component={ContactsView} />
-      <PrivateRoute path="/profile" component={ProfileView} />
       <PrivateRoute path="/log" component={LogView} />
       <PrivateRoute path="/share" component={ShareView} />
       <PrivateRoute path="/settings" component={SettingsView} />
@@ -24,4 +24,4 @@ const App = () => (
   </Layout>
 );
 
-export default App;
+export default Me;
