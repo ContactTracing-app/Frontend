@@ -15,6 +15,7 @@ import {
   useToast,
   Stack
 } from '@chakra-ui/core';
+import { MdToday } from 'react-icons/md';
 import { Link as GatsbyLink } from 'gatsby';
 import Select, { Option } from 'react-select';
 import useAnalytics from '../../hooks/useAnalytics';
@@ -73,6 +74,8 @@ const InnerForm: React.FC<InjectedFormikProps<
                 <FormLabel htmlFor={field.name}>Entry Date</FormLabel>
                 <Box>
                   <DatePicker
+                    minDate={new Date('2019-11-01')}
+                    calendarIcon={<MdToday />}
                     clearIcon={null}
                     onChange={(v) => setFieldValue('entryDate', v)}
                     value={field.value}
