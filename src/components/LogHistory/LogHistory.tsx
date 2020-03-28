@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useAuth } from 'gatsby-theme-firebase';
-import { Accordion, Spinner } from '@chakra-ui/core';
+import { Accordion, Spinner, useToast } from '@chakra-ui/core';
 import LogEntryAccordionItem from './LogEntryAccordionItem';
 import {
   useLogHistoryLazyQuery,
@@ -13,6 +13,7 @@ import useAnalytics from '../../hooks/useAnalytics';
 
 const LogHistory: React.FC = () => {
   const { contactUnlogged } = useAnalytics();
+  const toast = useToast();
   const { profile, isLoading: isLoadingProfile } = useAuth();
   const { personStore } = useStores();
   const [
@@ -35,7 +36,12 @@ const LogHistory: React.FC = () => {
 
   const [unlogContact] = useUnlogContactMutation({
     onCompleted() {
-      window.alert('removed contact');
+      toast({
+        position: 'bottom-right',
+        title: 'Removed entry',
+        status: 'success',
+        isClosable: true
+      });
       contactUnlogged();
     }
   });

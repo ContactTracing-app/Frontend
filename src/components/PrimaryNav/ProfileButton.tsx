@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Flex, Heading, Avatar } from '@chakra-ui/core';
-import { PartialNavLink, NavButtonProps } from './NavButton';
 import { useAuth } from 'gatsby-theme-firebase';
+import { PartialNavLink, NavButtonProps } from './NavButton';
 
 type ProfileButton = Omit<NavButtonProps, 'Icon'>;
 
@@ -13,8 +13,17 @@ const ProfileButton: React.FC<ProfileButton> = ({ to, label }) => {
   const photoURL = profile?.photoURL;
   return (
     <PartialNavLink to={to}>
-      <Flex alignItems="center" justifyContent={['center', 'flex-start']} p={4}>
-        <Avatar mr={[0, 3]} size="sm" name={displayName} src={photoURL} />
+      <Flex
+        alignItems="center"
+        justifyContent={['center', 'flex-start']}
+        p={4}
+      >
+        <Avatar
+          mr={[0, 3]}
+          size="sm"
+          name={displayName}
+          src={photoURL}
+        />
         <Heading
           maxW="7em"
           isTruncated

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Stack, Box } from '@chakra-ui/core';
+import { useStaticQuery, graphql } from 'gatsby';
 import {
   EmailIcon,
   EmailShareButton,
@@ -14,13 +15,35 @@ import {
 } from 'react-share';
 import useProfileUrl from '../../hooks/useInviteUrl';
 
+interface IconListQuery {
+  site: {
+    siteMetadata: {
+      title: string;
+    };
+  };
+}
+const query = graphql`
+  query IconList {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`;
+
 const IconList = () => {
+  const {
+    site: {
+      siteMetadata: { title: siteTitle }
+    }
+  } = useStaticQuery<IconListQuery>(query);
   const { absoluteUrl: url } = useProfileUrl();
   const iconProps = {
     size: 32,
     round: true
   };
-  const title = `Join me on Contact-Tracking and help each other stay safe.`;
+  const title = `Join me on ${siteTitle} and help each other stay safe.`;
   return (
     url && (
       <Stack isInline spacing={2} align="center" my={6}>
@@ -35,7 +58,11 @@ const IconList = () => {
           </FacebookShareButton>
         </Box>
         <Box>
-          <EmailShareButton url={url} subject={title} body="body">
+          <EmailShareButton
+            url={url}
+            subject={`Stay safe on ${siteTitle}`}
+            body={title}
+          >
             <EmailIcon {...iconProps} />
           </EmailShareButton>
         </Box>
@@ -45,7 +72,11 @@ const IconList = () => {
           </WhatsappShareButton>
         </Box>
         <Box>
-          <TwitterShareButton hashtags={['CTCovid19']} url={url} title={title}>
+          <TwitterShareButton
+            hashtags={['keeptracingcovid19']}
+            url={url}
+            title={title}
+          >
             <TwitterIcon {...iconProps} />
           </TwitterShareButton>
         </Box>

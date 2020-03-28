@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { useClipboard, Flex, Input, Button, Text } from '@chakra-ui/core';
+import {
+  useClipboard,
+  Flex,
+  Input,
+  Button,
+  Text
+} from '@chakra-ui/core';
 import useProfileUrl from '../../hooks/useInviteUrl';
 import QRCOde from '../../components/QRCode';
 import PageHeader from '../../components/PageHeader';

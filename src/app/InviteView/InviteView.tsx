@@ -1,12 +1,27 @@
 import * as React from 'react';
-import { Spinner, Avatar, Button, Alert, AlertIcon } from '@chakra-ui/core';
-import { RouteComponentProps } from '@reach/router';
+import {
+  Spinner,
+  Avatar,
+  Button,
+  useToast,
+  AvatarGroup,
+  Text,
+  Heading,
+  List,
+  ListItem
+} from '@chakra-ui/core';
+import {
+  RouteComponentProps,
+  useParams,
+  navigate,
+  useLocation
+} from '@reach/router';
 import { useObjectVal } from 'react-firebase-hooks/database';
 import { firebase, useAuth } from 'gatsby-theme-firebase';
-import { useParams, navigate, useLocation } from '@reach/router';
 import { useCreateKnowsMutation } from '../../__generated/graphql';
 import PageHeader from '../../components/PageHeader';
 import useAnalytics from '../../hooks/useAnalytics';
+import icon from '../../images/favicon.png';
 
 type params = {
   uid: string;
@@ -16,19 +31,23 @@ const InviteView: React.FC<RouteComponentProps> = () => {
   const { connectionMade } = useAnalytics();
   const { uid }: params = useParams();
   const location = useLocation();
+  const toast = useToast();
   const { profile } = useAuth();
-  const [isSuccessfullyConnected, setSuccessful] = React.useState<boolean>(
-    false
+  const [value, loading] = useObjectVal<Profile>(
+    firebase.database().ref(`profiles/${uid}`)
   );
   const [createKnowsMutation] = useCreateKnowsMutation({
     onCompleted() {
       connectionMade();
-      setSuccessful(true);
+      toast({
+        position: 'bottom-right',
+        title: 'Connected',
+        description: `You can now log contact with ${value.displayName} 😎`,
+        status: 'success',
+        isClosable: true
+      });
     }
   });
-  const [value, loading] = useObjectVal<Profile>(
-    firebase.database().ref(`profiles/${uid}`)
-  );
 
   if (loading) {
     return <Spinner />;
@@ -40,20 +59,20 @@ const InviteView: React.FC<RouteComponentProps> = () => {
 
   return (
     <>
-      {isSuccessfullyConnected && (
-        <Alert status="success">
-          <AlertIcon />
-          Successfully connected. You can now log contact with {displayName}.
-        </Alert>
-      )}
       <PageHeader
         heading="You’re invited!"
         lead={`${displayName} invites you to join Contact Tracing.`}
       />
 
-      <Avatar name={displayName} src={photoURL} />
+      <AvatarGroup size="xl" max={2} mb={12}>
+        <Avatar name={displayName} src={photoURL} />
+        <Avatar bg="none" name="Contact Tracing" src={icon} />
+      </AvatarGroup>
       {shouldShowConnectButton && (
         <Button
+          width="200px"
+          mb={16}
+          variantColor="teal"
           onClick={() => {
             if (!profile) {
               navigate('/app/login', {
@@ -75,6 +94,17 @@ const InviteView: React.FC<RouteComponentProps> = () => {
           Connect
         </Button>
       )}
+      <Heading as="h3" mb={2} size="lg">
+        Why use Contact Tracing App?
+      </Heading>
+      <List styleType="disc">
+        <ListItem>Protect people you love</ListItem>
+        <ListItem>Limit the spread of COVID-19</ListItem>
+        <ListItem>
+          Save time to trace back and immediately notify your contacts if
+          needed, in one click.
+        </ListItem>
+      </List>
     </>
   );
 };

@@ -18,7 +18,14 @@ const defaultProps = {
   individual: false
 };
 
-const SEO = ({ title, desc, banner, pathname, node, individual }: Props) => {
+const SEO = ({
+  title,
+  desc,
+  banner,
+  pathname,
+  node,
+  individual
+}: Props) => {
   const { site } = useStaticQuery(query);
 
   const {
@@ -146,8 +153,12 @@ const SEO = ({ title, desc, banner, pathname, node, individual }: Props) => {
           url: `${siteUrl}${defaultBanner}`
         }
       },
-      datePublished: node ? node.birthTime : '2019-03-10T10:30:00+01:00',
-      dateModified: node ? node.modifiedTime : '2019-03-10T10:30:00+01:00',
+      datePublished: node
+        ? node.birthTime
+        : '2019-03-10T10:30:00+01:00',
+      dateModified: node
+        ? node.modifiedTime
+        : '2019-03-10T10:30:00+01:00',
       description: seo.description,
       headline: seo.title,
       inLanguage: 'en',
@@ -184,7 +195,10 @@ const SEO = ({ title, desc, banner, pathname, node, individual }: Props) => {
         <html lang={siteLanguage} />
         <meta name="description" content={seo.description} />
         <meta name="image" content={seo.image} />
-        <meta name="gatsby-starter" content="Gatsby Starter Portfolio Jodie" />
+        <meta
+          name="gatsby-starter"
+          content="Gatsby Starter Portfolio Jodie"
+        />
         {/* Insert schema.org data conditionally (webpage/article) + everytime (breadcrumbs) */}
         {!individual && (
           <script type="application/ld+json">
@@ -196,7 +210,9 @@ const SEO = ({ title, desc, banner, pathname, node, individual }: Props) => {
             {JSON.stringify(schemaArticle)}
           </script>
         )}
-        <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumb)}
+        </script>
       </Helmet>
       <Facebook
         desc={seo.description}

@@ -1,15 +1,32 @@
-import React from 'react';
-import { Heading, Text, Box } from '@chakra-ui/core';
+import * as React from 'react';
+import { Heading, Box } from '@chakra-ui/core';
 import Layout from '../components/layout';
 import SEO from '../components/SEO';
-import { P } from '../components/elements';
+import { P, ResponsiveContainer } from '../components/elements';
 
 type PageProps = {};
 
 const IndexPage: React.FunctionComponent<PageProps> = () => (
   <Layout>
     <SEO />
-    <Heading fontSize="50px">Contact Tracing</Heading>
+    <ResponsiveContainer>
+      <Box
+        as="iframe"
+        position="absolute"
+        top={0}
+        left={0}
+        width="100%"
+        height="100%"
+        src="https://www.youtube-nocookie.com/embed/4jFT5qTVeYs"
+        frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      />
+    </ResponsiveContainer>
+
+    <Heading mt={12} fontSize="50px">
+      Contact Tracing
+    </Heading>
 
     <Box p={5} my={12} shadow="sm" borderWidth="1px">
       <Heading fontSize="xl">What is this?</Heading>

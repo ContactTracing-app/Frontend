@@ -49,7 +49,7 @@ const CookieConsent: React.FC = () => {
 
   return (
     <Helmet>
-      <script src="https://cookiehub.net/cc/fa90dcf6.js"></script>
+      <script src="https://cookiehub.net/cc/fa90dcf6.js" />
     </Helmet>
   );
 };

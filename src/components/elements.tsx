@@ -11,6 +11,7 @@ export const Header: React.FC = () => (
 
 interface FooterQuery {
   site: {
+    buildTime: string;
     siteMetadata: {
       termsLink: string;
     };
@@ -20,11 +21,13 @@ interface FooterQuery {
 export const Footer: React.FC = () => {
   const {
     site: {
+      buildTime,
       siteMetadata: { termsLink }
     }
   } = useStaticQuery<FooterQuery>(graphql`
     query FootQuery {
       site {
+        buildTime(formatString: "ddd, DD-MM-YYYY HH:mm")
         siteMetadata {
           termsLink
         }
@@ -38,14 +41,32 @@ export const Footer: React.FC = () => {
         &copy; All Rights Reserved.{' '}
       </Text>
       <Text fontSize="xs" as="p">
-        Made with 🙏
+        Made with <span role="img">🙏</span> at home on {buildTime}.
       </Text>
     </Box>
   );
 };
 
 export const Main: React.FC = ({ children }) => (
-  <Box alignItems="center" flexGrow={1} as="main" p={[10, 20]}>
+  <Flex
+    flexDirection="column"
+    justifyContent="space-between"
+    flexGrow={1}
+    as="main"
+    p={[10, 20]}
+  >
+    {children}
+  </Flex>
+);
+
+export const ResponsiveContainer: React.FC = ({ children }) => (
+  <Box position="relative" height="0" overflow="hidden" maxW="100%" pb="56.25%">
+    {children}
+  </Box>
+);
+
+export const Content: React.FC = ({ children }) => (
+  <Box bg="blue" flexGrow={1} as="div">
     {children}
   </Box>
 );
