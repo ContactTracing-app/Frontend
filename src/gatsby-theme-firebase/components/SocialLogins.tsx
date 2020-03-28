@@ -2,6 +2,7 @@ import * as React from 'react';
 import useFirebaseConfig from 'gatsby-theme-firebase/src/hooks/useFirebaseConfig';
 import { Button, Stack, Box } from '@chakra-ui/core';
 import { auth } from 'gatsby-theme-firebase';
+import { FaGoogle, FaFacebook } from 'react-icons/fa';
 import {
   googleProvider,
   facebookProvider
@@ -20,6 +21,7 @@ const SocialLogins: React.FC<{
       {enableGoogle && (
         <Box>
           <Button
+            leftIcon={FaGoogle}
             onClick={async () => {
               try {
                 const user = await auth.signInWithPopup(googleProvider());
@@ -37,6 +39,7 @@ const SocialLogins: React.FC<{
       {enableFacebook && (
         <Box>
           <Button
+            leftIcon={FaFacebook}
             onClick={async () => {
               try {
                 const user = await auth.signInWithPopup(facebookProvider());

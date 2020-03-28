@@ -4,7 +4,7 @@ import ContactsView from '../app/ContactsView';
 import InviteView from '../app/InviteView';
 import Layout from '../components/layout';
 import ProfileView from '../app/ProfileView';
-import LoginView from '../app/LoginView';
+import SigninView from '../app/SigninView';
 import LogView from '../app/LogView';
 import PrivateRoute from '../components/PrivateRoute';
 import SettingsView from '../app/SettingsView';
@@ -13,7 +13,7 @@ import ShareView from '../app/ShareView';
 const Me: React.FC = () => (
   <Layout>
     <Router basepath="/me">
-      <LoginView path="/login" />
+      <SigninView path="/sign-in" />
       <InviteView path="/invite/:uid" />
       <PrivateRoute path="/" component={ProfileView} />
       <PrivateRoute path="/contacts" component={ContactsView} />

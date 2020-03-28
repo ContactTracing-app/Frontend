@@ -6,7 +6,7 @@ import { Divider } from '@chakra-ui/core';
 import NavButton from './NavButton';
 import ProfileButton from './ProfileButton';
 import LogoutButton from './LogoutButton';
-import LoginButton from './LoginButton';
+import SigninButton from './SigninButton';
 
 const query = graphql`
   query PrimaryNav {
@@ -78,7 +78,7 @@ const PrimaryNav: React.FC = () => {
             />,
             <LogoutButton key="nav-logout" Icon={Icons.MdPowerSettingsNew} />
           ]
-        : [<LoginButton key="nav-login" Icon={Icons.MdPowerSettingsNew} />]}
+        : [<SigninButton key="nav-login" Icon={Icons.MdPowerSettingsNew} />]}
     </>
   );
 };

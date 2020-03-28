@@ -10,8 +10,8 @@ const LoginView: React.FC<RouteComponentProps> = () => {
   return (
     <>
       <PageHeader
-        heading="Log in"
-        lead="Get started by logging-in to your account."
+        heading="Sign in"
+        lead="Let's get you signed-in to your free account."
       />
       <FormState.Provider>
         <Form

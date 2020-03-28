@@ -6,7 +6,7 @@ import { NavButtonProps } from './NavButton';
 type LogoutButton = Omit<NavButtonProps, 'Icon' | 'to' | 'label'>;
 
 const LogoutButton: React.FC<LogoutButton> = ({ Icon }) => (
-  <Flex alignItems="center" justifyContent={['center', 'flex-start']}>
+  <Flex alignItems="center" mt={1} justifyContent={['center', 'flex-start']}>
     <Button variant="ghost" type="button" onClick={() => auth.signOut()}>
       <Box as={Icon} color="gray.400" size="1.4em" mr={[0, 5]} />
       <Heading
