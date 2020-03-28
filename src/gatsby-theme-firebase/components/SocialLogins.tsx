@@ -1,6 +1,6 @@
 import * as React from 'react';
 import useFirebaseConfig from 'gatsby-theme-firebase/src/hooks/useFirebaseConfig';
-import { Button, Stack, Box, useToast } from '@chakra-ui/core';
+import { Button, Stack, Box } from '@chakra-ui/core';
 import { auth } from 'gatsby-theme-firebase';
 import {
   googleProvider,
@@ -31,6 +31,23 @@ const SocialLogins: React.FC<{
             }}
           >
             Sign in with Google
+          </Button>
+        </Box>
+      )}
+      {enableFacebook && (
+        <Box>
+          <Button
+            onClick={async () => {
+              try {
+                const user = await auth.signInWithPopup(facebookProvider());
+                onSuccess(user);
+              } catch (err) {
+                console.error('Authentication Error: ', err);
+                onError(err);
+              }
+            }}
+          >
+            Sign in with Facebook
           </Button>
         </Box>
       )}
