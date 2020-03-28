@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Router } from '@reach/router';
 import ContactsView from '../app/ContactsView';
 import InviteView from '../app/InviteView';

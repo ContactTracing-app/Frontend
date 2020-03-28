@@ -59,6 +59,12 @@ export const Main: React.FC = ({ children }) => (
   </Flex>
 );
 
+export const Content: React.FC = ({ children }) => (
+  <Box bg="blue" flexGrow={1} as="div">
+    {children}
+  </Box>
+);
+
 export const P: React.FC = ({ children, ...rest }) => (
   <Text mt={4} {...rest}>
     {children}
