@@ -9,7 +9,10 @@ const LoginView: React.FC<RouteComponentProps> = () => {
   const { state } = useLocation();
   return (
     <>
-      <PageHeader heading="Log in" lead="Line of text here" />
+      <PageHeader
+        heading="Log in"
+        lead="Get started by logging-in to your account."
+      />
       <FormState.Provider>
         <Form
           onLoginSuccess={async () => {

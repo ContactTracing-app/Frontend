@@ -1,6 +1,6 @@
 GATSBY_GRAPHQL_ENDPOINT=http://gggole.com/graphql
 GATSBY_API_KEY=abc
-GATSBY_AUTH_DOMAIN=contact-tracking-app.firebaseapp.com
+GATSBY_AUTH_DOMAIN=contacttracing.app
 GATSBY_DATABASE_URL=https://contact-tracking-app.firebaseio.com
 GATSBY_PROJECT_ID=contact-tracking-app
 GATSBY_STORAGE_BUCKET=contact-tracking-app.appspot.com
