@@ -42,9 +42,14 @@ const IndexPage: React.FunctionComponent<PageProps> = () => (
 
     <Box maxWidth="40em">
       <P>
-        In one click, Contact Tracing App notifies recent direct and indirect
-        contacts of users if they log that they show symptoms, or test positive,
-        so everyone can act appropriately and we can help limit the spread of
+        Keeping everyone up-to-date if you fall ill is tricky. You have to
+        remember who you met. They have to remember who they met after meeting
+        you.
+      </P>
+      <P>
+        In one click, Contact Tracing App notifies your recent direct and
+        indirect contacts if you log that you show symptoms or test positive, so
+        everyone can act appropriately and we can help limit the spread of
         COVID-19.
       </P>
       <P>#KeepTracingCOVID19</P>
@@ -53,19 +58,17 @@ const IndexPage: React.FunctionComponent<PageProps> = () => (
       </Heading>
       <List styleType="disc">
         <ListItem>
-          Create your account, using your email/social media account.
+          Log Contact - Digital Logbook that makes it easier to trace who you
+          met.
         </ListItem>
         <ListItem>
-          Share your profile link or your QR code with your family and friends
-          to connect with them.
+          Notify your loved one if you fall ill with no hassle.
         </ListItem>
         <ListItem>
-          Logging your contacts daily to keep your loved ones safe and get more
-          accurate data on your risk level.
+          Get notified when one of your family and friends (and their contacts)
+          shows symptoms, or tested positive.
         </ListItem>
-        <ListItem>
-          Change your status to notify your loved ones (and their contacts).
-        </ListItem>
+        <ListItem>Your risk level - based on contacts around you.</ListItem>
       </List>
       <Box p={[5, 10]} my={12} shadow="sm" borderWidth="1px">
         <Heading as="h2" mb={4} size="xl">
@@ -167,6 +170,19 @@ const IndexPage: React.FunctionComponent<PageProps> = () => (
         <ListItem>Yogen (Fira Cloud Tech)</ListItem>
         <ListItem>Juntima Nawilaijaroen</ListItem>
         <ListItem>Max Sarasri</ListItem>
+      </List>
+
+      <Heading as="h4" mt={12} mb={4} size="sm">
+        Cloud providers
+      </Heading>
+      <P>
+        These guys helped us out by giving us free credits to build on their
+        infrastructure:
+      </P>
+      <List styleType="disc">
+        <ListItem>Neo4j</ListItem>
+        <ListItem>DigitialOcean</ListItem>
+        <ListItem>Twilio</ListItem>
       </List>
     </Box>
   </Layout>
