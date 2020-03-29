@@ -12,8 +12,8 @@ import {
 import Layout from '../components/layout';
 import SEO from '../components/SEO';
 import { P, ResponsiveContainer, Lead } from '../components/elements';
-import michele from '../images/michele';
-import ponk from '../images/ponk';
+import michele from '../images/michele.jpg';
+import ponk from '../images/ponk.jpg';
 
 type PageProps = {};
 
