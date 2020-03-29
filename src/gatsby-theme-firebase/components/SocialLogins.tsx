@@ -24,7 +24,7 @@ const SocialLogins: React.FC<{
             leftIcon={FaGoogle}
             onClick={async () => {
               try {
-                const user = await auth.signInWithPopup(googleProvider());
+                const user = await auth.signInWithRedirect(googleProvider());
                 onSuccess(user);
               } catch (err) {
                 console.error('Authentication Error: ', err);
