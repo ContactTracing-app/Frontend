@@ -4,6 +4,3 @@
 - name: 'Donate'
   icon: 'MdFavorite'
   link: '/donate'
-- name: 'Press'
-  icon: 'MdLibraryBooks'
-  link: '/press'
