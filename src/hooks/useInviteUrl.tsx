@@ -37,7 +37,7 @@ const useInviteUrl = (props?: UseInviteUrl) => {
       siteMetadata: { siteUrl }
     }
   } = useStaticQuery<UseInviteQuery>(query);
-  const relativeUrl = `/app/invite/${uid}`;
+  const relativeUrl = `/me/invite/${uid}`;
   const absoluteUrl = `${siteUrl}${relativeUrl}`;
   return profile
     ? { absoluteUrl, relativeUrl }

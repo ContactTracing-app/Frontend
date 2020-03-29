@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { SocialLogins } from 'gatsby-theme-firebase';
+import { useToast } from '@chakra-ui/core';
 
 // import { jsx } from "theme-ui";
 // import * as React from "react";
@@ -51,10 +52,24 @@ interface LoginViewProps {
   onResetSuccess?: () => void;
 }
 
-const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => (
-  <>
-    <SocialLogins onSuccess={onLoginSuccess} />
-  </>
-);
+const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
+  const toast = useToast();
+  return (
+    <>
+      <SocialLogins
+        onSuccess={onLoginSuccess}
+        onError={(error) => {
+          toast({
+            title: 'Failed to log in',
+            position: 'bottom-right',
+            description: error.message,
+            status: 'error',
+            isClosable: true
+          });
+        }}
+      />
+    </>
+  );
+};
 
 export default LoginView;

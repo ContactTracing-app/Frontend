@@ -30,12 +30,8 @@ const LogEntryAccordionItem: React.FC<LogEntry> = ({
     </AccordionHeader>
     <AccordionPanel pb={4}>
       {contactWithUids.map((uid) => (
-        <Flex justifyContent="space-between">
-          <ContactAvatar
-            key={uid}
-            uid={uid}
-            avatar={{ size: 'sm' }}
-          />
+        <Flex key={uid} justifyContent="space-between">
+          <ContactAvatar uid={uid} avatar={{ size: 'sm' }} />
           <IconButton
             variant="ghost"
             aria-label="Unlog contact"

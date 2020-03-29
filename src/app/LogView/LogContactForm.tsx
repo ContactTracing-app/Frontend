@@ -107,7 +107,7 @@ const InnerForm: React.FC<InjectedFormikProps<
                 />
                 <FormHelperText>
                   Can't find who you're looking for? Send them your{' '}
-                  <Link to="/app/share/" as={GatsbyLink}>
+                  <Link color="brand.orange" to="/me/share/" as={GatsbyLink}>
                     Invite link
                   </Link>
                   .

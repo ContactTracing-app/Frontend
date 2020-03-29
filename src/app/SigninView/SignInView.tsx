@@ -6,19 +6,20 @@ import { navigate } from 'gatsby';
 import PageHeader from '../../components/PageHeader';
 
 const LoginView: React.FC<RouteComponentProps> = () => {
-  const {
-    state: { next_url }
-  } = useLocation();
+  const { state } = useLocation();
   return (
     <>
-      <PageHeader heading="Log in" lead="Line of text here" />
+      <PageHeader
+        heading="Sign in"
+        lead="Let's get you signed-in to your free account."
+      />
       <FormState.Provider>
         <Form
           onLoginSuccess={async () => {
-            if (next_url) {
-              navigate(next_url);
+            if (state && state.next_url) {
+              navigate(state.next_url);
             } else {
-              navigate('/app/profile');
+              navigate('/me');
             }
           }}
           onSignUpSuccess={() => {

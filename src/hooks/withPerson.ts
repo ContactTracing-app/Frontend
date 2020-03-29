@@ -17,8 +17,7 @@ const withPerson = ({ uid }: WithPerson) => {
 
   const displayName =
     value && value.displayName ? value.displayName : 'Anonymous';
-  const photoURL =
-    value && value.photoURL ? value.photoURL : undefined;
+  const photoURL = value && value.photoURL ? value.photoURL : undefined;
 
   const person: Person = {
     uid,
