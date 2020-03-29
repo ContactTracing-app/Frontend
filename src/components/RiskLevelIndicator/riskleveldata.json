@@ -1,0 +1,22 @@
+[
+  {
+    "level": "Safe",
+    "color": "green.400",
+    "message": "None of your contact is at risk. Stay home and keep it up!"
+  },
+  {
+    "level": "Low",
+    "color": "yellow.400",
+    "message": "Indirect contacts in quarantine."
+  },
+  {
+    "level": "Medium",
+    "color": "orange.400",
+    "message": "Indirect contacts in quarantine."
+  },
+  {
+    "level": "High",
+    "color": "red.400",
+    "message": "Direct contacts in quarantine."
+  }
+]
