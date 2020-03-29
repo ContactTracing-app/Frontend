@@ -67,6 +67,10 @@ export const ResponsiveContainer: React.FC = ({ children }) => (
   </Box>
 );
 
+export const Lead: React.FC = (props) => (
+  <Text fontSize="2xl" mb={8} {...props} />
+);
+
 export const Content: React.FC = ({ children }) => (
   <Box bg="blue" flexGrow={1} as="div">
     {children}

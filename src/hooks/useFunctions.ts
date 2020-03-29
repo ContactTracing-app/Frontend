@@ -4,10 +4,8 @@ import hasWindow from '../helpers/hasWindow';
 
 let f: firebase.functions.Functions;
 
-interface LogContactCallable {
-  fromUid: string;
-  toUid: string;
-  date: Date;
+interface SendNotificationsCallable {
+  uid: string;
 }
 
 const useFunctions = () => {
@@ -15,14 +13,9 @@ const useFunctions = () => {
     f = firebase.functions();
   }
   return {
-    logContact(payload: LogContactCallable) {
-      const callable = f.httpsCallable('logContact');
+    sendNotifications(payload: SendNotificationsCallable) {
+      const callable = f.httpsCallable('email-sendNotifications');
       return callable(payload);
-    },
-
-    sendTestSMS() {
-      const callable = f.httpsCallable('sms-testSMS');
-      return callable();
     }
   };
 };

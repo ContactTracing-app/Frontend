@@ -7,6 +7,7 @@ import NavButton from './NavButton';
 import ProfileButton from './ProfileButton';
 import LogoutButton from './LogoutButton';
 import SigninButton from './SigninButton';
+import ExternalNavButton from './ExternalNavButton';
 
 const query = graphql`
   query PrimaryNav {
@@ -48,6 +49,11 @@ const PrimaryNav: React.FC = () => {
           label={item.name}
         />
       ))}
+      <ExternalNavButton
+        Icon={Icons['MdLibraryBooks']}
+        to="https://bit.ly/3bDFlv1"
+        label="Press"
+      />
       <Divider />
       {isLoggedIn
         ? [

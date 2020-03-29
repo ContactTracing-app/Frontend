@@ -24,7 +24,7 @@ const SocialLogins: React.FC<{
             leftIcon={FaGoogle}
             onClick={async () => {
               try {
-                const user = await auth.signInWithPopup(googleProvider());
+                const user = await auth.signInWithRedirect(googleProvider());
                 onSuccess(user);
               } catch (err) {
                 console.error('Authentication Error: ', err);
@@ -42,7 +42,7 @@ const SocialLogins: React.FC<{
             leftIcon={FaFacebook}
             onClick={async () => {
               try {
-                const user = await auth.signInWithPopup(facebookProvider());
+                const user = await auth.signInWithRedirect(facebookProvider());
                 onSuccess(user);
               } catch (err) {
                 console.error('Authentication Error: ', err);

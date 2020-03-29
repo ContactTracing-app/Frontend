@@ -1,0 +1,7 @@
+query getHealthStatus($uid: ID!) {
+  healthData: PersonById(input: { uid: $uid }) {
+    uid
+    status
+    isInQuarantine
+  }
+}
