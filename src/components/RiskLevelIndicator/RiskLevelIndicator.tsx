@@ -12,6 +12,7 @@ import {
   Feature,
   Button
 } from '@chakra-ui/core';
+import { navigate } from 'gatsby';
 const riskLevelOptions = require('./riskleveldata.json');
 interface RiskLevelIndicatorProps {
   uid: string;
@@ -90,11 +91,10 @@ const RiskLevelIndicator: React.FC<RiskLevelIndicatorProps> = ({ uid }) => {
       </Slider> */}
 
       <Button
+        onClick={() => navigate('/me/log')}
         mt={4}
-        variantColor="purple"
-        type="submit"
-        size="lg"
-        width="200px"
+        variantColor="teal"
+        type="button"
       >
         Start Logging
       </Button>

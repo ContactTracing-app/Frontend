@@ -99,10 +99,8 @@ const InnerForm: React.FC<InjectedFormikProps<ProfileFormProps, FormValues>> = (
               (dirty && !isValid) || props.values === props.initialValues
             }
             mt={4}
-            variantColor="purple"
+            variantColor="teal"
             type="submit"
-            size="lg"
-            width="200px"
           >
             Notify
           </Button>
