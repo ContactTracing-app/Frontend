@@ -13,6 +13,7 @@ import {
   Button
 } from '@chakra-ui/core';
 import { navigate } from 'gatsby';
+import { Lead } from '../elements';
 const riskLevelOptions = require('./riskleveldata.json');
 interface RiskLevelIndicatorProps {
   uid: string;
@@ -82,7 +83,8 @@ const RiskLevelIndicator: React.FC<RiskLevelIndicatorProps> = ({ uid }) => {
       justify="center"
       align="center"
     >
-      {checkRiskStatus()}
+      <Lead>Log more contact to see your Risk level.</Lead>
+      {/* {checkRiskStatus()} */}
 
       {/* <Slider size="lg" defaultValue={defaultValue}>
         <SliderTrack bg="red.100" />
@@ -92,7 +94,6 @@ const RiskLevelIndicator: React.FC<RiskLevelIndicatorProps> = ({ uid }) => {
 
       <Button
         onClick={() => navigate('/me/log')}
-        mt={4}
         variantColor="teal"
         type="button"
       >
