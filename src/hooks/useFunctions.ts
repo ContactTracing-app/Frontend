@@ -13,8 +13,12 @@ const useFunctions = () => {
     f = firebase.functions();
   }
   return {
+    sendTestSMS() {
+      const callable = f.httpsCallable('sms-testSMS');
+      return callable();
+    },
     sendNotifications(payload: SendNotificationsCallable) {
-      const callable = f.httpsCallable('email-sendNotifications');
+      const callable = f.httpsCallable('notify-sendNotifications');
       return callable(payload);
     }
   };

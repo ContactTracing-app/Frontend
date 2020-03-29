@@ -170,8 +170,9 @@ const ProfileForm: React.FC<ProfileFormProps> = (props) => {
       // check if contact person needs to be notified
       if (
         payload.UpdatePerson?.status === statusOptions[2].value ||
-        payload.UpdatePerson?.isInQuarantine
+        payload.UpdatePerson?.status === statusOptions[1].value
       ) {
+        // sendTestSMS();
         sendNotifications({ uid: profile?.uid });
         description = `${description} Your contact will be notified.`;
       }
