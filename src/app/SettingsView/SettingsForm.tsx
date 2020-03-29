@@ -61,14 +61,14 @@ const InnerForm: React.FC<InjectedFormikProps<
                   onChange={(e) => {
                     // check if sms deselected and sms is available, clear sms number
                     if (
-                      props.values.preferences.contact_via_phone &&
+                      props.values.preferences.contact_via_sms &&
                       props.values.smsNumber
                     ) {
                       setFieldValue('smsNumber', '');
                     }
                     setFieldValue(
-                      'preferences.contact_via_phone',
-                      !props.values.preferences?.contact_via_phone
+                      'preferences.contact_via_sms',
+                      !props.values.preferences?.contact_via_sms
                     );
                   }}
                 >
@@ -77,12 +77,10 @@ const InnerForm: React.FC<InjectedFormikProps<
                   </Checkbox>
 
                   <Checkbox
-                    defaultIsChecked={
-                      props.values.preferences?.contact_via_phone
-                    }
+                    defaultIsChecked={props.values.preferences?.contact_via_sms}
                   >
                     SMS
-                    {props.values.preferences?.contact_via_phone ? (
+                    {props.values.preferences?.contact_via_sms ? (
                       <Field name="smsNumber">
                         {({ field }) => (
                           <FormControl>
@@ -147,7 +145,7 @@ const WithFormik = withFormik<SettingsFormInnerProps, FormValues>({
     const { settingsChanged } = useAnalytics();
 
     //Check if notification preference is set to SMS and contact number is not null
-    if (values.preferences.contact_via_phone && !values.smsNumber) {
+    if (values.preferences.contact_via_sms && !values.smsNumber) {
       actions.props.toast({
         position: 'bottom-right',
         title: 'SMS Number is missing',
@@ -173,7 +171,7 @@ const WithFormik = withFormik<SettingsFormInnerProps, FormValues>({
         .doc(actions.props.uid)
         .update({
           smsNumber: values.smsNumber.length > 0 ? values.smsNumber : null,
-          'preferences.contact_via_phone': values.smsNumber.length > 0
+          'preferences.contact_via_sms': values.smsNumber.length > 0
         });
 
       actions.props.toast({
