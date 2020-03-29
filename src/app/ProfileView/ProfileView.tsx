@@ -23,6 +23,7 @@ import {
   useGetHealthStatusQuery
 } from '../../__generated/graphql';
 import useFunctions from '../../hooks/useFunctions';
+import useAnalytics, { Severity } from '../../hooks/useAnalytics';
 const statusOptions = require('./healthStatusOptions.json');
 
 interface FormValues {
@@ -142,6 +143,7 @@ const WithFormik = withFormik<ProfileFormInnerProps, FormValues>({
 // Wrap our form with the withFormik HoC
 const ProfileForm: React.FC<ProfileFormProps> = (props) => {
   const { sendNotifications } = useFunctions();
+  const { notificationSent } = useAnalytics();
   const { profile } = useAuth();
   const toast = useToast();
   const [me, loadingMe] = withPerson({
@@ -175,6 +177,11 @@ const ProfileForm: React.FC<ProfileFormProps> = (props) => {
         // sendTestSMS();
         sendNotifications({ uid: profile?.uid });
         description = `${description} Your contact will be notified.`;
+        notificationSent(
+          payload.UpdatePerson?.status === statusOptions[1].value
+            ? Severity.SHOWING_SYMPTOMS
+            : Severity.TEST_POSITIVE
+        );
       }
       toast({
         position: 'bottom-right',
@@ -183,7 +190,6 @@ const ProfileForm: React.FC<ProfileFormProps> = (props) => {
         status: 'success',
         isClosable: true
       });
-      // Analytics…
     }
   });
 
