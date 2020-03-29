@@ -22,6 +22,7 @@ import {
   UpdateHealthStatusMutationFn,
   useGetHealthStatusQuery
 } from '../../__generated/graphql';
+import useFunctions from '../../hooks/useFunctions';
 const statusOptions = require('./healthStatusOptions.json');
 
 interface FormValues {
@@ -140,6 +141,19 @@ const WithFormik = withFormik<ProfileFormInnerProps, FormValues>({
 
 // Wrap our form with the withFormik HoC
 const ProfileForm: React.FC<ProfileFormProps> = (props) => {
+  const { sendNotifications } = useFunctions();
+  const { profile } = useAuth();
+  const toast = useToast();
+  const [me, loadingMe] = withPerson({
+    uid: profile?.uid
+  });
+
+  const { data, loading: loadingHealthStatus } = useGetHealthStatusQuery({
+    variables: {
+      uid: me.uid
+    }
+  });
+
   const [updateHealthStatusMutation] = useUpdateHealthStatusMutation({
     onError(data) {
       toast({
@@ -150,39 +164,27 @@ const ProfileForm: React.FC<ProfileFormProps> = (props) => {
         isClosable: true
       });
     },
-    onCompleted(data) {
-      let description = 'Your status have been recorded.';
+    onCompleted(payload) {
+      let description = `Your status have been recorded.`;
 
       // check if contact person needs to be notified
       if (
-        data.UpdatePerson?.status === statusOptions[2].value ||
-        data.UpdatePerson?.isInQuarantine
+        payload.UpdatePerson?.status === statusOptions[2].value ||
+        payload.UpdatePerson?.isInQuarantine
       ) {
-        description = description + ' Your contact will be notified.';
+        sendNotifications({ uid: profile?.uid });
+        description = `${description} Your contact will be notified.`;
       }
       toast({
         position: 'bottom-right',
         title: 'Status Update Received',
-        description: description,
+        description,
         status: 'success',
         isClosable: true
       });
       // Analytics…
     }
   });
-  const { profile } = useAuth();
-  const toast = useToast();
-  const [me, loadingMe] = withPerson({
-    uid: profile?.uid
-  });
-
-  const { data, loading: loadingHealthStatus, error } = useGetHealthStatusQuery(
-    {
-      variables: {
-        uid: me.uid
-      }
-    }
-  );
 
   if (loadingMe || loadingHealthStatus) {
     return <Spinner />;
