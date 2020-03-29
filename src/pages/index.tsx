@@ -1,8 +1,19 @@
 import * as React from 'react';
-import { Heading, Box } from '@chakra-ui/core';
+import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
+import {
+  Heading,
+  Box,
+  Stack,
+  List,
+  ListItem,
+  Flex,
+  Avatar
+} from '@chakra-ui/core';
 import Layout from '../components/layout';
 import SEO from '../components/SEO';
-import { P, ResponsiveContainer } from '../components/elements';
+import { P, ResponsiveContainer, Lead } from '../components/elements';
+import michele from '../images/michele';
+import ponk from '../images/ponk';
 
 type PageProps = {};
 
@@ -17,7 +28,7 @@ const IndexPage: React.FunctionComponent<PageProps> = () => (
         left={0}
         width="100%"
         height="100%"
-        src="https://www.youtube-nocookie.com/embed/4jFT5qTVeYs"
+        src="https://www.youtube-nocookie.com/embed/Xid1f5F3ogI"
         frameborder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen
@@ -27,24 +38,136 @@ const IndexPage: React.FunctionComponent<PageProps> = () => (
     <Heading mt={12} fontSize="50px">
       Contact Tracing
     </Heading>
+    <Lead>Keep the ones you love informed if you fall ill.</Lead>
 
-    <Box p={5} my={12} shadow="sm" borderWidth="1px">
-      <Heading fontSize="xl">What is this?</Heading>
+    <Box maxWidth="40em">
+      <P>
+        In one click, Contact Tracing App notifies recent direct and indirect
+        contacts of users if they log that they show symptoms, or test positive,
+        so everyone can act appropriately and we can help limit the spread of
+        COVID-19.
+      </P>
+      <P>#KeepTracingCOVID19</P>
+      <Heading as="h2" mt={12} mb={4} size="xl">
+        How it works
+      </Heading>
+      <List styleType="disc">
+        <ListItem>
+          Create your account, using your email/social media account.
+        </ListItem>
+        <ListItem>
+          Share your profile link or your QR code with your family and friends
+          to connect with them.
+        </ListItem>
+        <ListItem>
+          Logging your contacts daily to keep your loved ones safe and get more
+          accurate data on your risk level.
+        </ListItem>
+        <ListItem>
+          Change your status to notify your loved ones (and their contacts).
+        </ListItem>
+      </List>
+      <Box p={[5, 10]} my={12} shadow="sm" borderWidth="1px">
+        <Heading as="h2" mb={4} size="xl">
+          Help us spread the word
+        </Heading>
+        <P>
+          The more users, connections, and logging we do, the better Contact
+          Tracing will be. Help us spread the word and build and grow.
+        </P>
+
+        <Stack mt={8} isInline>
+          <Box>
+            <a href="https://www.facebook.com/ContactTracingApp/">
+              {<FaFacebook />}
+            </a>
+          </Box>
+          <Box>
+            <a href="https://www.instagram.com/contacttracing.app/">
+              {<FaInstagram />}
+            </a>
+          </Box>
+          <Box>
+            <a href="https://twitter.com/ContactTracing_">{<FaTwitter />}</a>
+          </Box>
+        </Stack>
+      </Box>
+      <Heading as="h2" mt={12} mb={4} size="xl">
+        About the team
+      </Heading>
+      <Heading as="h3" mt={12} mb={4} size="md">
+        Background
+      </Heading>
       <P>
         In the light of COVID-19, Michele and I have been asking each other “how
         can we help?”, “what can we do to help?”, “How can we protect our loved
         ones?”
       </P>
       <P>
-        We decided to work on “Contact Tracing”. The concept is simple – if we
-        get infected, we want to be able to notify people, family and friends,
-        that we’ve seen in the past two weeks (or even past month), likewise. So
-        everyone can act appropriately, either get tested or stay isolated.
+        Hoping to keep people safe and limit the spread of COVID-19, we decided
+        to work on “Contact Tracing”. The concept is simple - if we get
+        infected, we want to be able to notify family, friends, and everyone
+        we’ve seen in the past two weeks (or even past month) as quickly as
+        possible, likewise. So everyone can act appropriately, either get tested
+        or stay isolated.
       </P>
       <P>
-        It all started in our 39sqm flat in London - our weekend hack (which
-        turns to be almost a month hack lol).
+        It all started in our 35sqm flat in London - our weekend hack (which has
+        already taken weekends and weekdays).
       </P>
+      <Heading as="h3" mt={12} mb={4} size="md">
+        Our aims
+      </Heading>
+      <List styleType="disc">
+        <ListItem>To protect our loved ones.</ListItem>
+        <ListItem>To help limit the spread of COVID-19.</ListItem>
+      </List>
+      <Heading as="h3" mt={12} mb={4} size="md">
+        Founding Members
+      </Heading>
+
+      <Stack spacing={2}>
+        <Box>
+          <Flex height={12} width="auto" alignItems="center">
+            <Avatar name="Ponk Memoli" src={ponk} />
+            <Box
+              ml="2"
+              mt="1"
+              fontWeight="semibold"
+              as="h4"
+              lineHeight="tight"
+              isTruncated
+            >
+              Ponk Memoli
+            </Box>
+          </Flex>
+        </Box>
+        <Box>
+          <Flex height={12} width="auto" alignItems="center">
+            <Avatar name="Michele Memoli" src={michele} />
+            <Box
+              ml="2"
+              mt="1"
+              fontWeight="semibold"
+              as="h4"
+              lineHeight="tight"
+              isTruncated
+            >
+              Michele Memoli
+            </Box>
+          </Flex>
+        </Box>
+      </Stack>
+
+      <Heading as="h4" mt={12} mb={4} size="sm">
+        Contributors
+      </Heading>
+      <List styleType="disc">
+        <ListItem>Kumar Rangasamy</ListItem>
+        <ListItem>Yogen (Fira Cloud Tech)</ListItem>
+        <ListItem>Juntima Nawilaijaroen</ListItem>
+        <ListItem>Max Sarasri</ListItem>
+      </List>
     </Box>
   </Layout>
 );
