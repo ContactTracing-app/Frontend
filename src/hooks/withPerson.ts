@@ -5,8 +5,6 @@ export interface Person {
   uid: string;
   displayName?: string;
   photoURL?: string;
-  preferences?: {};
-  smsNumber?: string;
 }
 
 interface WithPerson {
@@ -20,18 +18,11 @@ const withPerson = ({ uid }: WithPerson) => {
   const displayName =
     value && value.displayName ? value.displayName : 'Anonymous';
   const photoURL = value && value.photoURL ? value.photoURL : undefined;
-  const preferences =
-    value && value.preferences
-      ? value.preferences
-      : { contact_via_email: true, contact_via_sms: false };
-  const smsNumber = value && value.smsNumber ? value.smsNumber : '';
 
   const person: Person = {
     uid,
     displayName,
-    photoURL,
-    preferences,
-    smsNumber
+    photoURL
   };
   return [person, loading, error];
 };
