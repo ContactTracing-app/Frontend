@@ -1,0 +1,11 @@
+mutation updateHealthStatus(
+  $uid: ID!
+  $status: HealthStatus!
+  $isInQuarantine: Boolean!
+) {
+  UpdatePerson(uid: $uid, status: $status, isInQuarantine: $isInQuarantine) {
+    uid
+    status
+    isInQuarantine
+  }
+}

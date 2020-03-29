@@ -203,8 +203,6 @@ const SettingsForm: React.FC<SettingsFormProps> = (props) => {
     uid: profile?.uid
   });
 
-  console.log(me);
-
   if (loadingMe) {
     return <Spinner />;
   }
