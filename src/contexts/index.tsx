@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { UserStore, PersonStore } from '../stores';
+import { UserStore, PersonStore, LocationStore } from '../stores';
 
 export const storesContext = React.createContext({
   userStore: new UserStore(),
-  personStore: new PersonStore()
+  personStore: new PersonStore(),
+  locationStore: new LocationStore()
 });
