@@ -15,20 +15,21 @@ const SocialLogins: React.FC<{
   const { socialLogins } = useFirebaseConfig();
   const enableGoogle = socialLogins.includes('google');
   const enableFacebook = socialLogins.includes('facebook');
+  const [isLoading, setLoading] = React.useState<boolean>(false);
 
   return (
     <Stack>
       {enableGoogle && (
         <Box>
           <Button
+            isLoading={isLoading}
             leftIcon={FaGoogle}
             onClick={async () => {
               try {
-                const user = await auth.signInWithRedirect(googleProvider());
-                onSuccess(user);
+                setLoading(true);
+                auth.signInWithRedirect(googleProvider());
               } catch (err) {
                 console.error('Authentication Error: ', err);
-                onError(err);
               }
             }}
           >
@@ -39,14 +40,14 @@ const SocialLogins: React.FC<{
       {enableFacebook && (
         <Box>
           <Button
+            isLoading={isLoading}
             leftIcon={FaFacebook}
             onClick={async () => {
               try {
-                const user = await auth.signInWithRedirect(facebookProvider());
-                onSuccess(user);
+                setLoading(true);
+                auth.signInWithRedirect(facebookProvider());
               } catch (err) {
                 console.error('Authentication Error: ', err);
-                onError(err);
               }
             }}
           >

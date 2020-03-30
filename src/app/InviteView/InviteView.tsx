@@ -5,7 +5,6 @@ import {
   Button,
   useToast,
   AvatarGroup,
-  Text,
   Heading,
   List,
   ListItem
@@ -36,7 +35,10 @@ const InviteView: React.FC<RouteComponentProps> = () => {
   const [value, loading] = useObjectVal<Profile>(
     firebase.database().ref(`profiles/${uid}`)
   );
-  const [createKnowsMutation] = useCreateKnowsMutation({
+  const [
+    createKnowsMutation,
+    { loading: isLoadingConnection }
+  ] = useCreateKnowsMutation({
     onCompleted() {
       connectionMade();
       toast({
@@ -70,16 +72,13 @@ const InviteView: React.FC<RouteComponentProps> = () => {
       </AvatarGroup>
       {shouldShowConnectButton && (
         <Button
+          isLoading={isLoadingConnection}
           width="200px"
           mb={16}
           variantColor="teal"
           onClick={() => {
             if (!profile) {
-              navigate('/me/sign-in', {
-                state: {
-                  next_url: location.pathname
-                }
-              });
+              navigate(`/me/sign-in?next=${location.pathname}`);
               return;
             }
 
