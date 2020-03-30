@@ -1,11 +1,24 @@
 import * as React from 'react';
 import useAuth from '../../hooks/useAuth';
 import { useStores } from '../../hooks/useStore';
+import { navigate } from 'gatsby';
 
 const UserProvider: React.FC = ({ children }) => {
-  const { userStore } = useStores();
+  const { userStore, locationStore } = useStores();
   const auth = useAuth();
   React.useEffect(() => {
+    auth.getRedirectResult().then(
+      (result) => {
+        if (locationStore.next) {
+          const next = locationStore.next;
+          navigate(next);
+        }
+      },
+      (error) => {
+        debugger;
+      }
+    );
+
     const listener = auth.onAuthStateChanged((authUser) => {
       userStore.setAuthUser(authUser);
       auth.currentUser?.getIdToken().then((token) => {

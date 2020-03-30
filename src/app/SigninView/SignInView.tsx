@@ -1,12 +1,22 @@
 import * as React from 'react';
 import { Form, FormState } from 'gatsby-theme-firebase';
 import { RouteComponentProps, useLocation } from '@reach/router';
-
-import { navigate } from 'gatsby';
+import * as queryString from 'query-string';
 import PageHeader from '../../components/PageHeader';
+import { useStores } from '../../hooks/useStore';
 
 const LoginView: React.FC<RouteComponentProps> = () => {
-  const { state } = useLocation();
+  const { search } = useLocation();
+  const { locationStore } = useStores();
+
+  const queryParams = queryString.parse(search);
+
+  if (queryParams.next) {
+    locationStore.setNext(queryParams.next);
+  } else {
+    locationStore.setNext('/me');
+  }
+
   return (
     <>
       <PageHeader
@@ -14,20 +24,7 @@ const LoginView: React.FC<RouteComponentProps> = () => {
         lead="Let's get you signed-in to your free account."
       />
       <FormState.Provider>
-        <Form
-          onLoginSuccess={async () => {
-            if (state && state.next_url) {
-              navigate(state.next_url);
-            } else {
-              navigate('/me');
-            }
-          }}
-          onSignUpSuccess={() => {
-            // saveUserToDatabase(user).then(() => {
-            //   navigate('/welcome');
-            // });
-          }}
-        />
+        <Form />
       </FormState.Provider>
     </>
   );
