@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Flex, Box, Text, Link } from '@chakra-ui/core';
+import { Link as IntlLink, FormattedMessage } from 'gatsby-plugin-intl';
 import { Global } from '@emotion/core';
 import { useStaticQuery, graphql } from 'gatsby';
 
@@ -24,19 +25,15 @@ export const Footer: React.FC = () => {
   const {
     site: {
       buildTime,
-      siteMetadata: { 
-        privacyLink,
-        termsOfServiceLink,
-        cookiePolicyLink
-      }
+      siteMetadata: { privacyLink, termsOfServiceLink, cookiePolicyLink }
     }
   } = useStaticQuery<FooterQuery>(graphql`
     query FootQuery {
       site {
         buildTime(formatString: "ddd, DD-MM-YYYY HH:mm")
         siteMetadata {
-          privacyLink,
-          termsOfServiceLink,
+          privacyLink
+          termsOfServiceLink
           cookiePolicyLink
         }
       }
@@ -45,15 +42,26 @@ export const Footer: React.FC = () => {
   return (
     <Box as="footer" mt="10em">
       <Text fontSize="xs" as="p">
-        <Link href={privacyLink} marginRight=".5em">Privacy Policy</Link>
-        <Link href={termsOfServiceLink} marginRight=".5em">Terms of Service</Link> 
-        <Link href={cookiePolicyLink}>Cookie Policy</Link>
+        <Link as={IntlLink} to={privacyLink} marginRight=".5em">
+          <FormattedMessage id="Footer.Privacy Policy" />
+        </Link>
+        <Link as={IntlLink} to={termsOfServiceLink} marginRight=".5em">
+          <FormattedMessage id="Footer.Terms of Service" />
+        </Link>
+        <Link as={IntlLink} to={cookiePolicyLink}>
+          <FormattedMessage id="Footer.Cookie Policy" />
+        </Link>
       </Text>
       <Text fontSize="xs" as="p">
-        &copy; All Rights Reserved.{' '}
+        <FormattedMessage id="Footer.rights" />{' '}
       </Text>
       <Text fontSize="xs" as="p">
-        Made with <span role="img">🙏</span> at home on {buildTime}.
+        <FormattedMessage
+          id="Footer.cute"
+          values={{
+            buildTime
+          }}
+        />
       </Text>
     </Box>
   );

@@ -1,16 +1,14 @@
 {
-  "title": "Gatsby 한국어",
-  "description": "이 default-starter-intl 패키지를 사용하여 Gatsby 프로젝트를 시작하십시오. 이 베어 본 스타터는 필요한 Gatsby 주요 구성 파일을 제공합니다.",
-  "foo": "สวัสดีponk",
-  "haha": "5555",
-  "ProfileView.heading": "Your Risk Level TH",
-  "PrimaryNav.About": "About TH",
-  "PrimaryNav.Donate": "Donate TH",
-  "PrimaryNav.Press": "Press TH",
-  "PrimaryNav.Log Contact": "Log Contact TH",
-  "PrimaryNav.Contacts": "Contacts TH",
-  "PrimaryNav.Share": "Share TH",
-  "PrimaryNav.Settings": "Settings TH",
+  "ContactsView.forgot button": "Log Contact TH",
+  "LogContact.keep-up": "สู้ๆนะ 💅",
   "LogView.heading": "Log Contact TH",
-  "LogContact.keep-up": "สู้ๆนะ 💅"
+  "PrimaryNav.About": "About TH",
+  "PrimaryNav.Contacts": "Contacts TH",
+  "PrimaryNav.Donate": "Donate TH",
+  "PrimaryNav.Log Contact": "Log Contact TH",
+  "PrimaryNav.Log out": "Log out TH",
+  "PrimaryNav.Press": "Press TH",
+  "PrimaryNav.Settings": "Settings TH",
+  "PrimaryNav.Share": "Share TH",
+  "ProfileView.heading": "Your Risk Level TH"
 }

@@ -4,7 +4,8 @@ import { Button } from '@chakra-ui/core';
 
 const languageName = {
   en: '🇬🇧 English',
-  th: '🇹🇭 ไทย'
+  th: '🇹🇭 ไทย',
+  it: '🇮🇹 Italiano'
 };
 
 const LanguageSwitcher: React.FC = () => {
