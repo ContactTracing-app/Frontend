@@ -2,6 +2,7 @@ import * as React from 'react';
 import DatePicker from 'react-date-picker';
 import { useAuth } from 'gatsby-theme-firebase';
 import * as Yup from 'yup';
+import { useIntl } from 'gatsby-plugin-intl';
 import { withFormik, InjectedFormikProps, Form, Field } from 'formik';
 import {
   Box,
@@ -183,12 +184,13 @@ const WithFormik = withFormik<LogContactFormInnerProps, FormValues>({
 // Wrap our form with the withFormik HoC
 const LogContactForm: React.FC<LogContactFormProps> = (props) => {
   const toast = useToast();
+  const intl = useIntl();
   const [logContactMutation] = useLogContactMutation({
     onCompleted() {
       toast({
         position: 'bottom-right',
         title: 'Contact Logged',
-        description: 'Keep up the good work 💅',
+        description: intl.formatMessage({ id: 'LogContact.keep-up' }),
         status: 'success',
         isClosable: true
       });
