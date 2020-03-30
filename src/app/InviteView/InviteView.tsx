@@ -43,7 +43,9 @@ const InviteView: React.FC<RouteComponentProps> = () => {
       toast({
         position: 'bottom-right',
         title: 'Connected',
-        description: `You can now log contact with ${value.displayName} 😎`,
+        description: t(
+          `InviteView:You can now log contact with ${value.displayName} 😎`
+        ),
         status: 'success',
         isClosable: true
       });
@@ -54,14 +56,15 @@ const InviteView: React.FC<RouteComponentProps> = () => {
     return <Spinner />;
   }
 
-  const displayName = value && value.displayName ? value.displayName : 'user';
+  const displayName =
+    value && value.displayName ? value.displayName : t('InviteView:user');
   const photoURL = value && value.photoURL ? value.photoURL : null;
   const shouldShowConnectButton = profile?.uid !== uid;
 
   return (
     <>
       <PageHeader
-        heading="You’re invited!"
+        heading={t("You're invited!")}
         lead={`${displayName} invites you to join Contact Tracing.`}
       />
 
@@ -96,7 +99,7 @@ const InviteView: React.FC<RouteComponentProps> = () => {
         </Button>
       )}
       <Heading as="h3" mb={2} size="lg">
-        {t('whyHeading')}
+        {t('Why use Contact Tracing App?')}
       </Heading>
       <List styleType="disc">
         <ListItem>Protect people you love</ListItem>
