@@ -21,7 +21,9 @@ module.exports = {
     author: config.author,
     twitter: config.userTwitter,
     facebook: config.ogSiteName,
-    termsLink: config.termsLink
+    privacyLink: config.privacyLink,
+    termsOfServiceLink: config.termsOfServiceLink,
+    cookiePolicyLink: config.cookiePolicyLink
   },
   plugins: [
     'gatsby-plugin-react-helmet',
