@@ -2,7 +2,7 @@ import * as React from 'react';
 import DatePicker from 'react-date-picker';
 import { useAuth } from 'gatsby-theme-firebase';
 import * as Yup from 'yup';
-import { useIntl } from 'gatsby-plugin-intl';
+import { useIntl, FormattedMessage } from 'gatsby-plugin-intl';
 import { withFormik, InjectedFormikProps, Form, Field } from 'formik';
 import {
   Box,
@@ -72,7 +72,9 @@ const InnerForm: React.FC<InjectedFormikProps<
               <FormControl
                 isInvalid={errors[field.name] && touched[field.name]}
               >
-                <FormLabel htmlFor={field.name}>Entry Date</FormLabel>
+                <FormLabel htmlFor={field.name}>
+                  <FormattedMessage id="LogForm.Entry Date" />
+                </FormLabel>
                 <Box>
                   <DatePicker
                     minDate={new Date('2019-11-01')}
@@ -94,7 +96,9 @@ const InnerForm: React.FC<InjectedFormikProps<
               <FormControl
                 isInvalid={errors[field.name] && touched[field.name]}
               >
-                <FormLabel htmlFor={field.name}>Who did you meet?</FormLabel>
+                <FormLabel htmlFor={field.name}>
+                  <FormattedMessage id="LogForm.Who did you meet?" />
+                </FormLabel>
                 <Select
                   getOptionLabel={(o: ContactWith) => o.displayName}
                   getOptionValue={(o: ContactWith) => o.uid}

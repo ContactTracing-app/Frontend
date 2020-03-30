@@ -9,7 +9,7 @@ const LogView = () => {
     <>
       <PageHeader
         heading={intl.formatMessage({ id: 'LogView.heading' })}
-        lead="Send this link to your friends & family to connect."
+        lead={intl.formatMessage({ id: 'LogView.lead' })}
       />
       <LogContactForm />
     </>
