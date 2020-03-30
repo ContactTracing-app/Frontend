@@ -28,6 +28,15 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-typescript',
+    {
+      resolve: `gatsby-plugin-intl`,
+      options: {
+        path: `${__dirname}/src/intl`,
+        languages: [`en`, `th`],
+        defaultLanguage: `en`,
+        redirect: true
+      }
+    },
     'gatsby-transformer-yaml',
     {
       resolve: 'gatsby-source-filesystem',

@@ -13,8 +13,8 @@ import {
   Select,
   Switch
 } from '@chakra-ui/core';
+import { useIntl } from 'gatsby-plugin-intl';
 import withPerson from '../../hooks/withPerson';
-
 import PageHeader from '../../components/PageHeader';
 import RiskLevelIndicator from '../../components/RiskLevelIndicator';
 import {
@@ -35,12 +35,13 @@ interface FormValues {
 const InnerForm: React.FC<InjectedFormikProps<ProfileFormProps, FormValues>> = (
   props
 ) => {
+  const intl = useIntl();
   const { setFieldValue, isValid, dirty } = props;
 
   return (
     <Form>
       <PageHeader
-        heading="Your Risk Level"
+        heading={intl.formatMessage({ id: 'ProfileView.heading' })}
         lead="Connect with more friends and log contacts daily to get more accurate data."
       />
 

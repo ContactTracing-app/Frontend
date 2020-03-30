@@ -4,6 +4,7 @@ import { Footer, Main, GlobalStyles, Content } from './elements';
 import SideNav from './SideNav';
 import CookieConsent from './CookieConsent';
 import theme from '../../config/theme';
+import LanguageSwitch from './LanguageSwitcher';
 
 type LayoutProps = {};
 
@@ -16,6 +17,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => (
         <SideNav />
         <Divider mx="0" orientation="vertical" />
         <Main>
+          <LanguageSwitch />
           <Content>{children}</Content>
           <Footer />
         </Main>

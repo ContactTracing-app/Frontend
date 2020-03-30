@@ -26,13 +26,17 @@ const wrapper = (promise) =>
     return result;
   });
 
+const re = /^\/(\w+)\/me/;
+
 exports.onCreatePage = async ({ page, actions }) => {
   const { createPage } = actions;
+
+  const match = re.exec(page.path);
   // Only update the `/app` page.
-  if (page.path.match(/^\/me/)) {
+  if (match) {
     // page.matchPath is a special key that's used for matching pages
     // with corresponding routes only on the client.
-    page.matchPath = '/me/*';
+    page.matchPath = `${match[0]}/*`;
     // Update the page.
     createPage(page);
   }

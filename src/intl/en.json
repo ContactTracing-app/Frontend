@@ -1,0 +1,10 @@
+{
+  "title": "Gatsby English",
+  "description": "Kick off your next, great Gatsby project with this default-starter-intl. This barebones starter ships with the main Gatsby configuration files you might need.",
+  "foo": "Hello Ponk!",
+  "haha": "laughing",
+  "ProfileView.heading": "Risk Level",
+  "PrimaryNav.About": "About",
+  "PrimaryNav.Donate": "Donate",
+  "PrimaryNav.Press": "Donate"
+}
