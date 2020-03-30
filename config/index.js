@@ -20,5 +20,7 @@ module.exports = {
   // Manifest and Progress color
   themeColor: '#FF550D',
   backgroundColor: '#3b3c4f',
-  termsLink: 'https://getterms.io/g/2VbOrhD'
+  privacyLink: '/privacy-policy',
+  termsOfServiceLink: '/terms-of-service',
+  cookiePolicyLink: '/cookie-policy'
 };

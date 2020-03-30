@@ -13,7 +13,9 @@ interface FooterQuery {
   site: {
     buildTime: string;
     siteMetadata: {
-      termsLink: string;
+      privacyLink: string;
+      termsOfServiceLink: string;
+      cookiePolicyLink: string;
     };
   };
 }
@@ -22,21 +24,31 @@ export const Footer: React.FC = () => {
   const {
     site: {
       buildTime,
-      siteMetadata: { termsLink }
+      siteMetadata: { 
+        privacyLink,
+        termsOfServiceLink,
+        cookiePolicyLink
+      }
     }
   } = useStaticQuery<FooterQuery>(graphql`
     query FootQuery {
       site {
         buildTime(formatString: "ddd, DD-MM-YYYY HH:mm")
         siteMetadata {
-          termsLink
+          privacyLink,
+          termsOfServiceLink,
+          cookiePolicyLink
         }
       }
     }
   `);
   return (
     <Box as="footer" mt="10em">
-      <Link href={termsLink}>Terms &amp; Conditions</Link>
+      <Text fontSize="xs" as="p">
+        <Link href={privacyLink} marginRight=".5em">Privacy Policy</Link>
+        <Link href={termsOfServiceLink} marginRight=".5em">Terms of Service</Link> 
+        <Link href={cookiePolicyLink}>Cookie Policy</Link>
+      </Text>
       <Text fontSize="xs" as="p">
         &copy; All Rights Reserved.{' '}
       </Text>
