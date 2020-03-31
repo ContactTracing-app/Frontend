@@ -13,7 +13,7 @@ import {
   Select,
   Switch
 } from '@chakra-ui/core';
-import { useIntl } from 'gatsby-plugin-intl';
+import { useIntl, FormattedMessage } from 'gatsby-plugin-intl';
 import withPerson from '../../hooks/withPerson';
 import PageHeader from '../../components/PageHeader';
 import RiskLevelIndicator from '../../components/RiskLevelIndicator';
@@ -24,7 +24,6 @@ import {
 } from '../../__generated/graphql';
 import useFunctions from '../../hooks/useFunctions';
 import useAnalytics, { Severity } from '../../hooks/useAnalytics';
-const statusOptions = require('./healthStatusOptions.json');
 
 interface FormValues {
   healthStatus: string;
@@ -42,24 +41,30 @@ const InnerForm: React.FC<InjectedFormikProps<ProfileFormProps, FormValues>> = (
     <Form>
       <PageHeader
         heading={intl.formatMessage({ id: 'ProfileView.heading' })}
-        lead="Connect with more friends and log contacts daily to get more accurate data."
+        lead={intl.formatMessage({ id: 'ProfileView.lead' })}
       />
 
       <RiskLevelIndicator uid="abc" />
 
       <Box>
         <PageHeader
-          heading="Health Status"
-          lead="Keep your contacts informed of your currrent status."
+          heading={intl.formatMessage({
+            id: 'ProfileView.healthStatus.heading'
+          })}
+          lead={intl.formatMessage({ id: 'ProfileView.healthStatus.lead' })}
         />
       </Box>
       <Stack spacing={6}>
-        <FormControl>
-          <FormLabel>My Status :</FormLabel>
-          <Field name="healthStatus">
-            {(field) => (
+        <Field name="healthStatus">
+          {(field) => (
+            <FormControl>
+              <FormLabel>
+                {intl.formatMessage({ id: 'ProfileView.healthStatus.label' })}
+              </FormLabel>
               <Select
-                placeholder="Select Option"
+                placeholder={intl.formatMessage({
+                  id: 'ProfileView.select option'
+                })}
                 defaultValue={props.values.healthStatus}
                 onChange={(e) => {
                   //check if status has changed
@@ -67,22 +72,24 @@ const InnerForm: React.FC<InjectedFormikProps<ProfileFormProps, FormValues>> = (
                   setFieldValue('healthStatus', e.currentTarget.value);
                 }}
               >
-                {statusOptions &&
-                  statusOptions.map((status: any) => {
-                    return (
-                      <option key={status.label} value={status.value}>
-                        {status.label}
-                      </option>
-                    );
-                  })}
+                <option value="TOTALLY_FINE">
+                  <FormattedMessage id="ProfileView.fine" />
+                </option>
+                <option value="SHOWING_SYMPTOMS">
+                  <FormattedMessage id="ProfileView.symptoms" />
+                </option>
+                <option value="TESTED_POSITIVE">
+                  <FormattedMessage id="ProfileView.positive" />
+                </option>
               </Select>
-            )}
-          </Field>
-        </FormControl>
+            </FormControl>
+          )}
+        </Field>
+
         {/* Switch for users's quarantine status */}
-        <FormControl>
-          <Field name="inQuarantine">
-            {(field) => (
+        <Field name="inQuarantine">
+          {(field) => (
+            <FormControl>
               <Switch
                 color="orange"
                 defaultIsChecked={props.values.inQuarantine}
@@ -91,11 +98,13 @@ const InnerForm: React.FC<InjectedFormikProps<ProfileFormProps, FormValues>> = (
                   setFieldValue('inQuarantine', !props.values.inQuarantine);
                 }}
               ></Switch>
-            )}
-          </Field>
+              <FormLabel mx={2}>
+                <FormattedMessage id="ProfileView.inQuarantine" />
+              </FormLabel>
+            </FormControl>
+          )}
+        </Field>
 
-          <FormLabel mx={2}>In Quarantine</FormLabel>
-        </FormControl>
         <Box>
           <Button
             isDisabled={
@@ -105,7 +114,7 @@ const InnerForm: React.FC<InjectedFormikProps<ProfileFormProps, FormValues>> = (
             variantColor="teal"
             type="submit"
           >
-            Notify
+            <FormattedMessage id="ProfileView.notify" />
           </Button>
         </Box>
       </Stack>
@@ -143,6 +152,7 @@ const WithFormik = withFormik<ProfileFormInnerProps, FormValues>({
 
 // Wrap our form with the withFormik HoC
 const ProfileForm: React.FC<ProfileFormProps> = (props) => {
+  const intl = useIntl();
   const { sendNotifications } = useFunctions();
   const { notificationSent } = useAnalytics();
   const { profile } = useAuth();
@@ -161,14 +171,14 @@ const ProfileForm: React.FC<ProfileFormProps> = (props) => {
     onError(data) {
       toast({
         position: 'bottom-right',
-        title: 'Whoops!',
+        title: intl.formatMessage({ id: 'ProfileView.whoops' }),
         description: data.message,
         status: 'error',
         isClosable: true
       });
     },
     onCompleted(payload) {
-      let description = `Your status have been recorded.`;
+      let description = intl.formatMessage({ id: 'ProfileView.recorded' });
 
       // check if contact person needs to be notified
       if (
@@ -177,7 +187,9 @@ const ProfileForm: React.FC<ProfileFormProps> = (props) => {
       ) {
         // sendTestSMS();
         sendNotifications({ uid: profile?.uid });
-        description = `${description} Your contact will be notified.`;
+        description = `${description} ${intl.formatMessage({
+          id: 'ProfileView.recorded2'
+        })}`;
         notificationSent(
           payload.UpdatePerson?.status === statusOptions[1].value
             ? Severity.SHOWING_SYMPTOMS
@@ -186,7 +198,7 @@ const ProfileForm: React.FC<ProfileFormProps> = (props) => {
       }
       toast({
         position: 'bottom-right',
-        title: 'Status Update Received',
+        title: intl.formatMessage({ id: 'ProfileView.success' }),
         description,
         status: 'success',
         isClosable: true
@@ -211,8 +223,5 @@ const ProfileForm: React.FC<ProfileFormProps> = (props) => {
     </>
   );
 };
-
-// HEY! From Michele
-//
 
 export default ProfileForm;

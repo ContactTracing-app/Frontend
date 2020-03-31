@@ -17,7 +17,7 @@ import {
   Stack
 } from '@chakra-ui/core';
 import { MdToday } from 'react-icons/md';
-import { Link as GatsbyLink } from 'gatsby';
+import { Link as IntlLink } from 'gatsby-plugin-intl';
 import Select, { Option } from 'react-select';
 import useAnalytics from '../../hooks/useAnalytics';
 import withPerson from '../../hooks/withPerson';
@@ -111,11 +111,21 @@ const InnerForm: React.FC<InjectedFormikProps<
                   }}
                 />
                 <FormHelperText>
-                  Can't find who you're looking for? Send them your{' '}
-                  <Link color="brand.orange" to="/me/share/" as={GatsbyLink}>
-                    Invite link
-                  </Link>
-                  .
+                  <FormattedMessage
+                    id="LogForm.cant-find"
+                    values={{
+                      // eslint-disable-next-line react/display-name
+                      a: (...chunks) => (
+                        <Link
+                          color="brand.orange"
+                          to="/me/share/"
+                          as={IntlLink}
+                        >
+                          {chunks}
+                        </Link>
+                      )
+                    }}
+                  />
                 </FormHelperText>
                 <FormErrorMessage>{errors.entryDate}</FormErrorMessage>
               </FormControl>
@@ -130,7 +140,7 @@ const InnerForm: React.FC<InjectedFormikProps<
             isLoading={isSubmitting}
             type="submit"
           >
-            Save
+            <FormattedMessage id="LogForm.Save" />
           </Button>
         </Box>
       </Stack>
@@ -159,8 +169,8 @@ const WithFormik = withFormik<LogContactFormInnerProps, FormValues>({
   // Add a custom validation function (this can be async too!)
   validationSchema: Yup.object({
     contactWith: Yup.array()
-      .min(1, 'You must have met at least one person')
-      .required('Required')
+      .min(1, <FormattedMessage id="LogForm.error-1" />)
+      .required(<FormattedMessage id="LogForm.error-2" />)
   }),
 
   handleSubmit: async (values, actions) =>
