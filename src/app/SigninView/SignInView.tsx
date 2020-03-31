@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useIntl } from 'gatsby-plugin-intl';
 import { Form, FormState } from 'gatsby-theme-firebase';
 import { RouteComponentProps, useLocation } from '@reach/router';
 import * as queryString from 'query-string';
@@ -8,6 +9,7 @@ import { useStores } from '../../hooks/useStore';
 const LoginView: React.FC<RouteComponentProps> = () => {
   const { search } = useLocation();
   const { locationStore } = useStores();
+  const intl = useIntl();
 
   const queryParams = queryString.parse(search);
 
@@ -20,8 +22,8 @@ const LoginView: React.FC<RouteComponentProps> = () => {
   return (
     <>
       <PageHeader
-        heading="Sign in"
-        lead="Let's get you signed-in to your free account."
+        heading={intl.formatMessage({ id: 'SigninView.heading' })}
+        lead={intl.formatMessage({ id: 'SigninView.lead' })}
       />
       <FormState.Provider>
         <Form />
