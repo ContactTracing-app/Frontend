@@ -171,6 +171,7 @@ const IndexPage: React.FunctionComponent<PageProps> = () => (
         <ListItem>Juntima Nawilaijaroen</ListItem>
         <ListItem>Max Sarasri</ListItem>
         <ListItem>Vero Rebagliatte</ListItem>
+        <ListItem>Phark Lertchanyakul</ListItem>
       </List>
 
       <Heading as="h4" mt={12} mb={4} size="sm">
