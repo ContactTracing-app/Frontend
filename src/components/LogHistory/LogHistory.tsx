@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useAuth } from 'gatsby-theme-firebase';
+import { useIntl } from 'gatsby-plugin-intl';
 import { Accordion, Spinner, useToast } from '@chakra-ui/core';
 import LogEntryAccordionItem from './LogEntryAccordionItem';
 import {
@@ -14,6 +15,7 @@ import useAnalytics from '../../hooks/useAnalytics';
 const LogHistory: React.FC = () => {
   const { contactUnlogged } = useAnalytics();
   const toast = useToast();
+  const intl = useIntl();
   const { profile, isLoading: isLoadingProfile } = useAuth();
   const { personStore } = useStores();
   const [
@@ -38,7 +40,7 @@ const LogHistory: React.FC = () => {
     onCompleted() {
       toast({
         position: 'bottom-right',
-        title: 'Removed entry',
+        title: intl.formatMessage({ id: 'LogHistory.msg' }),
         status: 'success',
         isClosable: true
       });
