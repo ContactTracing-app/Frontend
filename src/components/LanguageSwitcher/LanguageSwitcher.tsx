@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IntlContextConsumer, changeLocale } from 'gatsby-plugin-intl';
-import { Button } from '@chakra-ui/core';
+import { Select, Box } from '@chakra-ui/core';
 
 const languageName = {
   en: '🇬🇧 English',
@@ -14,26 +14,29 @@ const languageName = {
 
 const LanguageSwitcher: React.FC = () => {
   return (
-    <IntlContextConsumer>
-      {({
-        languages,
-        language: currentLocale
-      }: {
-        languages: string[];
-        currentLocale: string;
-      }) =>
-        languages.map((code: string) => (
-          <Button
-            isDisabled={code === currentLocale}
+    <Box width="4em">
+      <IntlContextConsumer>
+        {({
+          languages,
+          language: currentLocale
+        }: {
+          languages: string[];
+          currentLocale: string;
+        }) => (
+          <Select
+            onChange={({ currentTarget }) => changeLocale(currentTarget.value)}
             size="sm"
-            key={code}
-            onClick={() => changeLocale(code)}
+            placeholder={languageName[currentLocale]}
           >
-            {languageName[code]}
-          </Button>
-        ))
-      }
-    </IntlContextConsumer>
+            {languages.map((code: string) => (
+              <option key={code} value={code}>
+                {languageName[code]}
+              </option>
+            ))}
+          </Select>
+        )}
+      </IntlContextConsumer>
+    </Box>
   );
 };
 
