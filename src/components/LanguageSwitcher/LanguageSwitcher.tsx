@@ -14,7 +14,7 @@ const languageName = {
 
 const LanguageSwitcher: React.FC = () => {
   return (
-    <Box width="4em">
+    <Box width="4em" alignSelf="flex-end">
       <IntlContextConsumer>
         {({
           languages,
