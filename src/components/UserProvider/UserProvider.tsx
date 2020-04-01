@@ -1,7 +1,7 @@
 import * as React from 'react';
+import { navigate } from 'gatsby';
 import useAuth from '../../hooks/useAuth';
 import { useStores } from '../../hooks/useStore';
-import { navigate } from 'gatsby';
 
 const UserProvider: React.FC = ({ children }) => {
   const { userStore, locationStore } = useStores();
