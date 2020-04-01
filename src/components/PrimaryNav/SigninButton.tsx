@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Flex, Heading, Box, Button } from '@chakra-ui/core';
-import { navigate } from 'gatsby';
+import { navigate, FormattedMessage } from 'gatsby-plugin-intl';
 import { NavButtonProps } from './NavButton';
 
 type SigninButtonProps = Omit<NavButtonProps, 'Icon' | 'to' | 'label'>;
@@ -14,7 +14,7 @@ const SigninButton: React.FC<SigninButtonProps> = ({ Icon }) => (
     >
       <Box as={Icon} size="1.4em" mr={[0, 5]} />
       <Heading display={['none', 'inline-block']} as="span" size="sm">
-        Sign in
+        <FormattedMessage id="PrimaryNav.Sign in" />
       </Heading>
     </Button>
   </Flex>

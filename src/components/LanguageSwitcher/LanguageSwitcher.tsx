@@ -6,7 +6,10 @@ const languageName = {
   en: '🇬🇧 English',
   th: '🇹🇭 ไทย',
   it: '🇮🇹 Italiano',
-  es: '🇪🇸 Español'
+  es: '🇪🇸 Español',
+  el: '🇬🇷 Ελληνικά',
+  'zh-Hans': '🇨🇳 简体中文',
+  'zh-Hant': '🇨🇳 中文維基百科'
 };
 
 const LanguageSwitcher: React.FC = () => {
