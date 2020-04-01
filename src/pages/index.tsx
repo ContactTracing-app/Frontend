@@ -70,6 +70,16 @@ const IndexPage: React.FunctionComponent<PageProps> = () => (
         </ListItem>
         <ListItem>Your risk level - based on contacts around you.</ListItem>
       </List>
+      <Heading as="h2" mt={12} mb={4} size="xl">
+        What's next for "Contact Tracing"
+      </Heading>
+      <List styleType="disc">
+        <ListItem>Location Logging - Checkin.</ListItem>
+        <ListItem>Users’ Risk Levels.</ListItem>
+        <ListItem>i18n</ListItem>
+        <ListItem>UX/UI Improvements.</ListItem>
+        <ListItem>UNative Mobile App.</ListItem>
+      </List>
       <Box p={[5, 10]} my={12} shadow="sm" borderWidth="1px">
         <Heading as="h2" mb={4} size="xl">
           Help us spread the word
