@@ -172,6 +172,7 @@ const IndexPage: React.FunctionComponent<PageProps> = () => (
         <ListItem>Max Sarasri</ListItem>
         <ListItem>Vero Rebagliatte</ListItem>
         <ListItem>Phark Lertchanyakul</ListItem>
+        <ListItem>Sunhaporn Sribanditmongkol</ListItem>
         <ListItem>Panos Kollias</ListItem>
         <ListItem>Longyu Guan</ListItem>
       </List>
