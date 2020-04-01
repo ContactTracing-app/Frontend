@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as moment from 'moment';
+import { FormattedDate } from 'gatsby-plugin-intl';
 import {
   AccordionItem,
   AccordionHeader,
@@ -24,7 +24,7 @@ const LogEntryAccordionItem: React.FC<LogEntry> = ({
   <AccordionItem>
     <AccordionHeader>
       <Box flex="1" textAlign="left">
-        {moment(date).format('ddd, DD MMM YYYY')}
+        <FormattedDate value={date} year="numeric" month="long" day="2-digit" />
       </Box>
       <AccordionIcon />
     </AccordionHeader>

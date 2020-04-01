@@ -1,4 +1,5 @@
-import React from 'react';
+import * as React from 'react';
+import { useIntl } from 'gatsby-plugin-intl';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 import Facebook from './facebook';
@@ -20,6 +21,7 @@ const defaultProps = {
 
 const SEO = ({ title, desc, banner, pathname, node, individual }: Props) => {
   const { site } = useStaticQuery(query);
+  const intl = useIntl();
 
   const {
     buildTime,
@@ -181,7 +183,7 @@ const SEO = ({ title, desc, banner, pathname, node, individual }: Props) => {
   return (
     <>
       <Helmet title={seo.title}>
-        <html lang={siteLanguage} />
+        <html lang={intl.locale} />
         <meta name="description" content={seo.description} />
         <meta name="image" content={seo.image} />
         <meta name="contact-tracing" content="Contact Tracing App" />

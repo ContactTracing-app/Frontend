@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useIntl } from 'gatsby-plugin-intl';
 import { Spinner, Stack, Box, useToast, Text } from '@chakra-ui/core';
 import useContacts from '../../hooks/useContacts';
 import ContactAvatar from '../ContactAvatar/ContactAvatar';
@@ -6,6 +7,7 @@ import ContactAvatar from '../ContactAvatar/ContactAvatar';
 const ContactsList: React.FC = () => {
   const [contacts, loading, error] = useContacts();
   const toast = useToast();
+  const intl = useIntl();
 
   if (loading) {
     return <Spinner />;
@@ -13,8 +15,8 @@ const ContactsList: React.FC = () => {
 
   if (error) {
     toast({
-      title: `That's annoying…`,
-      description: 'Something went wrong. Maybe try again?',
+      title: intl.formatMessage({ id: 'ContactList.heading' }),
+      description: intl.formatMessage({ id: 'ContactList.msg' }),
       status: 'error',
       isClosable: true
     });

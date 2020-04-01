@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { InjectedFormikProps, Form, Field, withFormik } from 'formik';
+import { useIntl, FormattedMessage } from 'gatsby-plugin-intl';
 import { firebase, firestore, useAuth } from 'gatsby-theme-firebase';
 import {
   FormControl,
@@ -32,7 +33,7 @@ const InnerForm: React.FC<InjectedFormikProps<
   FormValues
 >> = (props) => {
   const { touched, errors, isSubmitting, setFieldValue } = props;
-
+  const intl = useIntl();
   return (
     <Form>
       <Stack spacing={6}>
@@ -42,10 +43,12 @@ const InnerForm: React.FC<InjectedFormikProps<
               <FormControl
                 isInvalid={errors[field.name] && touched[field.name]}
               >
-                <FormLabel htmlFor={field.name}>Display Name</FormLabel>
+                <FormLabel htmlFor={field.name}>
+                  {intl.formatMessage({ id: 'Settings.Display Name' })}
+                </FormLabel>
                 <Input {...field} />
                 <FormHelperText id="email-helper-text">
-                  This is public so other can find you.
+                  {intl.formatMessage({ id: 'Settings.help' })}
                 </FormHelperText>
               </FormControl>
             )}
@@ -55,7 +58,9 @@ const InnerForm: React.FC<InjectedFormikProps<
           <Field name="preferences">
             {(field) => (
               <FormControl>
-                <FormLabel>Notification Preferences</FormLabel>
+                <FormLabel>
+                  {intl.formatMessage({ id: 'Settings.Notifications Prefs' })}
+                </FormLabel>
                 <CheckboxGroup
                   name="preferences"
                   onChange={(e) => {
@@ -73,13 +78,13 @@ const InnerForm: React.FC<InjectedFormikProps<
                   }}
                 >
                   <Checkbox isDisabled defaultIsChecked>
-                    Email
+                    {intl.formatMessage({ id: 'Settings.Email' })}
                   </Checkbox>
 
                   <Checkbox
                     defaultIsChecked={props.values.preferences?.contact_via_sms}
                   >
-                    SMS
+                    {intl.formatMessage({ id: 'Settings.SMS' })}
                     {props.values.preferences?.contact_via_sms ? (
                       <Field name="smsNumber">
                         {({ field }) => (
@@ -113,7 +118,7 @@ const InnerForm: React.FC<InjectedFormikProps<
             isLoading={isSubmitting}
             type="submit"
           >
-            Save
+            {intl.formatMessage({ id: 'Settings.save' })}
           </Button>
         </Box>
       </Stack>
@@ -148,9 +153,8 @@ const WithFormik = withFormik<SettingsFormInnerProps, FormValues>({
     if (values.preferences.contact_via_sms && !values.smsNumber) {
       actions.props.toast({
         position: 'bottom-right',
-        title: 'SMS Number is missing',
-        description:
-          'You have chosen SMS as preferred notification. However, no sms number was provided',
+        title: <FormattedMessage id="Settings.SMS-missing" />,
+        description: <FormattedMessage id="Settings.SMS-desc" />,
         status: 'error',
         isClosable: true
       });
@@ -176,8 +180,8 @@ const WithFormik = withFormik<SettingsFormInnerProps, FormValues>({
 
       actions.props.toast({
         position: 'bottom-right',
-        title: 'Saved',
-        description: 'Your settings have been updated.',
+        title: <FormattedMessage id="Settings.saved" />,
+        description: <FormattedMessage id="Settings.msg" />,
         status: 'success',
         isClosable: true
       });
@@ -187,7 +191,7 @@ const WithFormik = withFormik<SettingsFormInnerProps, FormValues>({
     } catch (e) {
       actions.props.toast({
         position: 'bottom-right',
-        title: "That's annoying",
+        title: <FormattedMessage id="Settings.error" />,
         description: e.message,
         status: 'error',
         isClosable: true

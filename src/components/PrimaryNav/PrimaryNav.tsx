@@ -65,16 +65,16 @@ const PrimaryNav: React.FC = () => {
               label="Log Contact"
             />,
             <NavButton
-              key="nav-contacts"
-              Icon={Icons.MdGroup}
-              to="/me/contacts"
-              label="Contacts"
-            />,
-            <NavButton
               key="nav-share"
               Icon={Icons.MdShare}
               to="/me/share"
               label="Share"
+            />,
+            <NavButton
+              key="nav-contacts"
+              Icon={Icons.MdGroup}
+              to="/me/contacts"
+              label="Contacts"
             />,
             <NavButton
               key="nav-settings"
