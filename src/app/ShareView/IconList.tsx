@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Stack, Box } from '@chakra-ui/core';
+import { useIntl } from 'gatsby-plugin-intl';
 import { useStaticQuery, graphql } from 'gatsby';
 import {
   EmailIcon,
@@ -38,12 +39,13 @@ const IconList = () => {
       siteMetadata: { title: siteTitle }
     }
   } = useStaticQuery<IconListQuery>(query);
+  const intl = useIntl();
   const { absoluteUrl: url } = useProfileUrl();
   const iconProps = {
     size: 32,
     round: true
   };
-  const title = `Join me on ${siteTitle} and help each other stay safe.`;
+  const title = intl.formatMessage({ id: 'Icon.title', values: { siteTitle } });
   return (
     url && (
       <Stack isInline spacing={2} align="center" my={6}>
@@ -67,7 +69,7 @@ const IconList = () => {
           </EmailShareButton>
         </Box>
         <Box>
-          <WhatsappShareButton url={url}>
+          <WhatsappShareButton title={title} url={url}>
             <WhatsappIcon {...iconProps} />
           </WhatsappShareButton>
         </Box>

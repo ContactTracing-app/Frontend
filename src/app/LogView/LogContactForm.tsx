@@ -2,6 +2,7 @@ import * as React from 'react';
 import DatePicker from 'react-date-picker';
 import { useAuth } from 'gatsby-theme-firebase';
 import * as Yup from 'yup';
+import { useIntl, FormattedMessage } from 'gatsby-plugin-intl';
 import { withFormik, InjectedFormikProps, Form, Field } from 'formik';
 import {
   Box,
@@ -16,7 +17,7 @@ import {
   Stack
 } from '@chakra-ui/core';
 import { MdToday } from 'react-icons/md';
-import { Link as GatsbyLink } from 'gatsby';
+import { Link as IntlLink } from 'gatsby-plugin-intl';
 import Select, { Option } from 'react-select';
 import useAnalytics from '../../hooks/useAnalytics';
 import withPerson from '../../hooks/withPerson';
@@ -71,7 +72,9 @@ const InnerForm: React.FC<InjectedFormikProps<
               <FormControl
                 isInvalid={errors[field.name] && touched[field.name]}
               >
-                <FormLabel htmlFor={field.name}>Entry Date</FormLabel>
+                <FormLabel htmlFor={field.name}>
+                  <FormattedMessage id="LogForm.Entry Date" />
+                </FormLabel>
                 <Box>
                   <DatePicker
                     minDate={new Date('2019-11-01')}
@@ -93,7 +96,9 @@ const InnerForm: React.FC<InjectedFormikProps<
               <FormControl
                 isInvalid={errors[field.name] && touched[field.name]}
               >
-                <FormLabel htmlFor={field.name}>Who did you meet?</FormLabel>
+                <FormLabel htmlFor={field.name}>
+                  <FormattedMessage id="LogForm.Who did you meet?" />
+                </FormLabel>
                 <Select
                   getOptionLabel={(o: ContactWith) => o.displayName}
                   getOptionValue={(o: ContactWith) => o.uid}
@@ -106,11 +111,21 @@ const InnerForm: React.FC<InjectedFormikProps<
                   }}
                 />
                 <FormHelperText>
-                  Can't find who you're looking for? Send them your{' '}
-                  <Link color="brand.orange" to="/me/share/" as={GatsbyLink}>
-                    Invite link
-                  </Link>
-                  .
+                  <FormattedMessage
+                    id="LogForm.cant-find"
+                    values={{
+                      // eslint-disable-next-line react/display-name
+                      a: (...chunks) => (
+                        <Link
+                          color="brand.orange"
+                          to="/me/share/"
+                          as={IntlLink}
+                        >
+                          {chunks}
+                        </Link>
+                      )
+                    }}
+                  />
                 </FormHelperText>
                 <FormErrorMessage>{errors.entryDate}</FormErrorMessage>
               </FormControl>
@@ -125,7 +140,7 @@ const InnerForm: React.FC<InjectedFormikProps<
             isLoading={isSubmitting}
             type="submit"
           >
-            Save
+            <FormattedMessage id="LogForm.Save" />
           </Button>
         </Box>
       </Stack>
@@ -154,8 +169,8 @@ const WithFormik = withFormik<LogContactFormInnerProps, FormValues>({
   // Add a custom validation function (this can be async too!)
   validationSchema: Yup.object({
     contactWith: Yup.array()
-      .min(1, 'You must have met at least one person')
-      .required('Required')
+      .min(1, <FormattedMessage id="LogForm.error-1" />)
+      .required(<FormattedMessage id="LogForm.error-2" />)
   }),
 
   handleSubmit: async (values, actions) =>
@@ -183,12 +198,13 @@ const WithFormik = withFormik<LogContactFormInnerProps, FormValues>({
 // Wrap our form with the withFormik HoC
 const LogContactForm: React.FC<LogContactFormProps> = (props) => {
   const toast = useToast();
+  const intl = useIntl();
   const [logContactMutation] = useLogContactMutation({
     onCompleted() {
       toast({
         position: 'bottom-right',
         title: 'Contact Logged',
-        description: 'Keep up the good work 💅',
+        description: intl.formatMessage({ id: 'LogContact.keep-up' }),
         status: 'success',
         isClosable: true
       });

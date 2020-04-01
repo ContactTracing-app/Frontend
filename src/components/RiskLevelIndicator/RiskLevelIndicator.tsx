@@ -1,23 +1,15 @@
 import * as React from 'react';
-import {
-  Box,
-  Text,
-  Stack,
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
-  Heading,
-  Flex,
-  Feature,
-  Button
-} from '@chakra-ui/core';
+import { Text, Flex, Button } from '@chakra-ui/core';
 import { navigate } from 'gatsby';
 import { Lead } from '../elements';
+import { FormattedMessage } from 'gatsby-plugin-intl';
+
 const riskLevelOptions = require('./riskleveldata.json');
+
 interface RiskLevelIndicatorProps {
   uid: string;
 }
+
 const RiskLevelIndicator: React.FC<RiskLevelIndicatorProps> = ({ uid }) => {
   //TODO get value from api on medical status
   const defaultValue = 15;
@@ -83,7 +75,9 @@ const RiskLevelIndicator: React.FC<RiskLevelIndicatorProps> = ({ uid }) => {
       justify="center"
       align="center"
     >
-      <Lead>Log more contact to see your Risk level.</Lead>
+      <Lead>
+        <FormattedMessage id="RiskLevel.heading" />
+      </Lead>
       {/* {checkRiskStatus()} */}
 
       {/* <Slider size="lg" defaultValue={defaultValue}>
@@ -97,7 +91,7 @@ const RiskLevelIndicator: React.FC<RiskLevelIndicatorProps> = ({ uid }) => {
         variantColor="teal"
         type="button"
       >
-        Start Logging
+        <FormattedMessage id="RiskLevel.cta" />
       </Button>
     </Flex>
   );

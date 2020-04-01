@@ -9,13 +9,9 @@ import {
   List,
   ListItem
 } from '@chakra-ui/core';
-import {
-  RouteComponentProps,
-  useParams,
-  navigate,
-  useLocation
-} from '@reach/router';
+import { RouteComponentProps, useParams, useLocation } from '@reach/router';
 import { useObjectVal } from 'react-firebase-hooks/database';
+import { navigate, useIntl, FormattedMessage } from 'gatsby-plugin-intl';
 import { firebase, useAuth } from 'gatsby-theme-firebase';
 import { useCreateKnowsMutation } from '../../__generated/graphql';
 import PageHeader from '../../components/PageHeader';
@@ -31,6 +27,7 @@ const InviteView: React.FC<RouteComponentProps> = () => {
   const { uid }: params = useParams();
   const location = useLocation();
   const toast = useToast();
+  const intl = useIntl();
   const { profile } = useAuth();
   const [value, loading] = useObjectVal<Profile>(
     firebase.database().ref(`profiles/${uid}`)
@@ -43,8 +40,13 @@ const InviteView: React.FC<RouteComponentProps> = () => {
       connectionMade();
       toast({
         position: 'bottom-right',
-        title: 'Connected',
-        description: `You can now log contact with ${value.displayName} 😎`,
+        title: intl.formatMessage({ id: 'InviteView.Connected' }),
+        description: intl.formatMessage({
+          id: 'InviteView.Connected-Description',
+          values: {
+            name: value.displayName
+          }
+        }),
         status: 'success',
         isClosable: true
       });
@@ -62,8 +64,13 @@ const InviteView: React.FC<RouteComponentProps> = () => {
   return (
     <>
       <PageHeader
-        heading="You’re invited!"
-        lead={`${displayName} invites you to join Contact Tracing.`}
+        heading={intl.formatMessage({ id: 'InviteView.heading' })}
+        lead={intl.formatMessage({
+          id: 'InviteView.lead',
+          values: {
+            name: displayName
+          }
+        })}
       />
 
       <AvatarGroup size="xl" max={2} mb={12}>
@@ -90,18 +97,21 @@ const InviteView: React.FC<RouteComponentProps> = () => {
             });
           }}
         >
-          Connect
+          <FormattedMessage id="InviteView.Connect-button" />
         </Button>
       )}
       <Heading as="h3" mb={2} size="lg">
-        Why use Contact Tracing App?
+        <FormattedMessage id="InviteView.why-use" />
       </Heading>
       <List styleType="disc">
-        <ListItem>Protect people you love</ListItem>
-        <ListItem>Limit the spread of COVID-19</ListItem>
         <ListItem>
-          Save time to trace back and immediately notify your contacts if
-          needed, in one click.
+          <FormattedMessage id="InviteView.why-1" />
+        </ListItem>
+        <ListItem>
+          <FormattedMessage id="InviteView.why-2" />
+        </ListItem>
+        <ListItem>
+          <FormattedMessage id="InviteView.why-3" />
         </ListItem>
       </List>
     </>
