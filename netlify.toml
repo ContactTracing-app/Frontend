@@ -1,5 +1,5 @@
 [[redirects]]
   from = "/me/*"
-  to = "/en/me/*"
+  to = "/en/me/:splat"
   status = 301
   force = true
