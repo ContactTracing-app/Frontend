@@ -3,13 +3,15 @@ import { IntlContextConsumer, changeLocale } from 'gatsby-plugin-intl';
 import { Select, Box } from '@chakra-ui/core';
 
 const languageName = {
-  en: '🇬🇧 English',
-  th: '🇹🇭 ไทย',
-  it: '🇮🇹 Italiano',
-  // es: '🇪🇸 Español',
-  el: '🇬🇷 Ελληνικά',
   'zh-Hans': '🇨🇳 简体中文',
-  'zh-Hant': '🇨🇳 中文維基百科'
+  'zh-Hant': '🇨🇳 中文維基百科',
+  el: '🇬🇷 Ελληνικά',
+  en: '🇬🇧 English',
+  es: '🇪🇸 Español',
+  it: '🇮🇹 Italiano',
+  ru: '🇷🇺 русский язык',
+  ta: '🇱🇰 தமிழ்',
+  th: '🇹🇭 ไทย'
 };
 
 const LanguageSwitcher: React.FC = () => {
