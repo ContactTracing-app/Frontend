@@ -31,6 +31,18 @@ interface FormValues {
   notifyButtonEnabled: boolean;
 }
 
+const statusOptions = [
+  {
+    value: 'TOTALLY_FINE'
+  },
+  {
+    value: 'SHOWING_SYMPTOMS'
+  },
+  {
+    value: 'TEST_POSITIVE'
+  }
+];
+
 const InnerForm: React.FC<InjectedFormikProps<ProfileFormProps, FormValues>> = (
   props
 ) => {
@@ -62,9 +74,6 @@ const InnerForm: React.FC<InjectedFormikProps<ProfileFormProps, FormValues>> = (
                 {intl.formatMessage({ id: 'ProfileView.healthStatus.label' })}
               </FormLabel>
               <Select
-                placeholder={intl.formatMessage({
-                  id: 'ProfileView.select option'
-                })}
                 defaultValue={props.values.healthStatus}
                 onChange={(e) => {
                   //check if status has changed
@@ -73,13 +82,13 @@ const InnerForm: React.FC<InjectedFormikProps<ProfileFormProps, FormValues>> = (
                 }}
               >
                 <option value="TOTALLY_FINE">
-                  <FormattedMessage id="ProfileView.fine" />
+                  {intl.formatMessage({ id: 'ProfileView.fine' })}
                 </option>
                 <option value="SHOWING_SYMPTOMS">
-                  <FormattedMessage id="ProfileView.symptoms" />
+                  {intl.formatMessage({ id: 'ProfileView.symptoms' })}
                 </option>
                 <option value="TESTED_POSITIVE">
-                  <FormattedMessage id="ProfileView.positive" />
+                  {intl.formatMessage({ id: 'ProfileView.positive' })}
                 </option>
               </Select>
             </FormControl>
