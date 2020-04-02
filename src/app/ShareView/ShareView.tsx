@@ -5,11 +5,20 @@ import useProfileUrl from '../../hooks/useInviteUrl';
 import QRCOde from '../../components/QRCode';
 import PageHeader from '../../components/PageHeader';
 import IconList from './IconList';
+import { useState } from 'react';
 
 const ShareView = () => {
   const intl = useIntl();
   const { absoluteUrl: url } = useProfileUrl();
   const { onCopy, hasCopied } = useClipboard(url);
+  const [message, setMessage] = useState();
+
+  React.useEffect(() => {
+    if (url) {
+      setMessage("This is me on Contact Tracing App. Join me so we can keep each other safe. " + url)
+    }
+  }, [url])
+
   return (
     url && (
       <>
@@ -19,7 +28,7 @@ const ShareView = () => {
         />
         <IconList />
         <Flex mb={2}>
-          <Input value={url} isReadOnly />
+          <Input type="text" value={message} onChange={(e: React.FormEvent<HTMLInputElement>) => setMessage(e.currentTarget.value)} />
           <Button onClick={onCopy} ml={2}>
             {hasCopied
               ? intl.formatMessage({ id: 'ShareView.copied' })
