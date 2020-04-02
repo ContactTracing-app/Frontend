@@ -9,9 +9,11 @@ const languageName = {
   en: '🇬🇧 English',
   es: '🇪🇸 Español',
   it: '🇮🇹 Italiano',
+  ko: '🇰🇷 한국어',
   ru: '🇷🇺 русский язык',
   ta: '🇱🇰 தமிழ்',
-  th: '🇹🇭 ไทย'
+  th: '🇹🇭 ไทย',
+  tr: '🇹🇷 Türkçe'
 };
 
 const LanguageSwitcher: React.FC = () => {

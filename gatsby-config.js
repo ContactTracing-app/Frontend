@@ -37,9 +37,11 @@ module.exports = {
           `en`,
           `es`,
           `it`,
+          `ko`,
           `ru`,
           `ta`,
           `th`,
+          `tr`,
           `zh-Hans`,
           `zh-Hant`
         ],
