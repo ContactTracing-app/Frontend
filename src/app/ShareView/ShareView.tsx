@@ -1,23 +1,29 @@
 import * as React from 'react';
 import { useIntl } from 'gatsby-plugin-intl';
-import { useClipboard, Flex, Input, Button, Text } from '@chakra-ui/core';
+import {
+  useClipboard,
+  Flex,
+  Input,
+  Button,
+  Text
+} from '@chakra-ui/core';
+import { useState, useEffect } from 'react';
 import useProfileUrl from '../../hooks/useInviteUrl';
 import QRCOde from '../../components/QRCode';
 import PageHeader from '../../components/PageHeader';
 import IconList from './IconList';
-import { useState } from 'react';
 
 const ShareView = () => {
   const intl = useIntl();
   const { absoluteUrl: url } = useProfileUrl();
-  const { onCopy, hasCopied } = useClipboard(url);
   const [message, setMessage] = useState();
+  const { onCopy, hasCopied } = useClipboard(message);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (url) {
-      setMessage("This is me on Contact Tracing App. Join me so we can keep each other safe. " + url)
+      setMessage(intl.formatMessage({ id: 'Icon.title' }) + url);
     }
-  }, [url])
+  }, [url]);
 
   return (
     url && (
@@ -28,7 +34,12 @@ const ShareView = () => {
         />
         <IconList />
         <Flex mb={2}>
-          <Input type="text" value={message} onChange={(e: React.FormEvent<HTMLInputElement>) => setMessage(e.currentTarget.value)} />
+          <Input
+            type="text"
+            value={message}
+            onChange={(e: React.FormEvent<HTMLInputElement>) =>
+              setMessage(e.currentTarget.value)}
+          />
           <Button onClick={onCopy} ml={2}>
             {hasCopied
               ? intl.formatMessage({ id: 'ShareView.copied' })
@@ -36,7 +47,9 @@ const ShareView = () => {
           </Button>
         </Flex>
 
-        <Text mt={10}>{intl.formatMessage({ id: 'ShareView.scan' })}</Text>
+        <Text mt={10}>
+          {intl.formatMessage({ id: 'ShareView.scan' })}
+        </Text>
 
         <QRCOde />
       </>
