@@ -51,7 +51,7 @@ const PrimaryNav: React.FC = () => {
       ))}
       <ExternalNavButton
         Icon={Icons['MdLibraryBooks']}
-        to="https://bit.ly/3bDFlv1"
+        to="https://bit.ly/2R5XauN"
         label="Press"
       />
       <Divider />
