@@ -45,7 +45,7 @@ const IconList = () => {
     size: 32,
     round: true
   };
-  const title = intl.formatMessage({ id: 'Icon.title', values: { siteTitle } });
+  const title = intl.formatMessage({ id: 'Icon.title' }, { siteTitle });
   return (
     url && (
       <Stack isInline spacing={2} align="center" my={6}>
