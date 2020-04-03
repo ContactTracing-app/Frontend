@@ -64,7 +64,7 @@
   "Settings.saved": "Guardado",
   "Settings.msg": "Tus preferencias han sido actualizadas.",
   "Settings.error": "Esto es molesto",
-  "Icon.title": "Este soy yo en la aplicación de rastreo de contactos. Únete a mí para que podamos mantenernos seguros. ",
+  "Icon.title": "Este soy yo en la aplicación {siteTitle}. Únase a mí para que podamos mantenernos seguros el uno al otro. ",
   "ShareView.heading": "Comparte tu perfil",
   "ShareView.lead": "Envía este link a tus amigos & familia para conectar.",
   "ShareView.copied": "Copiado",

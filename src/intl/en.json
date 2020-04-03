@@ -64,7 +64,7 @@
   "Settings.saved": "Saved",
   "Settings.msg": "Your settings have been updated.",
   "Settings.error": "That's annoying",
-  "Icon.title": "This is me on Contact Tracing App. Join me so we can keep each other safe. ",
+  "Icon.title": "This is me on {siteTitle} App. Join me so we can keep each other safe. ",
   "ShareView.heading": "Share your Profile",
   "ShareView.lead": "Send this link to your friends & family to connect.",
   "ShareView.copied": "Copied",

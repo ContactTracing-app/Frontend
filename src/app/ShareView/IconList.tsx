@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Stack, Box } from '@chakra-ui/core';
 import { useIntl } from 'gatsby-plugin-intl';
-import { useStaticQuery, graphql } from 'gatsby';
 import {
   EmailIcon,
   EmailShareButton,
@@ -16,36 +15,22 @@ import {
 } from 'react-share';
 import useProfileUrl from '../../hooks/useInviteUrl';
 
-interface IconListQuery {
-  site: {
-    siteMetadata: {
-      title: string;
-    };
-  };
+interface IconListProps {
+  siteTitle: string;
 }
-const query = graphql`
-  query IconList {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`;
 
-const IconList = () => {
-  const {
-    site: {
-      siteMetadata: { title: siteTitle }
-    }
-  } = useStaticQuery<IconListQuery>(query);
+const IconList = (props: IconListProps) => {
   const intl = useIntl();
   const { absoluteUrl: url } = useProfileUrl();
+  const { siteTitle } = props;
   const iconProps = {
     size: 32,
     round: true
   };
-  const title = intl.formatMessage({ id: 'Icon.title' }, { siteTitle });
+  const title = intl.formatMessage(
+    { id: 'Icon.title' },
+    { siteTitle }
+  );
   return (
     url && (
       <Stack isInline spacing={2} align="center" my={6}>
