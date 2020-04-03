@@ -20,7 +20,7 @@
   "Footer.Terms of Service": "服务条款",
   "Footer.Cookie Policy": "Cookie 条款",
   "Footer.rights": "© 版权所有\n",
-  "Footer.cute": "使用<span role=\"img\">🙏</span>在家于{buildTime}制作。",
+  "Footer.cute": "使用<span>🙏</span>在家于{buildTime}制作。",
   "LogView.lead": "记录你的接触人",
   "LogForm.Entry Date": "接触时间",
   "LogForm.Who did you meet?": "你遇见了谁？",

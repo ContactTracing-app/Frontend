@@ -25,7 +25,7 @@
   "LogForm.Entry Date": "연락한 날짜",
   "LogForm.Who did you meet?": "누구를 만나셨나요?",
   "InviteView.Connected": "연결됨",
-  "InviteView.Connected-Description": "당신은 이제 {이름}와 연결되었습니다.😎",
+  "InviteView.Connected-Description": "당신은 이제 {name}와 연결되었습니다.😎",
   "InviteView.heading": "초대받으셨습니다!",
   "InviteView.lead": "{name}가 당신을 콘택트 트레이싱에 가입하도록 초대하였습니다.",
   "InviteView.Connect-button": "연결",

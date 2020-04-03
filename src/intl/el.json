@@ -20,7 +20,7 @@
   "Footer.Terms of Service": "Όροι χρήσης",
   "Footer.Cookie Policy": "Πολιτική cookie",
   "Footer.rights": "© Με επιφύλαξη παντός δικαιώματος",
-  "Footer.cute": "Κατασκευασμένο με <span role = \"img\"> 🙏 </ span> στο σπίτι στο {buildTime}.",
+  "Footer.cute": "Κατασκευασμένο με <span>🙏</span> στο σπίτι στο {buildTime}.",
   "LogView.lead": "Καταγράψτε ποιον έχετε έρθει σε επαφή με.",
   "LogForm.Entry Date": "Ημερομηνία επαφής",
   "LogForm.Who did you meet?": "Ποιον συναντήσατε;",

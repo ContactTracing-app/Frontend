@@ -20,7 +20,7 @@
   "Footer.Terms of Service": "Termini di servizio",
   "Footer.Cookie Policy": "Gestione dei Cookie",
   "Footer.rights": "© Tutti i diritti riservati.",
-  "Footer.cute": "Realizzato con <span role = \"img\"> 🙏 </span> a casa su {buildTime}.",
+  "Footer.cute": "Realizzato con <span>🙏</span> a casa su {buildTime}.",
   "LogView.lead": "Accedi con chi sei stato in contatto.",
   "LogForm.Entry Date": "Data (quando)",
   "LogForm.Who did you meet?": "Chi hai incontrato?",
