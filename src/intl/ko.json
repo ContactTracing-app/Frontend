@@ -64,7 +64,7 @@
   "Settings.saved": "저장됨",
   "Settings.msg": "당신의 설정이 업데이트되었습니다.",
   "Settings.error": "번거롭다",
-  "Icon.title": "{siteTitle}에 가입하여 서로의 안전을 지키세요.",
+  "Icon.title": "이것은 {siteTitle} 앱에 있습니다. 우리가 서로를 안전하게 지킬 수 있도록 저와 함께하십시오. ",
   "ShareView.heading": "프로필을 공유하세요",
   "ShareView.lead": "친구와 가족들과 이 링크를 공유하세요.",
   "ShareView.copied": "복사됨",
