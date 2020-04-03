@@ -41,12 +41,14 @@ const InviteView: React.FC<RouteComponentProps> = () => {
       toast({
         position: 'bottom-right',
         title: intl.formatMessage({ id: 'InviteView.Connected' }),
-        description: intl.formatMessage({
-          id: 'InviteView.Connected-Description',
-          values: {
+        description: intl.formatMessage(
+          {
+            id: 'InviteView.Connected-Description'
+          },
+          {
             name: value.displayName
           }
-        }),
+        ),
         status: 'success',
         isClosable: true
       });
@@ -65,12 +67,14 @@ const InviteView: React.FC<RouteComponentProps> = () => {
     <>
       <PageHeader
         heading={intl.formatMessage({ id: 'InviteView.heading' })}
-        lead={intl.formatMessage({
-          id: 'InviteView.lead',
-          values: {
-            name: displayName
+        lead={intl.formatMessage(
+          {
+            id: 'InviteView.lead'
+          },
+          {
+            name: value.displayName
           }
-        })}
+        )}
       />
 
       <AvatarGroup size="xl" max={2} mb={12}>

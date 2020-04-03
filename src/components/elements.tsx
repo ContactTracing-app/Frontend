@@ -59,6 +59,7 @@ export const Footer: React.FC = () => {
         <FormattedMessage
           id="Footer.cute"
           values={{
+            span: (...chunks) => <span role="img">{chunks}</span>,
             buildTime
           }}
         />

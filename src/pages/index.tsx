@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
+import { navigate } from 'gatsby-plugin-intl';
+import { useAuth } from 'gatsby-theme-firebase';
 import {
   Heading,
   Box,
@@ -15,8 +17,6 @@ import SEO from '../components/SEO';
 import { P, ResponsiveContainer, Lead } from '../components/elements';
 import michele from '../images/michele.jpg';
 import ponk from '../images/ponk.jpg';
-import { navigate } from 'gatsby';
-import { useAuth } from 'gatsby-theme-firebase';
 
 type PageProps = {};
 
@@ -25,20 +25,6 @@ const IndexPage: React.FunctionComponent<PageProps> = () => {
   return (
     <Layout>
       <SEO />
-      <ResponsiveContainer>
-        <Box
-          as="iframe"
-          position="absolute"
-          top={0}
-          left={0}
-          width="100%"
-          height="100%"
-          src="https://www.youtube-nocookie.com/embed/Xid1f5F3ogI"
-          frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        />
-      </ResponsiveContainer>
 
       <Heading mt={12} fontSize="50px">
         Contact Tracing
@@ -57,10 +43,10 @@ const IndexPage: React.FunctionComponent<PageProps> = () => {
           }
         }}
       >
-        Sign-in and Share your Profile
+        Share your free profile
       </Button>
 
-      <Box maxWidth="40em">
+      <Box maxWidth="40em" mt={8} mb={12}>
         <P>
           Keeping everyone up-to-date if you fall ill is tricky. You have to
           remember who you met. They have to remember who they met after meeting
@@ -72,6 +58,24 @@ const IndexPage: React.FunctionComponent<PageProps> = () => {
           so everyone can act appropriately and we can help limit the spread of
           COVID-19.
         </P>
+      </Box>
+
+      <ResponsiveContainer>
+        <Box
+          as="iframe"
+          position="absolute"
+          top={0}
+          left={0}
+          width="100%"
+          height="100%"
+          src="https://www.youtube-nocookie.com/embed/Xid1f5F3ogI"
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        />
+      </ResponsiveContainer>
+
+      <Box maxWidth="40em" mt={12}>
         <P>#KeepTracingCOVID19</P>
         <Heading as="h2" mt={12} mb={4} size="xl">
           How it works
@@ -255,6 +259,9 @@ const IndexPage: React.FunctionComponent<PageProps> = () => {
           <ListItem>Sunhaporn Sribanditmongkol</ListItem>
           <ListItem>Panos Kollias</ListItem>
           <ListItem>Longyu Guan</ListItem>
+          <ListItem>Lisa Bang</ListItem>
+          <ListItem>Jenny Park</ListItem>
+          <ListItem>Mudhafar Ormzyar</ListItem>
         </List>
 
         <Heading as="h4" mt={12} mb={4} size="sm">
