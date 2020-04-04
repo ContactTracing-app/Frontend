@@ -60,12 +60,13 @@ const InnerForm: React.FC<InjectedFormikProps<
   } = props;
 
   const contactWithOptions: ContactWith[] = contactOptions.map(
-    (contact) => {
+    (contactUid: string) => {
       const { person } = withPerson({
-        uid: contact.uid
+        uid: contactUid
       });
+
       return {
-        uid: contact.uid,
+        uid: contactUid,
         displayName: person ? person.displayName : ''
       };
     }
@@ -162,8 +163,8 @@ const InnerForm: React.FC<InjectedFormikProps<
 
 interface LogContactFormProps {
   initialEntryDate?: Date;
-  initialContactWith?: ContactWith[];
-  contactOptions: ContactWith[];
+  initialContactWith?: string[];
+  contactOptions: string[];
 }
 
 interface LogContactFormInnerProps extends LogContactFormProps {
