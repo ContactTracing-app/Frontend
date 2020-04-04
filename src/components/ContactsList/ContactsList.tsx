@@ -28,16 +28,17 @@ const ContactsList: React.FC = () => {
   return (
     <Stack spacing={2}>
       {loading && <Spinner />}
-      {contacts && contacts.length ? (
+      {contacts && contacts.length && (
         contacts.map((uid) => (
           <Box key={uid}>
             <ContactAvatar uid={uid} />
           </Box>
         ))
-      ) : (
-          // TODO: use i18n
-          <div>You have no contacts</div>
-        )}
+      )}
+      {!loading && !error && !contacts?.length && (
+        // TODO: use i18n
+        <div>You have no contacts</div>
+      )}
     </Stack>
   );
 };
