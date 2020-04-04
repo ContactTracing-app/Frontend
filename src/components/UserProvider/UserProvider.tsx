@@ -8,13 +8,13 @@ const UserProvider: React.FC = ({ children }) => {
   const auth = useAuth();
   React.useEffect(() => {
     auth.getRedirectResult().then(
-      (result) => {
+      () => {
         if (locationStore.next) {
-          const next = locationStore.next;
+          const { next } = locationStore;
           navigate(next);
         }
       },
-      (error) => {
+      () => {
         debugger;
       }
     );

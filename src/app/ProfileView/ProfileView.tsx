@@ -43,9 +43,10 @@ const statusOptions = [
   }
 ];
 
-const InnerForm: React.FC<InjectedFormikProps<ProfileFormProps, FormValues>> = (
-  props
-) => {
+const InnerForm: React.FC<InjectedFormikProps<
+  ProfileFormProps,
+  FormValues
+>> = (props) => {
   const intl = useIntl();
   const { setFieldValue, isValid, dirty } = props;
 
@@ -63,7 +64,9 @@ const InnerForm: React.FC<InjectedFormikProps<ProfileFormProps, FormValues>> = (
           heading={intl.formatMessage({
             id: 'ProfileView.healthStatus.heading'
           })}
-          lead={intl.formatMessage({ id: 'ProfileView.healthStatus.lead' })}
+          lead={intl.formatMessage({
+            id: 'ProfileView.healthStatus.lead'
+          })}
         />
       </Box>
       <Stack spacing={6}>
@@ -71,14 +74,19 @@ const InnerForm: React.FC<InjectedFormikProps<ProfileFormProps, FormValues>> = (
           {(field) => (
             <FormControl>
               <FormLabel>
-                {intl.formatMessage({ id: 'ProfileView.healthStatus.label' })}
+                {intl.formatMessage({
+                  id: 'ProfileView.healthStatus.label'
+                })}
               </FormLabel>
               <Select
                 defaultValue={props.values.healthStatus}
                 onChange={(e) => {
                   //check if status has changed
 
-                  setFieldValue('healthStatus', e.currentTarget.value);
+                  setFieldValue(
+                    'healthStatus',
+                    e.currentTarget.value
+                  );
                 }}
               >
                 <option value="TOTALLY_FINE">
@@ -104,9 +112,12 @@ const InnerForm: React.FC<InjectedFormikProps<ProfileFormProps, FormValues>> = (
                 defaultIsChecked={props.values.inQuarantine}
                 size="lg"
                 onChange={(e) => {
-                  setFieldValue('inQuarantine', !props.values.inQuarantine);
+                  setFieldValue(
+                    'inQuarantine',
+                    !props.values.inQuarantine
+                  );
                 }}
-              ></Switch>
+              />
               <FormLabel mx={2}>
                 <FormattedMessage id="ProfileView.inQuarantine" />
               </FormLabel>
@@ -117,7 +128,8 @@ const InnerForm: React.FC<InjectedFormikProps<ProfileFormProps, FormValues>> = (
         <Box>
           <Button
             isDisabled={
-              (dirty && !isValid) || props.values === props.initialValues
+              (dirty && !isValid) ||
+              props.values === props.initialValues
             }
             mt={4}
             variantColor="teal"
@@ -167,10 +179,13 @@ const ProfileForm: React.FC<ProfileFormProps> = (props) => {
   const { profile } = useAuth();
   const toast = useToast();
   const [me, loadingMe] = withPerson({
-    uid: profile?.uid
+    uid: profile ? profile.uid : ''
   });
 
-  const { data, loading: loadingHealthStatus } = useGetHealthStatusQuery({
+  const {
+    data,
+    loading: loadingHealthStatus
+  } = useGetHealthStatusQuery({
     variables: {
       uid: me.uid
     }
@@ -187,7 +202,9 @@ const ProfileForm: React.FC<ProfileFormProps> = (props) => {
       });
     },
     onCompleted(payload) {
-      let description = intl.formatMessage({ id: 'ProfileView.recorded' });
+      let description = intl.formatMessage({
+        id: 'ProfileView.recorded'
+      });
 
       // check if contact person needs to be notified
       if (
