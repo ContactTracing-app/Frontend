@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { Flex, Box, Text, Link } from '@chakra-ui/core';
-import { Link as IntlLink, FormattedMessage } from 'gatsby-plugin-intl';
+import {
+  Link as IntlLink,
+  FormattedMessage,
+  useIntl
+} from 'gatsby-plugin-intl';
 import { Global } from '@emotion/core';
 import { useStaticQuery, graphql } from 'gatsby';
 
@@ -102,4 +106,16 @@ export const P: React.FC = ({ children, ...rest }) => (
   </Text>
 );
 
-export const GlobalStyles: React.FC = () => <Global styles={{}} />;
+export const GlobalStyles: React.FC = () => {
+  const { locale } = useIntl();
+  const direction = ['ar'].includes(locale) ? 'rtl' : 'ltr';
+  return (
+    <Global
+      styles={{
+        body: {
+          direction
+        }
+      }}
+    />
+  );
+};

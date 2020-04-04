@@ -33,6 +33,7 @@ module.exports = {
       options: {
         path: `${__dirname}/src/intl`,
         languages: [
+          `ar`,
           `el`,
           `en`,
           `es`,
