@@ -5,13 +5,9 @@ import useContacts from '../../hooks/useContacts';
 import ContactAvatar from '../ContactAvatar/ContactAvatar';
 
 const ContactsList: React.FC = () => {
-  const [contacts, loading, error] = useContacts();
+  const { contacts, loading, error } = useContacts();
   const toast = useToast();
   const intl = useIntl();
-
-  if (loading) {
-    return <Spinner />;
-  }
 
   if (error) {
     toast({
@@ -20,16 +16,28 @@ const ContactsList: React.FC = () => {
       status: 'error',
       isClosable: true
     });
-    return <Text>😡</Text>;
+    return (
+      <Text>
+        <span role="img" aria-label="angry">
+          😡
+        </span>
+      </Text>
+    );
   }
 
   return (
     <Stack spacing={2}>
-      {contacts.map((uid) => (
-        <Box key={uid}>
-          <ContactAvatar uid={uid} />
-        </Box>
-      ))}
+      {loading && <Spinner />}
+      {contacts && contacts.length ? (
+        contacts.map((uid) => (
+          <Box key={uid}>
+            <ContactAvatar uid={uid} />
+          </Box>
+        ))
+      ) : (
+          // TODO: use i18n
+          <div>You have no contacts</div>
+        )}
     </Stack>
   );
 };
