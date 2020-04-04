@@ -1,15 +1,11 @@
 import * as React from 'react';
 import { ApolloProvider as Provider } from '@apollo/react-hooks';
 import createClient from './client';
-import { useStores } from '../../hooks/useStore';
 
 // const auth_token = process.env.AUTH_TOKEN || '';
 
 const ApolloProvider: React.FC = ({ children }) => {
-  const {
-    userStore: { token }
-  } = useStores();
-  const client = createClient(token);
+  const client = createClient();
   return <Provider client={client}>{children}</Provider>;
 };
 
