@@ -92,9 +92,7 @@ const InnerForm: React.FC<InjectedFormikProps<
                   </Checkbox>
 
                   <Checkbox
-                    defaultIsChecked={
-                      props.values.preferences?.contact_via_sms
-                    }
+                    defaultIsChecked={props.values.preferences?.contact_via_sms}
                   >
                     {intl.formatMessage({ id: 'Settings.SMS' })}
                     {props.values.preferences?.contact_via_sms ? (
@@ -115,8 +113,8 @@ const InnerForm: React.FC<InjectedFormikProps<
                         )}
                       </Field>
                     ) : (
-                        ''
-                      )}
+                      ''
+                    )}
                   </Checkbox>
                 </CheckboxGroup>
               </FormControl>
@@ -177,12 +175,9 @@ const WithFormik = withFormik<SettingsFormInnerProps, FormValues>({
 
     try {
       //  Public Profile
-      await firebase
-        .database()
-        .ref(`profiles/${actions.props.uid}/`)
-        .update({
-          displayName: values.displayName
-        });
+      await firebase.database().ref(`profiles/${actions.props.uid}/`).update({
+        displayName: values.displayName
+      });
 
       //  Settings
       await firebase
@@ -190,8 +185,7 @@ const WithFormik = withFormik<SettingsFormInnerProps, FormValues>({
         .collection('accounts')
         .doc(actions.props.uid)
         .update({
-          smsNumber:
-            values.smsNumber.length > 0 ? values.smsNumber : null,
+          smsNumber: values.smsNumber.length > 0 ? values.smsNumber : null,
           'preferences.contact_via_sms': values.smsNumber.length > 0
         });
 
