@@ -63,33 +63,37 @@ const LogHistory: React.FC = () => {
   return (
     <>
       <Accordion>
-        {logEntries.map(({ id, date, contactWith }) => {
-          const logDate = new Date(date.formatted);
-          return (
-            <LogEntryAccordionItem
-              key={id}
-              date={logDate}
-              contactWithUids={contactWith.map(({ uid }) => uid)}
-              deleteHandler={(uidToDelete: string) =>
-                unlogContact({
-                  variables: {
-                    input: {
-                      fromUid: profile?.uid,
-                      toUid: uidToDelete,
-                      ...toDateObject(logDate)
-                    }
-                  },
-                  refetchQueries: [
-                    {
-                      query: LogHistoryDocument,
-                      variables: { uid: profile?.uid }
-                    }
-                  ]
-                })
-              }
-            />
-          );
-        })}
+        {logEntries.length ? (
+          logEntries.map(({ id, date, contactWith }) => {
+            const logDate = new Date(date.formatted);
+            return (
+              <LogEntryAccordionItem
+                key={id}
+                date={logDate}
+                contactWithUids={contactWith.map(({ uid }) => uid)}
+                deleteHandler={(uidToDelete: string) =>
+                  unlogContact({
+                    variables: {
+                      input: {
+                        fromUid: profile?.uid,
+                        toUid: uidToDelete,
+                        ...toDateObject(logDate)
+                      }
+                    },
+                    refetchQueries: [
+                      {
+                        query: LogHistoryDocument,
+                        variables: { uid: profile?.uid }
+                      }
+                    ]
+                  })}
+              />
+            );
+          })
+        ) : (
+            // TODO: use i18n
+            <div>You have no logs</div>
+          )}
       </Accordion>
     </>
   );

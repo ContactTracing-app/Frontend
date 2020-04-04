@@ -29,7 +29,7 @@ const useContacts = () => {
     | string[]
     | null;
 
-  return [contacts, loading, error];
+  return { contacts, loading, error };
 };
 
 export default useContacts;

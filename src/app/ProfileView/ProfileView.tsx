@@ -20,7 +20,8 @@ import RiskLevelIndicator from '../../components/RiskLevelIndicator';
 import {
   useUpdateHealthStatusMutation,
   UpdateHealthStatusMutationFn,
-  useGetHealthStatusQuery
+  useGetHealthStatusQuery,
+  HealthStatus
 } from '../../__generated/graphql';
 import useFunctions from '../../hooks/useFunctions';
 import useAnalytics, { Severity } from '../../hooks/useAnalytics';
@@ -48,7 +49,13 @@ const InnerForm: React.FC<InjectedFormikProps<
   FormValues
 >> = (props) => {
   const intl = useIntl();
-  const { setFieldValue, isValid, dirty } = props;
+  const {
+    setFieldValue,
+    isValid,
+    dirty,
+    values,
+    initialValues
+  } = props;
 
   return (
     <Form>
@@ -71,7 +78,7 @@ const InnerForm: React.FC<InjectedFormikProps<
       </Box>
       <Stack spacing={6}>
         <Field name="healthStatus">
-          {(field) => (
+          {() => (
             <FormControl>
               <FormLabel>
                 {intl.formatMessage({
@@ -105,7 +112,7 @@ const InnerForm: React.FC<InjectedFormikProps<
 
         {/* Switch for users's quarantine status */}
         <Field name="inQuarantine">
-          {(field) => (
+          {() => (
             <FormControl>
               <Switch
                 color="orange"
@@ -128,8 +135,7 @@ const InnerForm: React.FC<InjectedFormikProps<
         <Box>
           <Button
             isDisabled={
-              (dirty && !isValid) ||
-              props.values === props.initialValues
+              (dirty && !isValid) || values === initialValues
             }
             mt={4}
             variantColor="teal"
@@ -156,15 +162,16 @@ interface ProfileFormInnerProps extends ProfileFormProps {
 
 const WithFormik = withFormik<ProfileFormInnerProps, FormValues>({
   mapPropsToValues: (props) => ({
-    healthStatus: props.initialHealthStatus || statusOptions[0],
-    inQuarantine: props.initialInQuarantine || false
+    healthStatus: props.initialHealthStatus || statusOptions[0].value,
+    inQuarantine: props.initialInQuarantine || false,
+    notifyButtonEnabled: false
   }),
 
   handleSubmit: async (values, actions) => {
     actions.props.updateHealthStatusMutation({
       variables: {
         uid: actions.props.uid,
-        status: values.healthStatus,
+        status: values.healthStatus as HealthStatus,
         isInQuarantine: values.inQuarantine
       }
     });
@@ -178,7 +185,7 @@ const ProfileForm: React.FC<ProfileFormProps> = (props) => {
   const { notificationSent } = useAnalytics();
   const { profile } = useAuth();
   const toast = useToast();
-  const [me, loadingMe] = withPerson({
+  const { person: me, loading: loadingMe } = withPerson({
     uid: profile ? profile.uid : ''
   });
 
@@ -192,11 +199,11 @@ const ProfileForm: React.FC<ProfileFormProps> = (props) => {
   });
 
   const [updateHealthStatusMutation] = useUpdateHealthStatusMutation({
-    onError(data) {
+    onError(error) {
       toast({
         position: 'bottom-right',
         title: intl.formatMessage({ id: 'ProfileView.whoops' }),
-        description: data.message,
+        description: error.message,
         status: 'error',
         isClosable: true
       });
@@ -212,7 +219,7 @@ const ProfileForm: React.FC<ProfileFormProps> = (props) => {
         payload.UpdatePerson?.status === statusOptions[1].value
       ) {
         // sendTestSMS();
-        sendNotifications({ uid: profile?.uid });
+        sendNotifications({ uid: profile ? profile.uid : '' });
         description = `${description} ${intl.formatMessage({
           id: 'ProfileView.recorded2'
         })}`;
@@ -240,9 +247,9 @@ const ProfileForm: React.FC<ProfileFormProps> = (props) => {
     <>
       <WithFormik
         toast={toast}
-        uid={profile?.uid}
-        initialHealthStatus={data?.healthData.status}
-        initialInQuarantine={data?.healthData.isInQuarantine}
+        uid={profile ? profile.uid : ''}
+        initialHealthStatus={data?.healthData?.status}
+        initialInQuarantine={data?.healthData?.isInQuarantine}
         updateHealthStatusMutation={updateHealthStatusMutation}
         {...props}
       />

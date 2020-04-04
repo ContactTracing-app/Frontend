@@ -2,7 +2,11 @@ import * as React from 'react';
 import DatePicker from 'react-date-picker';
 import { useAuth } from 'gatsby-theme-firebase';
 import * as Yup from 'yup';
-import { useIntl, FormattedMessage } from 'gatsby-plugin-intl';
+import {
+  useIntl,
+  FormattedMessage,
+  Link as IntlLink
+} from 'gatsby-plugin-intl';
 import { withFormik, InjectedFormikProps, Form, Field } from 'formik';
 import {
   Box,
@@ -17,7 +21,7 @@ import {
   Stack
 } from '@chakra-ui/core';
 import { MdToday } from 'react-icons/md';
-import { Link as IntlLink } from 'gatsby-plugin-intl';
+
 import Select, { Option } from 'react-select';
 import useAnalytics from '../../hooks/useAnalytics';
 import withPerson from '../../hooks/withPerson';
@@ -32,7 +36,7 @@ import useContacts from '../../hooks/useContacts';
 const { contactLogged } = useAnalytics();
 
 interface ContactWith {
-  displayName: string;
+  displayName: string | undefined;
   uid: string;
 }
 
@@ -55,13 +59,17 @@ const InnerForm: React.FC<InjectedFormikProps<
     touched
   } = props;
 
-  const contactWithOptions: ContactWith[] = contactOptions.map((uid) => {
-    const [person] = withPerson({ uid });
-    return {
-      uid,
-      displayName: person.displayName
-    };
-  });
+  const contactWithOptions: ContactWith[] = contactOptions.map(
+    (contact) => {
+      const { person } = withPerson({
+        uid: contact.uid
+      });
+      return {
+        uid: contact.uid,
+        displayName: person ? person.displayName : ''
+      };
+    }
+  );
 
   return (
     <Form>
@@ -84,7 +92,9 @@ const InnerForm: React.FC<InjectedFormikProps<
                     value={field.value}
                   />
                 </Box>
-                <FormErrorMessage>{errors.entryDate}</FormErrorMessage>
+                <FormErrorMessage>
+                  {errors.entryDate}
+                </FormErrorMessage>
               </FormControl>
             )}
           </Field>
@@ -127,7 +137,9 @@ const InnerForm: React.FC<InjectedFormikProps<
                     }}
                   />
                 </FormHelperText>
-                <FormErrorMessage>{errors.entryDate}</FormErrorMessage>
+                <FormErrorMessage>
+                  {errors.entryDate}
+                </FormErrorMessage>
               </FormControl>
             )}
           </Field>
@@ -212,19 +224,21 @@ const LogContactForm: React.FC<LogContactFormProps> = (props) => {
     }
   });
   const { profile, isLoading: loadingProfile } = useAuth();
-  const [contacts, loadingContacts] = useContacts();
+  const { contacts, loading: loadingContacts } = useContacts();
 
   if (loadingContacts || loadingProfile) {
     return <Spinner />;
   }
 
   return (
-    <WithFormik
-      uid={profile!.uid}
-      contactOptions={contacts}
-      logContactMutation={logContactMutation}
-      {...props}
-    />
+    profile && (
+      <WithFormik
+        uid={profile.uid}
+        contactOptions={contacts}
+        logContactMutation={logContactMutation}
+        {...props}
+      />
+    )
   );
 };
 
