@@ -6,6 +6,15 @@
   "commit": false,
   "contributors": [
     {
+
+      "login": "Cactice",
+      "name": "Yuya Kanai",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/14835424?v=4",
+      "profile": "http://www.cactice.com/",
+      "contributions": [
+        "code"
+      ]
+    },{
       "login": "kevinamick",
       "name": "Kevin Amick",
       "avatar_url": "https://avatars1.githubusercontent.com/u/15185225?v=4",
@@ -38,6 +47,7 @@
         "code", "translation"
         ]
       }
+
   ],
   "contributorsPerLine": 7,
   "projectName": "Frontend",
