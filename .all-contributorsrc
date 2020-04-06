@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "pongponk",
+      "name": "Ponk Memoli",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/25208986?v=4",
+      "profile": "http://architracker.co",
+      "contributions": [
+        "design"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "Frontend",
+  "projectOwner": "ContactTracing-app",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
