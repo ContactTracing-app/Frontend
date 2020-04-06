@@ -7,6 +7,16 @@
   "contributors": [
     {
 
+      "login": "rebagliatte",
+      "name": "Vero Rebagliatte",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/669889?v=4",
+      "profile": "http://rebagliatte.com",
+      "contributions": [
+        "code"
+      ]
+    },{
+
+
       "login": "Cactice",
       "name": "Yuya Kanai",
       "avatar_url": "https://avatars0.githubusercontent.com/u/14835424?v=4",
@@ -47,6 +57,7 @@
         "code", "translation"
         ]
       }
+
 
   ],
   "contributorsPerLine": 7,
