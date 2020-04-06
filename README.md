@@ -23,6 +23,7 @@ We needed one way to look-up the uid with the public information that that parti
 
 To prevent looking-up that same information over and over again, a Mobx store called `PersonStore` provides a cache of info.
 
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
@@ -32,6 +33,11 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
+    <td align="center"><a href="http://100shapes.com"><img src="https://avatars2.githubusercontent.com/u/46807?v=4" width="100px;" alt=""/><br /><sub><b>Michele Memoli</b></sub></a><br /><a href="https://github.com/ContactTracing-app/Frontend/commits?author=mmmoli" title="Code">💻</a></td>
+    <td align="center"><a href="http://architracker.co"><img src="https://avatars3.githubusercontent.com/u/25208986?v=4" width="100px;" alt=""/><br /><sub><b>Ponk Memoli</b></sub></a><br /><a href="#design-pongponk" title="Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/firacloudtech"><img src="https://avatars0.githubusercontent.com/u/54759476?v=4" width="100px;" alt=""/><br /><sub><b>Yogen (Fira Cloud Tech)</b></sub></a><br /><a href="https://github.com/ContactTracing-app/Frontend/commits?author=firacloudtech" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/kevinamick"><img src="https://avatars1.githubusercontent.com/u/15185225?v=4" width="100px;" alt=""/><br /><sub><b>Kevin Amick</b></sub></a><br /><a href="https://github.com/ContactTracing-app/Frontend/commits?author=kevinamick" title="Code">💻</a></td>
+    <td align="center"><a href="http://www.cactice.com/"><img src="https://avatars0.githubusercontent.com/u/14835424?v=4" width="100px;" alt=""/><br /><sub><b>Yuya Kanai</b></sub></a><br /><a href="https://github.com/ContactTracing-app/Frontend/commits?author=Cactice" title="Code">💻</a></td>
     <td align="center"><a href="http://rebagliatte.com"><img src="https://avatars2.githubusercontent.com/u/669889?v=4" width="100px;" alt=""/><br /><sub><b>Vero Rebagliatte</b></sub></a><br /><a href="https://github.com/ContactTracing-app/Frontend/commits?author=rebagliatte" title="Code">💻</a></td>
   </tr>
 </table>
