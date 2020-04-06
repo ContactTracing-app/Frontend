@@ -6,6 +6,14 @@
   "commit": false,
   "contributors": [
     {
+      "login": "porrkorpark",
+      "name": "porrkorpark",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/62882553?v=4",
+      "profile": "https://github.com/porrkorpark",
+      "contributions": [
+        "translation"
+      ]
+    }, {
 
       "login": "rebagliatte",
       "name": "Vero Rebagliatte",
@@ -57,6 +65,7 @@
         "code", "translation"
         ]
       }
+
 
 
   ],

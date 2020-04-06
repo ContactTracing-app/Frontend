@@ -39,6 +39,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/kevinamick"><img src="https://avatars1.githubusercontent.com/u/15185225?v=4" width="100px;" alt=""/><br /><sub><b>Kevin Amick</b></sub></a><br /><a href="https://github.com/ContactTracing-app/Frontend/commits?author=kevinamick" title="Code">💻</a></td>
     <td align="center"><a href="http://www.cactice.com/"><img src="https://avatars0.githubusercontent.com/u/14835424?v=4" width="100px;" alt=""/><br /><sub><b>Yuya Kanai</b></sub></a><br /><a href="https://github.com/ContactTracing-app/Frontend/commits?author=Cactice" title="Code">💻</a></td>
     <td align="center"><a href="http://rebagliatte.com"><img src="https://avatars2.githubusercontent.com/u/669889?v=4" width="100px;" alt=""/><br /><sub><b>Vero Rebagliatte</b></sub></a><br /><a href="https://github.com/ContactTracing-app/Frontend/commits?author=rebagliatte" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/porrkorpark"><img src="https://avatars0.githubusercontent.com/u/62882553?v=4" width="100px;" alt=""/><br /><sub><b>porrkorpark</b></sub></a><br /><a href="#translation-porrkorpark" title="Translation">🌍</a></td>
   </tr>
 </table>
 
