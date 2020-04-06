@@ -13,8 +13,8 @@
       "contributions": [
         "translation"
       ]
-    }, {
-
+    },
+    {
       "login": "rebagliatte",
       "name": "Vero Rebagliatte",
       "avatar_url": "https://avatars2.githubusercontent.com/u/669889?v=4",
@@ -22,9 +22,8 @@
       "contributions": [
         "code"
       ]
-    },{
-
-
+    },
+    {
       "login": "Cactice",
       "name": "Yuya Kanai",
       "avatar_url": "https://avatars0.githubusercontent.com/u/14835424?v=4",
@@ -32,7 +31,8 @@
       "contributions": [
         "code"
       ]
-    },{
+    },
+    {
       "login": "kevinamick",
       "name": "Kevin Amick",
       "avatar_url": "https://avatars1.githubusercontent.com/u/15185225?v=4",
@@ -40,14 +40,20 @@
       "contributions": [
         "code"
       ]
-    },{
+    },
+    {
       "login": "mmmoli",
       "name": "Michele Memoli",
       "avatar_url": "https://avatars2.githubusercontent.com/u/46807?v=4",
       "profile": "http://100shapes.com",
       "contributions": [
-        "code", "design", "documentation", "translation"
-},{
+        "code",
+        "design",
+        "documentation",
+        "translation"
+      ]
+    },
+    {
       "login": "pongponk",
       "name": "Ponk Memoli",
       "avatar_url": "https://avatars3.githubusercontent.com/u/25208986?v=4",
@@ -57,17 +63,15 @@
       ]
     },
     {
-    "login": "firacloudtech",
+      "login": "firacloudtech",
       "name": "Yogen (Fira Cloud Tech)",
       "avatar_url": "https://avatars0.githubusercontent.com/u/54759476?v=4",
       "profile": "https://github.com/firacloudtech",
       "contributions": [
-        "code", "translation"
-        ]
-      }
-
-
-
+        "code",
+        "translation"
+      ]
+    }
   ],
   "contributorsPerLine": 7,
   "projectName": "Frontend",
