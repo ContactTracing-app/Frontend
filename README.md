@@ -33,6 +33,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="http://100shapes.com"><img src="https://avatars2.githubusercontent.com/u/46807?v=4" width="100px;" alt=""/><br /><sub><b>Michele Memoli</b></sub></a><br /><a href="https://github.com/ContactTracing-app/Frontend/commits?author=mmmoli" title="Code">💻</a></td>
+    <td align="center"><a href="http://architracker.co"><img src="https://avatars3.githubusercontent.com/u/25208986?v=4" width="100px;" alt=""/><br /><sub><b>Ponk Memoli</b></sub></a><br /><a href="#design-pongponk" title="Design">🎨</a></td>
   </tr>
 </table>
 
