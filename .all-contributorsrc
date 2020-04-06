@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "firacloudtech",
+      "name": "Yogen (Fira Cloud Tech)",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/54759476?v=4",
+      "profile": "https://github.com/firacloudtech",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "Frontend",
+  "projectOwner": "ContactTracing-app",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
