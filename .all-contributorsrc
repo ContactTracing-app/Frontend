@@ -6,13 +6,12 @@
   "commit": false,
   "contributors": [
     {
-
       "login": "mmmoli",
       "name": "Michele Memoli",
       "avatar_url": "https://avatars2.githubusercontent.com/u/46807?v=4",
       "profile": "http://100shapes.com",
       "contributions": [
-        "code"
+        "code", "design", "documentation", "translation"
 },{
       "login": "pongponk",
       "name": "Ponk Memoli",
@@ -21,7 +20,16 @@
       "contributions": [
         "design"
       ]
-    }
+    },
+    {
+    "login": "firacloudtech",
+      "name": "Yogen (Fira Cloud Tech)",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/54759476?v=4",
+      "profile": "https://github.com/firacloudtech",
+      "contributions": [
+        "code", "translation"
+        ]
+      }
   ],
   "contributorsPerLine": 7,
   "projectName": "Frontend",
