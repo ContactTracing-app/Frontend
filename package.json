@@ -23,7 +23,7 @@
     "test:compile": "tsc --project cypress/tsconfig.json",
     "type-check": "tsc --noEmit",
     "test:compile:watch": "tsc --watch --project cypress/tsconfig.json",
-    "test": "npm-run-all -s test:compile server:run",
+    "test": "npm-run-all -s test:compile server:run; node .github/setup.js",
     "test:watch": "npm-run-all -p test:compile:watch server:open",
     "test:ci": "npm-run-all -s test:compile server:ci",
     "types": "graphql-codegen --config codegen.yml"
