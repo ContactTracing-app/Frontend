@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "porrkorpark",
+      "name": "porrkorpark",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/62882553?v=4",
+      "profile": "https://github.com/porrkorpark",
+      "contributions": [
+        "translation"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "Frontend",
+  "projectOwner": "ContactTracing-app",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
