@@ -48,10 +48,7 @@ module.exports = {
           `zh-Hant`
         ],
         defaultLanguage: `en`,
-        redirect: true,
-        redirectComponent: require.resolve(
-          `./src/components/Redirect/Redirect.tsx`
-        )
+        redirect: true
       }
     },
     'gatsby-transformer-yaml',
