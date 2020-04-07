@@ -97,6 +97,10 @@ const InnerForm: React.FC<InjectedFormikProps<
                 isInvalid={errors[field.name] && touched[field.name]}
               >
                 <FormLabel htmlFor={field.name}>
+                  <FormattedMessage id="Search for places" />
+                </FormLabel>
+                <PlacesInput />
+                <FormLabel htmlFor={field.name}>
                   <FormattedMessage id="LogForm.Who did you meet?" />
                 </FormLabel>
                 <Select
