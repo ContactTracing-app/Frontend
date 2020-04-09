@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useIntl } from 'gatsby-plugin-intl';
+import { useIntl, navigate } from 'gatsby-plugin-intl';
 import { FormState, Form } from 'gatsby-theme-firebase';
 import { RouteComponentProps, useLocation } from '@reach/router';
 import * as queryString from 'query-string';
@@ -7,9 +7,11 @@ import PageHeader from '../../components/PageHeader';
 import { useStores } from '../../hooks/useStore';
 
 import SignInForm from './SignInForm';
-import { Tabs, TabList, Tab } from '@chakra-ui/core';
+import { Tabs, TabList, Tab, TabPanel, TabPanels } from '@chakra-ui/core';
+import SignUpForm from './SignUpForm';
+SignUpForm;
 
-const LoginView: React.FC<RouteComponentProps> = () => {
+const LoginView: React.FC<RouteComponentProps> = (props) => {
   const { search } = useLocation();
   const { locationStore } = useStores();
   const intl = useIntl();
@@ -21,6 +23,8 @@ const LoginView: React.FC<RouteComponentProps> = () => {
   } else {
     locationStore.setNext('/me');
   }
+
+  console.log(props);
 
   return (
     <>
@@ -34,10 +38,22 @@ const LoginView: React.FC<RouteComponentProps> = () => {
             <Tab>Sign In</Tab>
             <Tab>Sign Up</Tab>
           </TabList>
+
+          <TabPanels>
+            <TabPanel>
+              <SignInForm></SignInForm>
+            </TabPanel>
+            <TabPanel>
+              <SignUpForm></SignUpForm>
+            </TabPanel>
+          </TabPanels>
         </Tabs>
 
-        <SignInForm></SignInForm>
-        <Form></Form>
+        <Form
+          onLoginSuccess={(user) => {
+            navigate('/me');
+          }}
+        ></Form>
       </FormState.Provider>
     </>
   );
