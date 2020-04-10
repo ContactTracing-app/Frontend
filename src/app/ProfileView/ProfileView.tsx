@@ -44,18 +44,11 @@ const statusOptions = [
   }
 ];
 
-const InnerForm: React.FC<InjectedFormikProps<
-  ProfileFormProps,
-  FormValues
->> = (props) => {
+const InnerForm: React.FC<InjectedFormikProps<ProfileFormProps, FormValues>> = (
+  props
+) => {
   const intl = useIntl();
-  const {
-    setFieldValue,
-    isValid,
-    dirty,
-    values,
-    initialValues
-  } = props;
+  const { setFieldValue, isValid, dirty, values, initialValues } = props;
 
   return (
     <Form>
@@ -90,10 +83,7 @@ const InnerForm: React.FC<InjectedFormikProps<
                 onChange={(e) => {
                   //check if status has changed
 
-                  setFieldValue(
-                    'healthStatus',
-                    e.currentTarget.value
-                  );
+                  setFieldValue('healthStatus', e.currentTarget.value);
                 }}
               >
                 <option value="TOTALLY_FINE">
@@ -119,10 +109,7 @@ const InnerForm: React.FC<InjectedFormikProps<
                 defaultIsChecked={props.values.inQuarantine}
                 size="lg"
                 onChange={(e) => {
-                  setFieldValue(
-                    'inQuarantine',
-                    !props.values.inQuarantine
-                  );
+                  setFieldValue('inQuarantine', !props.values.inQuarantine);
                 }}
               />
               <FormLabel mx={2}>
@@ -134,9 +121,7 @@ const InnerForm: React.FC<InjectedFormikProps<
 
         <Box>
           <Button
-            isDisabled={
-              (dirty && !isValid) || values === initialValues
-            }
+            isDisabled={(dirty && !isValid) || values === initialValues}
             mt={4}
             variantColor="teal"
             type="submit"
@@ -189,10 +174,7 @@ const ProfileForm: React.FC<ProfileFormProps> = (props) => {
     uid: profile ? profile.uid : ''
   });
 
-  const {
-    data,
-    loading: loadingHealthStatus
-  } = useGetHealthStatusQuery({
+  const { data, loading: loadingHealthStatus } = useGetHealthStatusQuery({
     variables: {
       uid: me.uid
     }
