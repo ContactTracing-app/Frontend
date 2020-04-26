@@ -108,7 +108,7 @@ export const P: React.FC = ({ children, ...rest }) => (
 
 export const GlobalStyles: React.FC = () => {
   const { locale } = useIntl();
-  const direction = ['ar'].includes(locale) ? 'rtl' : 'ltr';
+  const direction = ['ar', 'he'].includes(locale) ? 'rtl' : 'ltr';
   return (
     <Global
       styles={{
