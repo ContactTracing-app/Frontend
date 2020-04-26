@@ -9,6 +9,7 @@ const languageName = {
   el: 'Ελληνικά',
   en: 'English',
   es: 'Español',
+  he: 'עברית',
   it: 'Italiano',
   ko: '한국어',
   'pt-BR': 'português brasileiro',
@@ -29,18 +30,18 @@ const LanguageSwitcher: React.FC = () => {
           languages: string[];
           currentLocale: string;
         }) => (
-          <Select
-            onChange={({ currentTarget }) => changeLocale(currentTarget.value)}
-            size="md"
-            placeholder={languageName[currentLocale]}
-          >
-            {languages.map((code: string) => (
-              <option key={code} value={code}>
-                {languageName[code]}
-              </option>
-            ))}
-          </Select>
-        )}
+            <Select
+              onChange={({ currentTarget }) => changeLocale(currentTarget.value)}
+              size="md"
+              placeholder={languageName[currentLocale]}
+            >
+              {languages.map((code: string) => (
+                <option key={code} value={code}>
+                  {languageName[code]}
+                </option>
+              ))}
+            </Select>
+          )}
       </IntlContextConsumer>
     </Box>
   );
